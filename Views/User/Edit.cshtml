@@ -1,0 +1,113 @@
+﻿@model EnouFlowOrgMgmtLib.UserDTO
+
+@{
+  ViewBag.Title = Resources.Resource.G_Edit;
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <h4>@Resources.Resource.G_User</h4>
+    <hr />
+    @Html.HiddenFor(model => model.guid)
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.name, "*" + Resources.Resource.G_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @required = "true" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.logonName, "* " + Resources.Resource.G_LogonName,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.logonName, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.Label(Resources.Resource.G_Password,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.Password("logonPassword", "", new Dictionary<string, object> {
+            { "class", "form-control" }})
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.displayName, Resources.Resource.G_DisplayName, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.displayName, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.englishName, Resources.Resource.MD_EnglishName, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.englishName, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.code, Resources.Resource.G_Code, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.indexNumber, Resources.Resource.G_IndexNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.indexNumber, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.email, Resources.Resource.G_Email, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.officeTel, Resources.Resource.G_OfficeTel, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.officeTel, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.personalTel, Resources.Resource.G_PersonalTel, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.personalTel, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.personalMobile, Resources.Resource.G_PersonalMobile, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.personalMobile, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="@Resources.Resource.G_Save" class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+
+<div>
+  @Html.ActionLink(@Resources.Resource.G_BackToList, "Index")
+</div>
+
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+}

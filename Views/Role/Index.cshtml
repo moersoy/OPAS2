@@ -1,0 +1,48 @@
+﻿@model IEnumerable<EnouFlowOrgMgmtLib.Role>
+@{
+  ViewBag.Title = "Index";
+}
+<h2>@Resources.Resource.MENU_Roles</h2>
+<p>
+  @Html.ActionLink(@Resources.Resource.G_Create, "Create")
+</p>
+<table class="table">
+  <tr>
+    <th>
+      @Resources.Resource.G_Name
+    </th>
+    <th>
+      @Resources.Resource.G_DisplayName
+    </th>
+    <th>
+      @Resources.Resource.MD_EnglishName
+    </th>
+    <th>
+      @Resources.Resource.MENU_Users
+    </th>
+    <th>@Resources.Resource.G_Operations</th>
+  </tr>
+    @foreach (var item in Model) {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.name)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.displayName)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.englishName)
+      </td>
+      <td>
+        @Html.Action("ListUsers", new { id = item.guid })
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Edit, "Edit", 
+          new { id = item.guid }) | 
+        @Html.ActionLink(Resources.Resource.G_AddBelongedUser, "AddBelongedUser",
+          new { id = item.guid })
+      </td>
+    </tr>
+  }
+
+</table>

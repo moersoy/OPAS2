@@ -1,0 +1,77 @@
+﻿@model OPAS2Model.Payment
+<div class="col-md-12 no-left-right-padding">
+  <el-table v-bind:data="newItem.PMDetails"
+            border stripe
+            style="width: 100%">
+    <el-table-column label="@Resources.Resource.G_LineNumber"
+                     width="60" align="center">
+      <template scope="scope">
+        <span class="text-in-table-cell">
+          {{ scope.row.lineNo }}
+        </span>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.G_ItemName"
+                     width="170" align="center">
+      <template scope="scope">
+        <span class="text-in-table-cell">
+          {{ scope.row.itemName }}
+        </span>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.G_UnitMeasure_Abbr"
+                     width="100" align="center">
+      <template scope="scope">
+        <span class="text-in-table-cell">
+          {{ scope.row.unitMeasure }}
+        </span>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.G_Price"
+                     width="100" align="center">
+      <template scope="scope">
+        <span class="text-in-table-cell">
+          {{ scope.row.price }}
+        </span>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.G_Quantity @Resources.Resource.G__Total"
+                     width="100" align="center">
+      <template scope="scope">
+        <span class="text-in-table-cell">
+          {{ scope.row.quantity }}
+        </span>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.G_ReceivedQuantity"
+                     width="100" align="center">
+      <template scope="scope">
+        <span class="text-in-table-cell">
+          {{ scope.row.receivedQuantity }}
+        </span>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="* @Resources.Resource.G_Quantity"
+                     width="100" align="center">
+      <template scope="scope">
+        <el-input v-model="scope.row.payingQuantity">
+        </el-input>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.G_Amount"
+                     width="120" align="center">
+      <template scope="scope">
+        <span style="margin-left: 5px">
+          {{ (scope.row.price || 0) * (scope.row.payingQuantity || 0) }}
+        </span>
+      </template>
+    </el-table-column>
+  </el-table>
+</div>

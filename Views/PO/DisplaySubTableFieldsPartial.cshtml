@@ -1,0 +1,57 @@
+﻿@model OPAS2Model.PurchaseOrder
+
+<div class="col-md-12 no-left-right-padding">
+  <table class="table table-bordered table-condensed table-striped">
+    <tr>
+      <th>
+        @Resources.Resource.G_LineNumber
+      </th>
+      <th>
+        @Resources.Resource.G_ItemName
+      </th>
+      <th>
+        @Resources.Resource.G_UnitMeasure_Abbr
+      </th>
+      <th>
+        @Resources.Resource.G_Price
+      </th>
+      <th>
+        @Resources.Resource.G_Quantity
+      </th>
+      <th>
+        @Resources.Resource.G_Amount
+      </th>
+      <th>
+        @Resources.Resource.MD_Description
+      </th>
+    </tr>
+
+    @foreach (var item in Model.details)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.lineNo)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.itemName)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.unitMeasure)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.description)
+        </td>
+      </tr>
+    }
+  </table>
+</div>
+

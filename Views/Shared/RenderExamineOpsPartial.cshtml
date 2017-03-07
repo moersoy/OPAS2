@@ -1,0 +1,72 @@
+﻿<div class="form-group">
+  <label class="control-label col-md-2">@Resources.Resource.G_WorkflowOperation :</label>
+  <div class="col-md-10">
+    <el-select v-model="examineItem.selectedConnectionGuid"
+               @@change="handleFlowSelectedConnection"
+               placeholder="@Resources.Resource.G_ChooseFlowConnection">
+      <el-option v-for="item in examineItem.sessionData.availableFlowConnections"
+                 v-bind:label="item.connection.name"
+                 v-bind:value="item.connection.guid">
+        <span style="float: left">{{ item.connection.name }}</span>
+        <span style="float: right; color: #8492a6; font-size: 13px">
+          ==>> {{ item.toNode.name }}
+        </span>
+      </el-option>
+    </el-select>
+
+    <el-select v-model="examineItem.selectedPaticipantGuid" placeholder="@Resources.Resource.G_ChooseToNodeRole">
+      <el-option v-for="item in examineItem.sessionData.potentialPaticipants"
+                 v-bind:label="item.PaticipantObj.name"
+                 v-bind:value="item.PaticipantObj.guid">
+        <span style="float: left">{{ item.PaticipantObj.name }}</span>
+        <span class="glyphicon glyphicon-tasks text-warning"
+              v-if="item.PaticipantType=='role'"
+              style="float: right; font-size: large; vertical-align: sub;">
+        </span>
+        <span class="glyphicon glyphicon-user text-warning"
+              v-else
+              style="float: right; font-size: large; margin-top:-5px;">
+        </span>
+      </el-option>
+    </el-select>
+
+    <input type="submit" value="@Resources.Resource.G_Submit" class="btn btn-primary" />
+
+    <el-button-group style="padding-top: 5px;">
+      <el-tooltip content="直接退回申请人 / Reject to the creator">
+        <el-button type="danger" icon="d-arrow-left" 
+          @@click="onSubmitRejectToStartFlowAction">
+        </el-button>
+      </el-tooltip>
+      <el-tooltip content="邀请他人提供意见 / Invite other people to review">
+        <el-button type="primary" icon="plus"
+          @@click="onInviteOtherToExamine">
+        </el-button>
+      </el-tooltip>
+    </el-button-group>
+  </div>
+</div>
+
+<el-dialog title="选择用户" v-model="dialogChooseUserVisible">
+  @*<el-form>
+    <el-form-item label="筛选用户" label-width="formLabelWidth">
+      <el-input v-model="queryUserInfo" auto-complete="off"></el-input>
+    </el-form-item>
+  </el-form>*@
+  <el-input placeholder="输入查询条件" 
+    v-model="queryUserInfo"><el-button slot="append" icon="search"></el-button>
+  </el-input>
+  <el-table v-bind:data="filteredUserDTOs" highlight-current-row max-height="300"
+    @@current-change="handleSelectedUserDTOChange" >
+    <el-table-column property="name" label="姓名" width="150" sortable></el-table-column>
+    <el-table-column property="englishName" label="英文名" width="200" sortable></el-table-column>
+    <el-table-column property="defaultDepartmentName" label="部门" sortable></el-table-column>
+  </el-table>
+  <div slot="footer" class="dialog-footer">
+    <el-button type="primary" v-bind:disabled="!selectedUserDTO"
+               @@click="onDialogChooseUserConfirmed">
+    确 定
+    </el-button>
+    <el-button @@click="dialogChooseUserVisible = false" >取 消</el-button>
+  </div>
+</el-dialog>

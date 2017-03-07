@@ -1,0 +1,69 @@
+﻿@model OPAS2Model.CostElement
+
+@{
+  ViewBag.Title = "Create";
+}
+
+<h2>@Resources.Resource.G_Create</h2>
+
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <h4>@Resources.Resource.MD_CostElement</h4>
+    <hr />
+
+    <div class="form-group">
+      @Html.Label(Resources.Resource.MD_CostElementType, 
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.DropDownList("costElementTypeId", (SelectList)ViewBag.selectList, 
+          "请选择/Choose one", new { @class = "form-control", required = "true" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.Label(Resources.Resource.MD_CostElementAccountType, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.DropDownList("costElementAccountTypeId", (SelectList)ViewBag.costElementAccountTypes, "请选择/Choose one", new { @class = "form-control", required = "true" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.name, "*" + Resources.Resource.G_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.englishName, Resources.Resource.MD_EnglishName, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.englishName, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.description, Resources.Resource.MD_Description, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.TextAreaFor(model => model.description, 5, 40, new { @class = "form-control" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="@Resources.Resource.G_Create" class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+
+<div>
+  @Html.ActionLink(@Resources.Resource.G_BackToList, "Index")
+</div>
+
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,56 @@
+﻿@model OPAS2Model.Payment
+
+@section init_scripts {
+  <script type="text/javascript">
+    var initBag={};
+    // object datas
+    initBag.workingMode = "new";
+    initBag.purchaseOrderId=@ViewBag.PO.purchaseOrderId;
+    initBag.PODocumentNo= "@ViewBag.PO.documentNo";
+    initBag.currentUserGuid = "@ViewBag.currentUserDTO.guid";
+    initBag.guid = "@ViewBag.guid";
+    initBag.departmentId = @ViewBag.PO.departmentId;
+    // biz data
+    initBag.bizData = JSON.parse(Base64.decode(
+      '@Html.Raw(ViewBag.bizDataJsonEncoded)'));
+    // detail table
+    initBag.PMDetails = JSON.parse(Base64.decode(
+      '@Html.Raw(ViewBag.PMDetails)'));
+    // master datas
+    initBag.removeAttachPath = "/api/AttachFile/Remove/@ViewBag.guid";
+    initBag.PMCreateWithFlowActionPath = "/api/PM/CreateWithFlowAction/";
+    initBag.paymentAreaTypes = JSON.parse(Base64.decode(
+      '@Html.Raw(ViewBag.paymentAreaTypesJsonEncoded)'));
+    initBag.paymentCurrencyTypes = JSON.parse(Base64.decode(
+      '@Html.Raw(ViewBag.paymentCurrencyTypesJsonEncoded)'));
+    initBag.paymentMethodTypes = JSON.parse(Base64.decode(
+      '@Html.Raw(ViewBag.PaymentMethodTypesJsonEncoded)'));
+    // flow datas
+    initBag.availableFlowConnections = JSON.parse(Base64.decode(
+      "@ViewBag.availableFlowConnectionsEncoded"));
+    initBag.flowTemplateGuid = "@ViewBag.flowTemplateGuid";
+    initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
+  </script>
+  }
+
+@using (Html.BeginForm(
+          "CreateFromPO", (string)ViewBag.flowTemplateCode, FormMethod.Post,
+          htmlAttributes: new Dictionary<string, object> {
+          { "v-on:submit.prevent", "onSubmitCreate" },
+          { "autocomplete", "off"} }))
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    @Html.Partial("DisplayBizDocumentHeaderPartial")
+
+    @Html.Partial("RenderMainFieldsForEditPartial")
+
+    @Html.Partial("RenderDetailFieldsForEditPartial")
+
+    @Html.Partial("RenderAttachListOpsPartial")
+
+    @Html.Partial("RenderCreateWorkflowOpsPartial")
+
+  </div>
+}

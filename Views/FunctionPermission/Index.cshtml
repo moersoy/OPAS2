@@ -1,0 +1,61 @@
+﻿@model IEnumerable<OPAS2Model.FunctionPermission>
+
+@{
+  ViewBag.Title = "Index";
+}
+
+<h2>@Resources.Resource.MD_FunctionPermission</h2>
+
+<p>
+  @Html.ActionLink(@Resources.Resource.G_Create, "Create")
+</p>
+<table class="table">
+  <tr>
+    <th>
+      @Resources.Resource.G_Code
+    </th>
+    <th>
+      @Resources.Resource.G_Memo
+    </th>
+    <th>
+      @Resources.Resource.MENU_Roles
+    </th>
+    <th>
+      @Resources.Resource.G_User
+    </th>
+    <th>
+      @Resources.Resource.G_AvailableToEveryOne
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.code)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.memo)
+      </td>
+      <td>
+        @Html.Action("ListRoles", new { id = item.functionPermissionId })
+      </td>
+      <td>
+        @Html.Action("ListUsers", new { id = item.functionPermissionId })
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.availableToEveryOne)
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Edit, "Edit", 
+          new { id = item.guid }) | 
+        @Html.ActionLink(Resources.Resource.G_AddBelongedUser, "AddUser",
+          new { id = item.functionPermissionId }) |
+        @Html.ActionLink(Resources.Resource.G_AddBelongedRole, "AddRole",
+          new { id = item.functionPermissionId })
+      </td>
+    </tr>
+  }
+
+</table>

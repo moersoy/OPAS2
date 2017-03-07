@@ -1,0 +1,45 @@
+﻿@model OPAS2Model.PurchaseReq
+
+<div class="col-md-12 no-left-right-padding">
+  <table class="table table-bordered table-condensed table-striped">
+    <tr>
+      <th>
+        @Resources.Resource.G_LineNumber
+      </th>
+      <th>
+        @Resources.Resource.G_ItemType
+      </th>
+      <th>
+        @Resources.Resource.G_ItemName
+      </th>
+      <th>
+        @Resources.Resource.G_EstimatedCost
+      </th>
+      <th>
+        @Resources.Resource.MD_Description
+      </th>
+    </tr>
+
+    @foreach (var item in Model.details)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.lineNo)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.itemType)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.itemName)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.estimatedCost)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.description)
+        </td>
+      </tr>
+    }
+  </table>
+</div>
+<hr />

@@ -1,0 +1,185 @@
+﻿@model OPAS2Model.PurchaseReq
+
+<div class="form-group">
+  @Html.LabelFor(model => model.documentNo, @Resources.Resource.G_DocNo,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.documentNo
+  </div>
+
+  @Html.LabelFor(model => model.WBSNo, @Resources.Resource.G_WBSNo,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.WBSNo
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.contactOfficePhone, @Resources.Resource.G_OfficePhone,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.contactOfficePhone
+  </div>
+
+  @Html.LabelFor(model => model.contactMobile, @Resources.Resource.G_Mobile,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.contactMobile
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.contactOtherMedia, @Resources.Resource.G_OtherContact,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.contactOtherMedia
+  </div>
+
+  @Html.LabelFor(model => model.costCenterId, @Resources.Resource.MD_CostCenter,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("DisplayNameById", "CostCenter", new { id = Model.costCenterId })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_Department, @Resources.Resource.G_Department,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("DisplayNameById", "Department", new { id = Model.departmentId })
+  </div>
+
+  @Html.LabelFor(model => model.departmentIdBelongTo, @Resources.Resource.G_DepartmentBelongTo,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("DisplayNameById", "Department", new { id = Model.departmentIdBelongTo })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.expectReceiveBeginTime,
+      @Resources.Resource.G_ExpectReceiveStart,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @if (Model.expectReceiveBeginTime != null)
+    {
+      @Model.expectReceiveBeginTime.Value.ToString("yyyy/MM/dd")
+    }
+  </div>
+
+  @Html.LabelFor(model => model.expectReceiveEndTime,
+       @Resources.Resource.G_ExpectReceiveEnd,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @if (Model.expectReceiveEndTime != null)
+    {
+      @Model.expectReceiveEndTime.Value.ToString("yyyy/MM/dd")
+    }
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.isBidingRequired, @Resources.Resource.G_IsBidingRequired,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <div class="checkbox">
+      @Html.CheckBoxFor(model => model.isBidingRequired,
+            htmlAttributes: new { disabled = "disabled" })
+    </div>
+  </div>
+
+  @Html.LabelFor(model => model.noBiddingReason, @Resources.Resource.G_NoBiddingReason,
+       htmlAttributes: new Dictionary<string, object> {
+                  { "class","control-label col-md-2" } })
+  <div class="col-md-4 show-field">
+    @Model.noBiddingReason
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.reason, @Resources.Resource.G_Reason,
+     htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.reason
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.description, @Resources.Resource.MD_Description,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    @Model.description
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.averageBenchmark,
+       Resources.Resource.G_AverageBenchmark,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.averageBenchmark
+  </div>
+
+  @Html.LabelFor(model => model.benchmarkDescription,
+       Resources.Resource.G_BenchmarkDescription,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.benchmarkDescription
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.isFirstBuy,
+       Resources.Resource.G_IsFirstBuy,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <div class="checkbox">
+      @Html.CheckBoxFor(model => model.isFirstBuy,
+            htmlAttributes: new { disabled = "disabled" })
+    </div>
+  </div>
+
+  @Html.LabelFor(model => model.firstBuyDate,
+       Resources.Resource.G_FirstBuyDate,
+       htmlAttributes: new Dictionary<string, object> {
+                  { "class","control-label col-md-2" }})
+  <div class="col-md-4 show-field">
+    @if (Model.firstBuyDate != null)
+    {
+      @Model.firstBuyDate.Value.ToString("yyyy/MM/dd")
+    }
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.firstCostAmount,
+       Resources.Resource.G_FirstCostAmount,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.firstCostAmount
+  </div>
+
+  @Html.LabelFor(model => model.firstBuyDescription,
+       Resources.Resource.G_FirstBuyDescription,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.firstBuyDescription
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.estimatedCostInRMB,
+       Resources.Resource.G_EstimatedCostInRMB,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.estimatedCostInRMB
+  </div>
+
+  @Html.LabelFor(model => model.otherVendorsNotInList,
+       Resources.Resource.G_OtherVendorsNotInList,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.otherVendorsNotInList
+  </div>
+</div>
+

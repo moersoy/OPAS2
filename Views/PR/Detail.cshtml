@@ -1,0 +1,370 @@
+﻿@model OPAS2Model.PurchaseReq
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>PurchaseReq</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.guid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.documentNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.documentNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flowActionRequestId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flowActionRequestId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flowActionRequestGuid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flowActionRequestGuid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flowInstanceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flowInstanceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flowInstanceGuid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flowInstanceGuid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WBSNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WBSNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactOfficePhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactOfficePhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactMobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactMobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contactOtherMedia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactOtherMedia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.departmentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departmentId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.departmentGuid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departmentGuid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.departmentIdBelongTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departmentIdBelongTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.departmentGuidBelongTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departmentGuidBelongTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.costCenterId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.costCenterId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expectReceiveBeginTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expectReceiveBeginTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expectReceiveEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expectReceiveEndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isBidingRequired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isBidingRequired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.noBiddingReason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noBiddingReason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estimatedCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estimatedCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.currencyTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.currencyTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mainCurrencyRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mainCurrencyRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estimatedCostInRMB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estimatedCostInRMB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.averageBenchmark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.averageBenchmark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.benchmarkDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.benchmarkDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isFirstBuy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isFirstBuy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstBuyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstBuyDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstCostAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstCostAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstBuyDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstBuyDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remarkOfAprrovers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remarkOfAprrovers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.otherVendorsNotInList)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.otherVendorsNotInList)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isVisible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isVisible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.setInvisibleReason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.setInvisibleReason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.submitTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submitTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.submitor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submitor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.submitorUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submitorUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creatorUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creatorUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updateUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updateUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updateUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updateUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.purchaseReqId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

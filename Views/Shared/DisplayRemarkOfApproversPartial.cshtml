@@ -1,0 +1,7 @@
+﻿<div class="form-group">
+  @Html.Label(Resources.Resource.G_RemarkOfApprovers,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    @Html.Raw(Model.remarkOfAprrovers?.Replace("\n", "<br/>"))
+  </div>
+</div>

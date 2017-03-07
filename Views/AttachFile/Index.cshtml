@@ -1,0 +1,21 @@
+﻿@model IEnumerable<OPAS2Model.AttachFile>
+<table class="table table-condensed">
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.originalName)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.uploadUserId)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.uploadTime)
+      </td>
+      <td>
+        @Html.ActionLink(@Resources.Resource.G_Download, 
+          "Download", new { id = item.guid })
+      </td>
+    </tr>
+  }
+</table>

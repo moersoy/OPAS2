@@ -1,0 +1,59 @@
+﻿@model OPAS2Model.GoodsReceiving
+
+@section init_scripts {
+<script type="text/javascript">
+  var initBag = {};
+  initBag.workingMode = "examine";
+  initBag.purchaseOrderId=@ViewBag.PO.purchaseOrderId;
+  initBag.goodsReceivingId = @Model.goodsReceivingId;
+  initBag.PODocumentNo= "@if (ViewBag.PO != null) { @ViewBag.PO.documentNo }";
+  initBag.currentUserGuid = "@ViewBag.currentUserDTO.guid";
+  initBag.guid = "@Model.guid";
+  initBag.departmentId = @ViewBag.PO.departmentId;
+  initBag.taskGuid = "@ViewBag.taskGuid";
+  // biz data
+  initBag.bizData = {};
+  // session datas
+  initBag.GRNextFlowActionPath = "/api/GR/ExamineFlowAction/";
+  initBag.GRRejectToStartFlowActionPath = 
+    "/api/GR/RejectToStartFlowAction/";
+  // flow datas
+  initBag.availableFlowConnections = JSON.parse(Base64.decode(
+    "@ViewBag.availableFlowConnectionsEncoded"));
+  initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
+  initBag.flowInstanceId = @ViewBag.flowInstanceId;
+
+</script>
+  }
+
+@using (Html.BeginForm(
+          "ExamineFlowAction", (string)ViewBag.flowTemplateCode, FormMethod.Post,
+            htmlAttributes: new Dictionary<string, object> {
+        { "v-on:submit.prevent", "onSubmitExamineFlowAction" },
+        { "autocomplete", "off"}  }))
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    @Html.Partial("DisplayBizDocumentHeaderPartial")
+
+    @Html.HiddenFor(model => model.goodsReceivingId)
+
+    @Html.Partial("DisplayMainFieldsPartial", Model)
+
+    @Html.Partial("DisplayRemarkOfApproversPartial")
+
+    @Html.Partial("RenderRemarksOpsPartial")
+
+
+    @Html.Partial("DisplaySubTableFieldsPartial", Model)
+
+    @Html.Partial("DisplayAttachListPartial")
+
+    @Html.Partial("RenderExamineOpsPartial")
+
+  </div>
+}
+
+@Html.Partial("DisplayBackToTaskListLinkPartial")
+

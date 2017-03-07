@@ -1,0 +1,60 @@
+﻿@model OPAS2Model.GoodsReceiving
+
+@section init_scripts {
+  <script type="text/javascript">
+    var initBag={};
+    // object datas
+    initBag.workingMode = "updateAtStart";
+    initBag.removeAttachPath = "/api/AttachFile/Remove/@ViewBag.guid";
+    initBag.purchaseOrderId=@ViewBag.PO.purchaseOrderId;
+    initBag.PODocumentNo= "@ViewBag.PO.documentNo";
+    initBag.currentUserGuid = "@ViewBag.currentUserDTO.guid";
+    initBag.guid = "@ViewBag.guid";
+    initBag.departmentId = @ViewBag.PO.departmentId;
+    initBag.goodsReceivingId =  @ViewBag.goodsReceivingId;
+    initBag.taskGuid = "@ViewBag.taskGuid";
+    // biz data
+    initBag.bizData = JSON.parse(Base64.decode(
+      '@Html.Raw(ViewBag.bizDataJsonEncoded)'));
+    // detail table
+    initBag.GRDetails = JSON.parse(Base64.decode(
+      '@Html.Raw(ViewBag.GRDetails)'));
+    // session datas
+    initBag.GRNextFlowActionPath = "/api/GR/UpdateAtStartFlowAction/";
+    // flow datas
+    initBag.availableFlowConnections = JSON.parse(Base64.decode(
+      "@ViewBag.availableFlowConnectionsEncoded"));
+    initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
+    initBag.flowInstanceId = @ViewBag.flowInstanceId;
+  </script>
+}
+
+@using (Html.BeginForm(
+                      "UpdateAtStartFlowAction",
+                      (string)ViewBag.flowTemplateCode, FormMethod.Post,
+                      htmlAttributes: new Dictionary<string, object> {
+            { "v-on:submit.prevent", "onSubmitUpdateAtStartFlowAction" },
+            { "autocomplete", "off"}  }))
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    @Html.Partial("DisplayBizDocumentHeaderPartial")
+
+    @Html.HiddenFor(model => model.purchaseReqId)
+
+    @Html.Partial("RenderMainFieldsForEditPartial")
+
+    @Html.Partial("DisplayRemarkOfApproversPartial")
+
+    @Html.Partial("RenderDetailFieldsForEditPartial")
+
+    @Html.Partial("DisplayAttachListPartial")
+
+    @Html.Partial("RenderAttachListOpsPartial")
+
+    @Html.Partial("RenderCreateWorkflowOpsPartial")
+
+  </div>
+
+}

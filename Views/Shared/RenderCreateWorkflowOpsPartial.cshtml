@@ -1,0 +1,35 @@
+﻿<hr />
+<div class="form-group">
+  <label class="control-label col-md-2">@Resources.Resource.G_WorkflowOperation :</label>
+  <div class="col-md-10">
+    <el-select v-model="newItem.selectedConnectionGuid"
+               @@change="handleFlowSelectedConnection"
+               placeholder="@Resources.Resource.G_ChooseFlowConnection">
+      <el-option v-for="item in newItem.sessionData.availableFlowConnections"
+                 v-bind:label="item.connection.name"
+                 v-bind:value="item.connection.guid">
+        <span style="float: left">{{ item.connection.name }}</span>
+        <span style="float: right; color: #8492a6; font-size: 13px">
+          ==>> {{ item.toNode.name }}
+        </span>
+      </el-option>
+    </el-select>
+
+    <el-select v-model="newItem.selectedPaticipantGuid" placeholder="@Resources.Resource.G_ChooseToNodeRole">
+      <el-option v-for="item in newItem.sessionData.potentialPaticipants"
+                 v-bind:label="item.PaticipantObj.name"
+                 v-bind:value="item.PaticipantObj.guid">
+        <span style="float: left">{{ item.PaticipantObj.name }}</span>
+        <span class="glyphicon glyphicon-tasks text-warning"
+              v-if="item.PaticipantType=='role'"
+              style="float: right; font-size: large; vertical-align: sub;">
+        </span>
+        <span class="glyphicon glyphicon-user text-warning"
+              v-else
+              style="float: right; font-size: large; margin-top:-5px;">
+        </span>
+      </el-option>
+    </el-select>
+    <input type="submit" value="@Resources.Resource.G_SubmitForApproval" class="btn btn-primary" />
+  </div>
+</div>

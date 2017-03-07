@@ -1,0 +1,230 @@
+﻿@model OPAS2Model.Payment
+
+<div class="form-group">
+  @Html.LabelFor(model => model.documentNo, @Resources.Resource.G_DocNo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Resources.Resource.G_NotAvailableNow
+  </div>
+
+  @Html.Label(@Resources.Resource.G_PurchaseOrder,
+        @Resources.Resource.G_PurchaseOrder,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.Editor("PODocumentNo",
+        new
+        {
+          htmlAttributes = new Dictionary<string, object> {
+            { "class","form-control" } ,
+            { "v-model","newItem.PODocumentNo" },
+            { "readonly",true },
+          }
+        })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_Department, @Resources.Resource.G_Department,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("DisplayNameById", "Department", new { id = ViewBag.PO.departmentId })
+  </div>
+
+  @Html.Label(@Resources.Resource.MD_CostCenter, @Resources.Resource.MD_CostCenter,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("DisplayNameById", "CostCenter", new { id = ViewBag.PO.costCenterId })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.reason, "* " + @Resources.Resource.G_Reason,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="reason" class="form-control" v-model="newItem.reason" required />
+  </div>
+
+  @Html.LabelFor(model => model.applicantName,
+        Resources.Resource.G_ApplicantName,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="reason" class="form-control" v-model="newItem.applicantName" />
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.applicantEmail,
+        Resources.Resource.G_ApplicantEmail,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="reason" class="form-control" v-model="newItem.applicantEmail" />
+  </div>
+
+  @Html.LabelFor(model => model.applicantPhone,
+        Resources.Resource.G_ApplicantPhone,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="reason" class="form-control" v-model="newItem.applicantPhone" />
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.MD_CurrencyType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("ShowNameOfId", "CurrencyType",
+          new { id = (int)ViewBag.PO.currencyTypeId })
+  </div>
+
+  @Html.Label(Resources.Resource.MD_CurrencyRate,
+        Resources.Resource.MD_CurrencyRate,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @ViewBag.PO.mainCurrencyRate
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_Vendor,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    @Html.Action("ShowNameOfId", "Vendor",
+          new { id = @ViewBag.PO.Vendor.vendorId })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.vendorBankName,
+        Resources.Resource.G_VendorBankName,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="reason" class="form-control" v-model="newItem.vendorBankName" />
+  </div>
+
+  @Html.LabelFor(model => model.vendorBankAccount,
+        Resources.Resource.G_VendorBankAccount,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="reason" class="form-control" v-model="newItem.vendorBankAccount" />
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.SWIFTCode,
+        Resources.Resource.G_SWIFTCode,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="reason" class="form-control" v-model="newItem.SWIFTCode" />
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_PaymentAreaType, "* " + @Resources.Resource.G_PaymentAreaType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.paymentAreaType" class="form-control" required>
+      <option v-for="option in masterData.paymentAreaTypes" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+
+  @Html.Label(Resources.Resource.G_PaymentCurrencyType, "* " + @Resources.Resource.G_PaymentCurrencyType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.paymentCurrencyType" class="form-control" required>
+      <option v-for="option in masterData.paymentCurrencyTypes" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_PaymentMethodType, "* " + @Resources.Resource.G_PaymentMethodType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.paymentMethodType" class="form-control" required>
+      <option v-for="option in masterData.paymentMethodTypes" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+
+  @Html.LabelFor(model => model.payingDaysRequirement, @Resources.Resource.G_PayingDaysRequirement,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="reason" class="form-control" v-model="newItem.payingDaysRequirement" />
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.invoiceNo,
+        Resources.Resource.G_InvoiceNo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10">
+    <input name="reason" class="form-control" style="max-width: 752px;"
+           v-model="newItem.invoiceNo" />
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.isDownPayment,
+        @Resources.Resource.G_IsDownPayment,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-1">
+    <el-switch v-model="newItem.isDownPayment" style="top: 4px;"
+               on-text="是/Y"
+               off-text="否/N"
+               on-color="LimeGreen"
+               off-color="#B4B4B4">
+    </el-switch>
+  </div>
+
+  @Html.LabelFor(model => model.isNormalPayment,
+        @Resources.Resource.G_IsNormalPayment,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-1">
+    <el-switch v-model="newItem.isNormalPayment" style="top: 4px;"
+               on-text="是/Y"
+               off-text="否/N"
+               on-color="LimeGreen"
+               off-color="#B4B4B4">
+    </el-switch>
+  </div>
+
+  @Html.LabelFor(model => model.isImmediatePayment,
+        @Resources.Resource.G_IsImmediatePayment,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-1">
+    <el-switch v-model="newItem.isImmediatePayment" style="top: 4px;"
+               on-text="是/Y"
+               off-text="否/N"
+               on-color="LimeGreen"
+               off-color="#B4B4B4">
+    </el-switch>
+  </div>
+
+  @Html.LabelFor(model => model.isAdvancePayment,
+        @Resources.Resource.G_IsAdvancePayment,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-1" style="padding-left: 0px;">
+    <el-switch v-model="newItem.isAdvancePayment" style="top: 4px;"
+               on-text="是/Y"
+               off-text="否/N"
+               on-color="LimeGreen"
+               off-color="#B4B4B4">
+    </el-switch>
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.description, @Resources.Resource.MD_Description,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10">
+    <textarea name="description" class="form-control" style="max-width: 752px;"
+              v-model="newItem.description"></textarea>
+  </div>
+</div>
+

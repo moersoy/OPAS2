@@ -1,0 +1,86 @@
+﻿@model OPAS2Model.PurchaseReq
+
+@section init_scripts {
+<script type="text/javascript">
+  var initBag = {};
+  initBag.workingMode = "updateAtStart";
+  initBag.removeAttachPath = "/api/AttachFile/Remove/@ViewBag.guid";
+  initBag.currentUserGuid = "@ViewBag.currentUserDTO.guid";
+  initBag.guid = "@Model.guid";
+  initBag.purchaseReqId =  @ViewBag.purchaseReqId;
+  initBag.taskGuid = "@ViewBag.taskGuid";
+  // biz data
+  initBag.bizData = JSON.parse(Base64.decode(
+    '@Html.Raw(ViewBag.bizDataJsonEncoded)'));
+  // detail table
+  initBag.PRDetails = JSON.parse(Base64.decode(
+    '@Html.Raw(ViewBag.PRDetails)'));
+  // master datas
+  initBag.pRItemTypes = JSON.parse(Base64.decode(
+    '@Html.Raw(ViewBag.pRItemTypesJsonEncoded)'));
+  initBag.departmentList = JSON.parse(Base64.decode(
+    '@Html.Raw(ViewBag.departmentListJsonEncoded)'));
+  initBag.currencyTypeList = JSON.parse(Base64.decode(
+    '@Html.Raw(ViewBag.currencyTypeListJsonEncoded)'));
+  initBag.costCenterList = JSON.parse(Base64.decode(
+    '@Html.Raw(ViewBag.costCenterListJsonEncoded)'));
+
+  // session datas
+  initBag.PRNextFlowActionPath = "/api/PR/UpdateAtStartFlowAction/";
+  // flow datas
+  initBag.availableFlowConnections = JSON.parse(Base64.decode(
+    "@ViewBag.availableFlowConnectionsEncoded"));
+  initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
+  initBag.flowInstanceId = @ViewBag.flowInstanceId;
+
+</script>
+  }
+
+@using (Html.BeginForm(
+          "UpdateAtStartFlowAction", 
+          (string)ViewBag.flowTemplateCode, FormMethod.Post,
+          htmlAttributes: new Dictionary<string, object> {
+            { "v-on:submit.prevent", "onSubmitUpdateAtStartFlowAction" },
+            { "autocomplete", "off"}  }))
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    @Html.Partial("DisplayBizDocumentHeaderPartial")
+
+    @Html.HiddenFor(model => model.purchaseReqId)
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.documentNo, @Resources.Resource.G_DocNo,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-4 show-field">
+        @Model.documentNo
+      </div>
+
+      @Html.LabelFor(model => model.WBSNo, @Resources.Resource.G_WBSNo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-4">
+        @Html.EditorFor(model => model.WBSNo,
+        new
+        {
+          htmlAttributes = new Dictionary<string, object> {
+          { "class","form-control" } , { "v-model","newItem.WBSNo" } }
+        })
+      </div>
+    </div>
+
+    @Html.Partial("RenderMainFieldsForEditPartial")
+
+    @Html.Partial("DisplayRemarkOfApproversPartial")
+
+    @Html.Partial("RenderDetailFieldsForEditPartial")
+
+    @Html.Partial("DisplayAttachListPartial")
+
+    @Html.Partial("RenderAttachListOpsPartial")
+
+    @Html.Partial("RenderCreateWorkflowOpsPartial")
+
+  </div>
+
+}

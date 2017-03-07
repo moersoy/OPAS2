@@ -1,0 +1,11 @@
+﻿<div class="col-md-12 form-group">
+  <el-collapse accordion>
+    <el-collapse-item>
+      <template slot="title">
+        @Resources.Resource.G_AttachmentsHistory
+      </template>
+      @{Html.RenderAction("Index", "AttachFile", new { bizDocumentGuid = Model.guid });}
+    </el-collapse-item>
+  </el-collapse>
+</div>
+

@@ -1,0 +1,15 @@
+﻿<div class="col-md-12 form-group">
+  <el-collapse accordion>
+    <el-collapse-item>
+      <template slot="title">
+        @Resources.Resource.G_Attachments
+      </template>
+      <el-upload ref="upload" action="/api/AttachFile/Up/@ViewBag.guid"
+                 v-bind:on-remove="handleRemoveAttachment"
+                 v-bind:before-upload="handleBeforeUploadAttachment">
+        <el-button size="small" type="primary">@Resources.Resource.G_ClickToUpload</el-button>
+        <div class="el-upload__tip" slot="tip">@Resources.Resource.G_UploadNote</div>
+      </el-upload>
+    </el-collapse-item>
+  </el-collapse>
+</div>

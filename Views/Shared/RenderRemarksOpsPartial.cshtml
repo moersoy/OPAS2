@@ -1,0 +1,13 @@
+﻿<div class="form-group">
+  @Html.Label(Resources.Resource.G_RemarkOfApprover,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    @Html.TextArea("remarkOfAprrover", "", 3, 80,
+       new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "style" , "max-width: 750px;" },
+                  { "v-model","examineItem.remarkOfAprrover" },
+           }
+       )
+  </div>
+</div>

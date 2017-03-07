@@ -1,0 +1,160 @@
+﻿@model OPAS2Model.PurchaseOrder
+
+<div class="form-group">
+  @Html.LabelFor(model => model.documentNo, @Resources.Resource.G_DocNo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Resources.Resource.G_NotAvailableNow
+  </div>
+
+  @Html.Label(@Resources.Resource.G_PurchaseRequisition,
+        @Resources.Resource.G_PurchaseRequisition,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.Editor("PRDocumentNo",
+        new
+        {
+          htmlAttributes = new Dictionary<string, object> {
+            { "class","form-control" } ,
+            { "v-model","newItem.PRDocumentNo" },
+            { "readonly",true },
+          }
+        })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.contactOfficePhone, @Resources.Resource.G_OfficePhone,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="contactOfficePhone" class="form-control"
+           v-model="newItem.contactOfficePhone" />
+  </div>
+
+  @Html.LabelFor(model => model.contactMobile, @Resources.Resource.G_Mobile,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="contactMobile" class="form-control"
+           v-model="newItem.contactMobile" />
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_Department, "* " + @Resources.Resource.G_Department,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.departmentId" class="form-control" required>
+      <option v-for="option in masterData.departmentList" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+
+  @Html.LabelFor(model => model.costCenterId, "* " + @Resources.Resource.MD_CostCenter,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.costCenterId" class="form-control" required>
+      <option v-for="option in masterData.costCenterList" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.orderDate,
+        @Resources.Resource.G_OrderDate,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <el-date-picker v-model="newItem.orderDate"
+                    type="date"
+                    placeholder="@Resources.Resource.G_ChooseDate">
+    </el-date-picker>
+  </div>
+
+  @Html.LabelFor(model => model.effectiveDate,
+        @Resources.Resource.G_EffectiveDate,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <el-date-picker v-model="newItem.effectiveDate"
+                    type="date"
+                    placeholder="@Resources.Resource.G_ChooseDate">
+    </el-date-picker>
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.reason, "* " + @Resources.Resource.G_Reason,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="reason" class="form-control" v-model="newItem.reason" required/>
+  </div>
+
+  @Html.Label(Resources.Resource.G_POType, "* " + @Resources.Resource.G_POType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.POType" class="form-control" required>
+      <option v-for="option in masterData.POTypes" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label("* " + Resources.Resource.MD_CurrencyType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.currencyTypeId" class="form-control" required>
+      <option v-for="option in masterData.currencyTypeList" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+
+  @Html.LabelFor(model => model.mainCurrencyRate,
+        Resources.Resource.MD_CurrencyRate,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="mainCurrencyRate" class="form-control" v-model="newItem.mainCurrencyRate" required />
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label("* " + Resources.Resource.G_Vendor,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10">
+    <select v-model="newItem.vendorId" style="max-width: 640px" class="form-control" required>
+      <option v-for="option in masterData.vendorList" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.vendorContactPerson,
+        Resources.Resource.G_ContactPerson,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="vendorContactPerson" class="form-control" 
+           v-model="newItem.vendorContactPerson" />
+  </div>
+
+  @Html.LabelFor(model => model.vendorTel,
+        Resources.Resource.G_ContactPersonTel,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <input name="vendorTel" class="form-control"
+           v-model="newItem.vendorTel" />
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.description, @Resources.Resource.MD_Description,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10">
+    <textarea name="description" class="form-control" style="max-width: 750px;"
+           v-model="newItem.description" ></textarea>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+﻿<div class="col-md-12 no-left-right-padding">
+  <el-table v-bind:data="newItem.PODetails"
+            border stripe
+            style="width: 100%">
+    <el-table-column label="* @Resources.Resource.G_LineNumber"
+                     width="50">
+      <template scope="scope">
+        <el-input v-model="scope.row.lineNo" v-bind:disabled="true"
+                  v-bind:class="{ unsaved: !scope.row.guid }">
+        </el-input>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="* @Resources.Resource.G_ItemName"
+                     width="170">
+      <template scope="scope">
+        <el-select v-model="scope.row.itemName"
+                   filterable
+                   allow-create
+                   placeholder="@Resources.Resource.G_ItemName"
+                   v-bind:class="{ unsaved: !scope.row.guid }">
+          <el-option v-for="item in masterData.pRDetailItemNames"
+                     v-bind:label="item.name"
+                     v-bind:value="item.id">
+          </el-option>
+        </el-select>
+      </template>
+
+    </el-table-column>
+
+    <el-table-column label="* @Resources.Resource.G_UnitMeasure_Abbr"
+                     width="100">
+      <template scope="scope">
+        <el-select v-model="scope.row.unitMeasure"
+                   filterable
+                   allow-create
+                   v-bind:class="{ unsaved: !scope.row.guid }">
+          <el-option v-for="item in masterData.unitMeasureTypes"
+                     v-bind:label="item.name"
+                     v-bind:value="item.id">
+          </el-option>
+        </el-select>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="* @Resources.Resource.G_Price"
+                     width="100">
+      <template scope="scope">
+        <currency-input v-model="scope.row.price"
+                        v-bind:class="{ unsaved: !scope.row.guid }">
+        </currency-input>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="* @Resources.Resource.G_Quantity"
+                     width="100" >
+      <template scope="scope">
+        <el-input-number v-model="scope.row.quantity" v-bind:controls="false" style="top: 3px;"
+                         v-bind:class="{ unsaved: !scope.row.guid, length90: true }">
+        </el-input-number>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="* @Resources.Resource.G_Amount"
+                     width="110">
+      <template scope="scope">
+        <span style="margin-left: 5px">
+          {{ (scope.row.price || 0) * (scope.row.quantity || 0) }}
+        </span>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.MD_Description"
+                     width="200">
+      <template scope="scope">
+        <el-input v-model="scope.row.description"
+                  v-bind:class="{ unsaved: !scope.row.guid }">
+        </el-input>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.G_Operations" fixed="left" width="80">
+      <template scope="scope">
+        <span class="glyphicon glyphicon-exclamation-sign text-danger"
+              v-if="!scope.row.itemName || !scope.row.unitMeasure
+                  || !scope.row.price || !scope.row.quantity"
+              style="font-size: large; vertical-align: sub;">
+        </span>
+        <el-button icon="delete" size="small" type="danger"
+                    v-if="scope.row.guid"
+                    @@click="handleDeleteDetail(scope.$index, scope.row)">
+        </el-button>
+        <el-button icon="plus" size="small" type="success"
+                    v-if="!scope.row.guid"
+                    v-bind:disabled="!scope.row.itemName || !scope.row.unitMeasure
+                || !scope.row.price || !scope.row.quantity"
+                    @@click="handleAppendDetailNew(scope.$index, scope.row)">
+        </el-button>
+      </template>
+    </el-table-column>
+  </el-table>
+</div>
+<hr>

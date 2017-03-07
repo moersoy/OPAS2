@@ -1,0 +1,130 @@
+﻿@model OPAS2Model.GoodsReceiving
+
+<div class="form-group">
+  @Html.LabelFor(model => model.documentNo, @Resources.Resource.G_DocNo,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.documentNo
+  </div>
+
+  @Html.LabelFor(model => model.PurchaseOrder,
+        @Resources.Resource.G_PurchaseOrder,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    {{ examineItem.PODocumentNo }}
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_Department, @Resources.Resource.G_Department,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("DisplayNameById", "Department", new { id = ViewBag.PO.departmentId })
+  </div>
+
+  @Html.Label(@Resources.Resource.MD_CostCenter, @Resources.Resource.MD_CostCenter,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("DisplayNameById", "CostCenter", new { id = ViewBag.PO.costCenterId })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.MD_CurrencyType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("ShowNameOfId", "CurrencyType",
+          new { id = (int)ViewBag.PO.currencyTypeId })
+  </div>
+
+  @Html.Label(Resources.Resource.MD_CurrencyRate,
+        Resources.Resource.MD_CurrencyRate,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @ViewBag.PO.mainCurrencyRate
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_Vendor,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    @Html.Action("ShowNameOfId", "Vendor",
+          new { id = @ViewBag.PO.Vendor.vendorId })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.receiver,
+        Resources.Resource.G_Receiver,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.receiver
+  </div>
+
+  @Html.LabelFor(model => model.checker,
+        Resources.Resource.G_Checker,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.checker
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.deliveryDate,
+        Resources.Resource.G_DeliveryDate,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @if (Model.deliveryDate != null)
+    {
+      @Model.deliveryDate.Value.ToString("yyyy/MM/dd")
+    }
+  </div>
+
+  @Html.LabelFor(model => model.deliveryLocation,
+        Resources.Resource.G_DeliveryLocation,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.deliveryLocation
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.shippingInfo,
+        Resources.Resource.G_ShippingInfo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.shippingInfo
+  </div>
+
+  @Html.LabelFor(model => model.trackingNo,
+        Resources.Resource.G_TrackingNo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.trackingNo
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.weight,
+        Resources.Resource.G_Weight,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.weight
+  </div>
+
+  @Html.LabelFor(model => model.packingSlipNo,
+        Resources.Resource.G_PackingSlipNo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.packingSlipNo
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.description, @Resources.Resource.MD_Description,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    @Model.description
+  </div>
+</div>

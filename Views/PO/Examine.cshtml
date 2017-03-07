@@ -1,0 +1,60 @@
+﻿@model OPAS2Model.PurchaseOrder
+
+@section init_scripts {
+<script type="text/javascript">
+  var initBag = {};
+  initBag.workingMode = "examine";
+  initBag.currentUserGuid = "@ViewBag.currentUserDTO.guid";
+  initBag.guid = "@Model.guid";
+  initBag.purchaseOrderId =  @ViewBag.purchaseOrderId;
+  initBag.taskGuid = "@ViewBag.taskGuid";
+  initBag.PRDocumentNo= "@if (ViewBag.PR != null) { @ViewBag.PR.documentNo }";
+  // biz data
+  initBag.bizData = {};
+  // master datas
+  initBag.PONextFlowActionPath = "/api/PO/ExamineFlowAction/";
+  initBag.PORejectToStartFlowActionPath = 
+    "/api/PO/RejectToStartFlowAction/";
+  // flow datas
+  initBag.availableFlowConnections = JSON.parse(Base64.decode(
+    "@ViewBag.availableFlowConnectionsEncoded"));
+  initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
+  initBag.flowInstanceId = @ViewBag.flowInstanceId;
+
+</script>
+  }
+
+@using (Html.BeginForm(
+          "ExamineFlowAction", 
+          (string)ViewBag.flowTemplateCode, FormMethod.Post,
+            htmlAttributes: new Dictionary<string, object> {
+        { "v-on:submit.prevent", "onSubmitExamineFlowAction" },
+        { "autocomplete", "off"}  }))
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    @Html.Partial("DisplayBizDocumentHeaderPartial")
+
+    @Html.HiddenFor(model => model.purchaseOrderId)
+
+    @Html.Partial("DisplayMainFieldsPartial", Model)
+
+    @Html.Partial("DisplayRemarkOfApproversPartial")
+
+    @Html.Partial("RenderRemarksOpsPartial")
+
+    @Html.Partial("DisplaySubTableFieldsPartial", Model)
+
+    @Html.Partial("DisplayAttachListPartial")
+
+    @Html.Partial("RenderExamineOpsPartial")
+
+  </div>
+}
+
+@Html.Partial("DisplayBackToTaskListLinkPartial")
+
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OPAS2.Models.FlowTask>
+
+@{
+  ViewBag.Title = "Index";
+}
+
+<h3>@Resources.Resource.MENU_Messages</h3>
+
+<table class="table">
+  <tr>
+    <th>
+      @Resources.Resource.G_DocType 
+    </th>
+    <th>
+      @Resources.Resource.G_DocSubject
+    </th>
+    <th>
+      @Resources.Resource.G_Department
+    </th>
+    <th>
+      @Resources.Resource.G_User
+    </th>
+    <th>
+      @Resources.Resource.G_CreateTime
+    </th>
+    <th>@Resources.Resource.G_Operations</th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.documentTypeCode)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.documentSubject)
+      </td>
+      <td>
+        @Html.Action("DisplayNameById", "Department", new { id = item.departmentId })
+      </td>
+      <td>
+        @Html.Action("DisplayNameById", "User", new { id = item.creatorUserId })
+      </td>
+      <td>
+        @item.createTime.ToString("yyyy/MM/dd")
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Edit, "Edit", new { id = item.bizDocumentGuid, documentTypeCode=item.documentTypeCode, flowTaskForUserId = item.flowTaskForUserId  })
+      </td>
+    </tr>
+  }
+
+</table>

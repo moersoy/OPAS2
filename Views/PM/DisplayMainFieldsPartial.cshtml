@@ -1,0 +1,200 @@
+﻿@model OPAS2Model.Payment
+
+<div class="form-group">
+  @Html.LabelFor(model => model.documentNo, @Resources.Resource.G_DocNo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.documentNo
+  </div>
+
+  @Html.Label(@Resources.Resource.G_PurchaseOrder,
+        @Resources.Resource.G_PurchaseOrder,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    {{ examineItem.PODocumentNo }}
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_Department, @Resources.Resource.G_Department,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("DisplayNameById", "Department", new { id = ViewBag.PO.departmentId })
+  </div>
+
+  @Html.Label(@Resources.Resource.MD_CostCenter, @Resources.Resource.MD_CostCenter,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("DisplayNameById", "CostCenter", new { id = ViewBag.PO.costCenterId })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.reason, @Resources.Resource.G_Reason,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.reason
+  </div>
+
+  @Html.LabelFor(model => model.applicantName,
+        Resources.Resource.G_ApplicantName,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.applicantName
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.applicantEmail,
+        Resources.Resource.G_ApplicantEmail,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.applicantEmail
+  </div>
+
+  @Html.LabelFor(model => model.applicantPhone,
+        Resources.Resource.G_ApplicantPhone,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.applicantPhone
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.MD_CurrencyType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("ShowNameOfId", "CurrencyType",
+          new { id = (int)ViewBag.PO.currencyTypeId })
+  </div>
+
+  @Html.Label(Resources.Resource.MD_CurrencyRate,
+        Resources.Resource.MD_CurrencyRate,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @ViewBag.PO.mainCurrencyRate
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_Vendor,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    @Html.Action("ShowNameOfId", "Vendor",
+          new { id = @ViewBag.PO.Vendor.vendorId })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.vendorBankName,
+        Resources.Resource.G_VendorBankName,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.vendorBankName
+  </div>
+
+  @Html.LabelFor(model => model.vendorBankAccount,
+        Resources.Resource.G_VendorBankAccount,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.vendorBankAccount
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.SWIFTCode,
+        Resources.Resource.G_SWIFTCode,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.SWIFTCode
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_PaymentAreaType,
+        @Resources.Resource.G_PaymentAreaType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("displayPaymentAreaType", "EnumTypes",
+          new { id = (int)Model.paymentAreaType })
+  </div>
+
+  @Html.Label(Resources.Resource.G_PaymentCurrencyType,
+        @Resources.Resource.G_PaymentCurrencyType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("displayPaymentCurrencyType", "EnumTypes",
+          new { id = (int)Model.paymentCurrencyType })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_PaymentMethodType,
+        @Resources.Resource.G_PaymentMethodType,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Html.Action("displayPaymentMethodType", "EnumTypes",
+          new { id = (int)Model.paymentMethodType })
+  </div>
+
+  @Html.LabelFor(model => model.payingDaysRequirement, @Resources.Resource.G_PayingDaysRequirement,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4 show-field">
+    @Model.payingDaysRequirement
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.invoiceNo,
+        Resources.Resource.G_InvoiceNo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    @Model.invoiceNo
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.isDownPayment,
+        @Resources.Resource.G_IsDownPayment,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-1">
+    <div class="checkbox">
+      @Html.DisplayFor(model => model.isDownPayment)
+    </div>
+  </div>
+
+  @Html.LabelFor(model => model.isNormalPayment,
+        @Resources.Resource.G_IsNormalPayment,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-1">
+    <div class="checkbox">
+      @Html.DisplayFor(model => model.isNormalPayment)
+    </div>
+  </div>
+
+  @Html.LabelFor(model => model.isImmediatePayment,
+        @Resources.Resource.G_IsImmediatePayment,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-1">
+    <div class="checkbox">
+      @Html.DisplayFor(model => model.isImmediatePayment)
+    </div>
+  </div>
+
+  @Html.LabelFor(model => model.isAdvancePayment,
+        @Resources.Resource.G_IsAdvancePayment,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-1">
+    <div class="checkbox">
+      @Html.DisplayFor(model => model.isAdvancePayment)
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.description, @Resources.Resource.MD_Description,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    @Model.description
+  </div>
+</div>

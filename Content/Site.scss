@@ -1,0 +1,116 @@
+﻿body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+  white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+  max-width: 280px;
+}*/
+
+span.text-in-table-cell{
+  margin-left: 5px;
+}
+
+
+//overwrite element-ui default
+.el-submenu .el-menu-item {
+  height: 30px;
+  line-height: 30px;
+}
+
+.el-table .cell {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.el-upload__input {
+  display: none !important;
+}
+
+
+
+.badger-base{
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 10px;
+  color: white;
+}
+.badge-danger {
+  @extend .badger-base;
+  background-color: red;
+}
+
+.badge-info {
+  @extend .badger-base;
+  background-color: blue;
+}
+
+li.el-menu-item > a {
+  color: rgb(191, 203, 217);
+  text-decoration: none;
+  margin-left: -10px;
+
+  :hover {
+    color: rgb(191, 203, 217);
+  }
+}
+
+li.el-menu-item.is-active > a {
+  color: rgb(32, 160, 255);
+  font-weight: 900;
+}
+
+.unsaved  input{
+  color: darkgrey;
+}
+
+input.el-input__inner.unsaved{
+  color: darkgrey;
+}
+
+.el-input-number.length90 {
+  width: 90px;
+}
+
+// override bootstrap
+.form-group {
+  margin-bottom: 5px;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+div.form-group  .show-field{
+  padding-top: 7px;
+}
+
+// project only
+.no-left-right-padding {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}

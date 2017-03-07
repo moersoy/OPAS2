@@ -1,0 +1,54 @@
+﻿@model OPAS2Model.CurrencyType
+
+@{
+  ViewBag.Title = @Resources.Resource.G_Create;
+}
+
+<h2>@Resources.Resource.G_Create</h2>
+
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <h4>CurrencyType</h4>
+    <hr />
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.name, "*" + Resources.Resource.G_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.shortName, Resources.Resource.G_ShortName, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.shortName, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.symbol, Resources.Resource.G_Symbol, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.symbol, new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="@Resources.Resource.G_Create" class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+
+<div>
+  @Html.ActionLink(@Resources.Resource.G_BackToList, "Index")
+</div>
+
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+}

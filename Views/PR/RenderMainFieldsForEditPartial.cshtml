@@ -1,0 +1,325 @@
+﻿@model OPAS2Model.PurchaseReq
+
+<div class="form-group">
+  @Html.LabelFor(model => model.contactOfficePhone, @Resources.Resource.G_OfficePhone,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.contactOfficePhone,
+        new
+        {
+          htmlAttributes = new Dictionary<string, object> {
+          { "class","form-control" } , { "v-model","newItem.contactOfficePhone" } }
+        })
+  </div>
+
+  @Html.LabelFor(model => model.contactMobile, @Resources.Resource.G_Mobile,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.contactMobile,
+        new
+        {
+          htmlAttributes = new Dictionary<string, object> {
+          { "class","form-control" } , { "v-model","newItem.contactMobile" } }
+        })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.contactOtherMedia, @Resources.Resource.G_OtherContact,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.contactOtherMedia,
+        new
+        {
+          htmlAttributes = new Dictionary<string, object> {
+              { "class","form-control" } , { "v-model","newItem.contactOtherMedia" } }
+        })
+  </div>
+
+  @Html.LabelFor(model => model.costCenterId, "* " + @Resources.Resource.MD_CostCenter,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.costCenterId" class="form-control" required>
+      <option v-for="option in masterData.costCenterList" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_Department, "* " + @Resources.Resource.G_Department,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.departmentId" class="form-control" required>
+      <option v-for="option in masterData.departmentList" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+
+  @Html.LabelFor(model => model.departmentIdBelongTo, "* " + @Resources.Resource.G_DepartmentBelongTo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <select v-model="newItem.departmentIdBelongTo" class="form-control" required>
+      <option v-for="option in masterData.departmentList" v-bind:value="option.id">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.expectReceiveBeginTime,
+        @Resources.Resource.G_ExpectReceiveStart,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <el-date-picker v-model="newItem.expectReceiveBeginTime"
+                    type="date"
+                    placeholder="@Resources.Resource.G_ChooseDate">
+    </el-date-picker>
+  </div>
+
+  @Html.LabelFor(model => model.expectReceiveEndTime,
+        @Resources.Resource.G_ExpectReceiveEnd,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <el-date-picker v-model="newItem.expectReceiveEndTime"
+                    type="date"
+                    placeholder="@Resources.Resource.G_ChooseDate">
+    </el-date-picker>
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.isBidingRequired, @Resources.Resource.G_IsBidingRequired,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <div class="checkbox">
+      @Html.EditorFor(model => model.isBidingRequired,
+            new
+            {
+              htmlAttributes = new Dictionary<string, object> {
+                { "v-model","newItem.isBidingRequired" }
+              }
+            })
+    </div>
+  </div>
+
+  @Html.LabelFor(model => model.noBiddingReason, @Resources.Resource.G_NoBiddingReason,
+        htmlAttributes: new Dictionary<string, object> {
+                  { "class","control-label col-md-2" } ,
+                  { "v-show", "!newItem.isBidingRequired"} })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.noBiddingReason,
+         new
+         {
+           htmlAttributes = new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "v-show", "!newItem.isBidingRequired"},
+                  { "v-model","newItem.noBiddingReason" },
+           }
+         })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.reason, "* " + @Resources.Resource.G_Reason,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.reason,
+          new
+          {
+            htmlAttributes = new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "v-model","newItem.reason" },
+                  { "required","true" }
+           }
+          })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.description, @Resources.Resource.MD_Description,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10">
+    @Html.TextAreaFor(model => model.description, 5, 80,
+          new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "style" , "max-width: 750px;" },
+                  { "v-model","newItem.description" },
+           }
+          )
+  </div>
+</div>
+
+@*<div class="form-group">
+    @Html.LabelFor(model => model.estimatedCost, @Resources.Resource.G_EstimatedCost,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-4">
+      @Html.EditorFor(model => model.estimatedCost,
+        new { htmlAttributes = new Dictionary<string, object> {
+                { "class","form-control" } ,
+                { "v-model","newItem.estimatedCost" },
+         }
+        })
+    </div>
+
+    @Html.Label("* " + Resources.Resource.MD_CurrencyType,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-4">
+      @Html.DropDownList("currencyTypeId", (SelectList)ViewBag.currencyTypeList,
+        "请选择/Choose one", new Dictionary<string, object> {
+            { "class","form-control" } ,
+            { "v-model","newItem.currencyTypeId" },
+            { "required","true" } })
+    </div>
+  </div>
+
+  <div class="form-group">
+    @Html.LabelFor(model => model.mainCurrencyRate,
+      Resources.Resource.MD_CurrencyRate,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-4">
+      @Html.EditorFor(model => model.mainCurrencyRate,
+        new { htmlAttributes = new Dictionary<string, object> {
+                { "class","form-control" } ,
+                { "v-model","newItem.mainCurrencyRate" },
+         }
+        })
+    </div>
+
+    @Html.LabelFor(model => model.estimatedCostInRMB,
+      "* " + Resources.Resource.G_EstimatedCostInRMB,
+      htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-4">
+      @Html.EditorFor(model => model.estimatedCostInRMB,
+        new { htmlAttributes = new Dictionary<string, object> {
+                { "class","form-control" } ,
+                { "v-model","newItem.estimatedCostInRMB" },
+                { "required","true" }
+         }
+        })
+    </div>
+  </div>*@
+
+<div class="form-group">
+  @Html.LabelFor(model => model.averageBenchmark,
+        Resources.Resource.G_AverageBenchmark,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.averageBenchmark,
+          new
+          {
+            htmlAttributes = new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "v-model","newItem.averageBenchmark" },
+           }
+          })
+  </div>
+
+  @Html.LabelFor(model => model.benchmarkDescription,
+        Resources.Resource.G_BenchmarkDescription,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.benchmarkDescription,
+          new
+          {
+            htmlAttributes = new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "v-model","newItem.benchmarkDescription" },
+           }
+          })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.isFirstBuy,
+        Resources.Resource.G_IsFirstBuy,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    <div class="checkbox">
+      @Html.EditorFor(model => model.isFirstBuy,
+            new
+            {
+              htmlAttributes = new Dictionary<string, object> {
+                { "v-model","newItem.isFirstBuy" }
+              }
+            })
+    </div>
+  </div>
+
+  @Html.LabelFor(model => model.firstBuyDate,
+        Resources.Resource.G_FirstBuyDate,
+        htmlAttributes: new Dictionary<string, object> {
+                  { "class","control-label col-md-2" } ,
+                  { "v-show", "!newItem.isFirstBuy"} })
+  <div class="col-md-4">
+    <el-date-picker v-model="newItem.firstBuyDate"
+                    v-show="!newItem.isFirstBuy"
+                    type="date"
+                    placeholder="@Resources.Resource.G_ChooseDate">
+    </el-date-picker>
+  </div>
+</div>
+
+<div class="form-group" v-show="!newItem.isFirstBuy">
+  @Html.LabelFor(model => model.firstCostAmount,
+        Resources.Resource.G_FirstCostAmount,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.firstCostAmount,
+          new
+          {
+            htmlAttributes = new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "v-model","newItem.firstCostAmount" },
+           }
+          })
+  </div>
+
+  @Html.LabelFor(model => model.firstBuyDescription,
+        Resources.Resource.G_FirstBuyDescription,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.firstBuyDescription,
+          new
+          {
+            htmlAttributes = new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "v-model","newItem.firstBuyDescription" },
+           }
+          })
+  </div>
+</div>
+
+<div class="form-group">
+  @Html.LabelFor(model => model.estimatedCostInRMB,
+        "* " + Resources.Resource.G_EstimatedCostInRMB,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.estimatedCostInRMB,
+          new
+          {
+            htmlAttributes = new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "v-model","newItem.estimatedCostInRMB" },
+                  { "required","true" }
+           }
+          })
+  </div>
+
+  @Html.LabelFor(model => model.otherVendorsNotInList,
+        Resources.Resource.G_OtherVendorsNotInList,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-4">
+    @Html.EditorFor(model => model.otherVendorsNotInList,
+          new
+          {
+            htmlAttributes = new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "v-model","newItem.otherVendorsNotInList" },
+           }
+          })
+  </div>
+</div>

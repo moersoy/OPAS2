@@ -1,0 +1,57 @@
+﻿@model IEnumerable<OPAS2Model.PurchaseOrder>
+
+@{
+  ViewBag.Title = "ListEffective";
+}
+
+<script type="text/javascript">
+  var initBag = {};
+  initBag.bizData = {};
+</script>
+
+<h3>@Resources.Resource.MENU_EffectivePOs</h3>
+
+<table class="table">
+  <tr>
+    <th>
+      @Resources.Resource.G_DocSubject
+    </th>
+    <th>
+      @Resources.Resource.G_Vendor
+    </th>
+    <th>
+      @Resources.Resource.G_User
+    </th>
+    <th>
+      @Resources.Resource.G_CreateTime
+    </th>
+    <th>@Resources.Resource.G_Operations</th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.reason)
+      </td>
+      <td>
+        @Html.Action("ShowNameOfId", "Vendor", new { id = item.vendorId })
+      </td>
+      <td>
+        @Html.Action("DisplayNameById", "User", new { id = item.PurchaseReq.creatorUserId })
+      </td>
+      <td>
+        @item.createTime.ToString("yyyy/MM/dd")
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_CreateGR, "CreateFromPO", "GR",
+          new { purchaseOrderId = item.purchaseOrderId }, null) |
+        @Html.ActionLink(Resources.Resource.G_CreatePM, "CreateFromPO", "PM",
+          new { purchaseOrderId = item.purchaseOrderId }, null) |
+        @Html.ActionLink(Resources.Resource.G_ClosePO, "Close",
+          new { purchaseOrderId = item.purchaseOrderId })
+      </td>
+    </tr>
+  }
+
+</table>

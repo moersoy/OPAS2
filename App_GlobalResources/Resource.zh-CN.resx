@@ -1,0 +1,669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="G_Append" xml:space="preserve">
+    <value>加入</value>
+  </data>
+  <data name="G_AverageBenchmark" xml:space="preserve">
+    <value>平均参考基准</value>
+  </data>
+  <data name="G_BackToList" xml:space="preserve">
+    <value>返回列表</value>
+  </data>
+  <data name="G_BenchmarkDescription" xml:space="preserve">
+    <value>参考基准说明</value>
+  </data>
+  <data name="G_ChooseDate" xml:space="preserve">
+    <value>选择日期</value>
+  </data>
+  <data name="G_ClickToUpload" xml:space="preserve">
+    <value>点击上传附件文件</value>
+  </data>
+  <data name="G_Code" xml:space="preserve">
+    <value>编码</value>
+  </data>
+  <data name="G_Create" xml:space="preserve">
+    <value>创建新记录</value>
+  </data>
+  <data name="G_CreateTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="G_Creator" xml:space="preserve">
+    <value>创建人</value>
+  </data>
+  <data name="G_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="G_Department" xml:space="preserve">
+    <value>部门</value>
+  </data>
+  <data name="G_DepartmentBelongTo" xml:space="preserve">
+    <value>业务所属部门</value>
+  </data>
+  <data name="G_Details" xml:space="preserve">
+    <value>详情</value>
+  </data>
+  <data name="G_DisplayName" xml:space="preserve">
+    <value>显示名</value>
+  </data>
+  <data name="G_DocNo" xml:space="preserve">
+    <value>单据编号</value>
+  </data>
+  <data name="G_Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="G_EffectiveDate" xml:space="preserve">
+    <value>生效日期</value>
+  </data>
+  <data name="G_Email" xml:space="preserve">
+    <value>电子邮件</value>
+  </data>
+  <data name="G_EstimatedCost" xml:space="preserve">
+    <value>预计费用</value>
+  </data>
+  <data name="G_EstimatedCostInRMB" xml:space="preserve">
+    <value>预计费用(人民币)</value>
+  </data>
+  <data name="G_ExpectReceiveEnd" xml:space="preserve">
+    <value>预计结束收货</value>
+  </data>
+  <data name="G_ExpectReceiveStart" xml:space="preserve">
+    <value>预计开始收货</value>
+  </data>
+  <data name="G_FirstBuyDate" xml:space="preserve">
+    <value>首次采购日期</value>
+  </data>
+  <data name="G_FirstBuyDescription" xml:space="preserve">
+    <value>首次采购说明</value>
+  </data>
+  <data name="G_FirstCostAmount" xml:space="preserve">
+    <value>首次采购费用</value>
+  </data>
+  <data name="G_IndexNumber" xml:space="preserve">
+    <value>索引号</value>
+  </data>
+  <data name="G_Invalid" xml:space="preserve">
+    <value>已注销</value>
+  </data>
+  <data name="G_Invalidate" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="G_IsBidingRequired" xml:space="preserve">
+    <value>是否招标</value>
+  </data>
+  <data name="G_IsFirstBuy" xml:space="preserve">
+    <value>首次采购?</value>
+  </data>
+  <data name="G_ItemName" xml:space="preserve">
+    <value>项目名</value>
+  </data>
+  <data name="G_ItemType" xml:space="preserve">
+    <value>项目类型</value>
+  </data>
+  <data name="G_LatestRate" xml:space="preserve">
+    <value>近期汇率</value>
+  </data>
+  <data name="G_LineNumber" xml:space="preserve">
+    <value>行号</value>
+  </data>
+  <data name="G_LogonName" xml:space="preserve">
+    <value>登录名</value>
+  </data>
+  <data name="G_Maintain" xml:space="preserve">
+    <value>维护</value>
+  </data>
+  <data name="G_Mobile" xml:space="preserve">
+    <value>移动电话</value>
+  </data>
+  <data name="G_Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="G_NoBiddingReason" xml:space="preserve">
+    <value>不招标原因</value>
+  </data>
+  <data name="G_NotAvailableNow" xml:space="preserve">
+    <value>暂不可用</value>
+  </data>
+  <data name="G_OfficePhone" xml:space="preserve">
+    <value>办公电话</value>
+  </data>
+  <data name="G_OfficeTel" xml:space="preserve">
+    <value>办公电话</value>
+  </data>
+  <data name="G_OPAS" xml:space="preserve">
+    <value>在线采购执行系统</value>
+  </data>
+  <data name="G_Operations" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="G_OtherContact" xml:space="preserve">
+    <value>其他联系方式</value>
+  </data>
+  <data name="G_OtherVendorsNotInList" xml:space="preserve">
+    <value>其他非正式供应商</value>
+  </data>
+  <data name="G_PersonalMobile" xml:space="preserve">
+    <value>个人手机</value>
+  </data>
+  <data name="G_PersonalTel" xml:space="preserve">
+    <value>私人电话</value>
+  </data>
+  <data name="G_PurchaseRequisition" xml:space="preserve">
+    <value>采购申请</value>
+  </data>
+  <data name="G_Reason" xml:space="preserve">
+    <value>业务原因</value>
+  </data>
+  <data name="G_RemarkOfApprovers" xml:space="preserve">
+    <value>审批意见记录</value>
+  </data>
+  <data name="G_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="G_SaveTemp" xml:space="preserve">
+    <value>暂存</value>
+  </data>
+  <data name="G_ShortName" xml:space="preserve">
+    <value>缩略名</value>
+  </data>
+  <data name="G_SubmitForApproval" xml:space="preserve">
+    <value>提交处理</value>
+  </data>
+  <data name="G_Symbol" xml:space="preserve">
+    <value>符号</value>
+  </data>
+  <data name="G_SystemManager" xml:space="preserve">
+    <value>系统管理员</value>
+  </data>
+  <data name="G_UploadNote" xml:space="preserve">
+    <value>不能上传可执行文件</value>
+  </data>
+  <data name="G_User" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="G_Validation_Required" xml:space="preserve">
+    <value>字段不能为空</value>
+  </data>
+  <data name="G_WBSNo" xml:space="preserve">
+    <value>WBS编号</value>
+  </data>
+  <data name="MD_ChineseName" xml:space="preserve">
+    <value>中文名</value>
+  </data>
+  <data name="MD_CostCenter" xml:space="preserve">
+    <value>成本中心</value>
+  </data>
+  <data name="MD_CostCenterParent" xml:space="preserve">
+    <value>父成本中心</value>
+  </data>
+  <data name="MD_CostElement" xml:space="preserve">
+    <value>成本要素</value>
+  </data>
+  <data name="MD_CostElementAccountType" xml:space="preserve">
+    <value>成本要素会计账户类型</value>
+  </data>
+  <data name="MD_CostElementType" xml:space="preserve">
+    <value>成本要素类型</value>
+  </data>
+  <data name="MD_CurrencyRate" xml:space="preserve">
+    <value>汇率</value>
+  </data>
+  <data name="MD_CurrencyType" xml:space="preserve">
+    <value>币种</value>
+  </data>
+  <data name="MD_Description" xml:space="preserve">
+    <value>说明</value>
+  </data>
+  <data name="MD_EnglishName" xml:space="preserve">
+    <value>英文名</value>
+  </data>
+  <data name="MD_Number" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="MENU_CostCenters" xml:space="preserve">
+    <value>成本中心维护</value>
+  </data>
+  <data name="MENU_CostElements" xml:space="preserve">
+    <value>成本要素维护</value>
+  </data>
+  <data name="MENU_CostElementTypes" xml:space="preserve">
+    <value>成本要素类型</value>
+  </data>
+  <data name="MENU_CurrencyRates" xml:space="preserve">
+    <value>汇率维护</value>
+  </data>
+  <data name="MENU_CurrencyTypes" xml:space="preserve">
+    <value>币种维护</value>
+  </data>
+  <data name="MENU_Delegation" xml:space="preserve">
+    <value>代理任务</value>
+  </data>
+  <data name="MENU_Departments" xml:space="preserve">
+    <value>部门管理</value>
+  </data>
+  <data name="MENU_FreeQuery" xml:space="preserve">
+    <value>自由查询</value>
+  </data>
+  <data name="MENU_GR" xml:space="preserve">
+    <value>收/验货</value>
+  </data>
+  <data name="MENU_Help" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="MENU_History" xml:space="preserve">
+    <value>审批记录</value>
+  </data>
+  <data name="MENU_Logon" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="MENU_Logout" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="MENU_MDM" xml:space="preserve">
+    <value>主数据管理</value>
+  </data>
+  <data name="MENU_Messages" xml:space="preserve">
+    <value>消息</value>
+  </data>
+  <data name="MENU_MY" xml:space="preserve">
+    <value>个人设置</value>
+  </data>
+  <data name="MENU_MyApplications" xml:space="preserve">
+    <value>我的申请</value>
+  </data>
+  <data name="MENU_New" xml:space="preserve">
+    <value>新建</value>
+  </data>
+  <data name="MENU_PM" xml:space="preserve">
+    <value>发票/付款</value>
+  </data>
+  <data name="MENU_PO" xml:space="preserve">
+    <value>订单/合同</value>
+  </data>
+  <data name="MENU_PR" xml:space="preserve">
+    <value>采购申请</value>
+  </data>
+  <data name="MENU_Report" xml:space="preserve">
+    <value>统计报表</value>
+  </data>
+  <data name="MENU_SysManage" xml:space="preserve">
+    <value>系统管理</value>
+  </data>
+  <data name="MENU_Users" xml:space="preserve">
+    <value>用户管理</value>
+  </data>
+  <data name="G_AddBelongedRole" xml:space="preserve">
+    <value>增加所属角色</value>
+  </data>
+  <data name="G_AddBelongedUser" xml:space="preserve">
+    <value>增加所属用户</value>
+  </data>
+  <data name="G_Attachments" xml:space="preserve">
+    <value>附件集</value>
+  </data>
+  <data name="G_AvailableToEveryOne" xml:space="preserve">
+    <value>默认开放给所有人</value>
+  </data>
+  <data name="G_ChooseFlowConnection" xml:space="preserve">
+    <value>请选择下一步操作</value>
+  </data>
+  <data name="G_ChooseToNodeRole" xml:space="preserve">
+    <value>请选择下一步操作的执行者</value>
+  </data>
+  <data name="G_ContactAdmin" xml:space="preserve">
+    <value>联系管理员</value>
+  </data>
+  <data name="G_DocSubject" xml:space="preserve">
+    <value>单据主题</value>
+  </data>
+  <data name="G_DocType" xml:space="preserve">
+    <value>单据类型</value>
+  </data>
+  <data name="G_Memo" xml:space="preserve">
+    <value>说明</value>
+  </data>
+  <data name="G_Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="G_PleaseChoose" xml:space="preserve">
+    <value>请选择</value>
+  </data>
+  <data name="G_Reset" xml:space="preserve">
+    <value>清空</value>
+  </data>
+  <data name="G_WorkflowOperation" xml:space="preserve">
+    <value>流程操作</value>
+  </data>
+  <data name="MD_FunctionPermission" xml:space="preserve">
+    <value>功能权限</value>
+  </data>
+  <data name="MENU_Permission" xml:space="preserve">
+    <value>权限管理</value>
+  </data>
+  <data name="MENU_Roles" xml:space="preserve">
+    <value>角色管理</value>
+  </data>
+  <data name="G_RemarkOfApprover" xml:space="preserve">
+    <value>审批意见</value>
+  </data>
+  <data name="G_Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="MENU_MyDepartmentApplications" xml:space="preserve">
+    <value>部门申请</value>
+  </data>
+  <data name="G_ChineseAddress" xml:space="preserve">
+    <value>中文地址</value>
+  </data>
+  <data name="G_ContactPerson" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="G_ContactPersonEmail" xml:space="preserve">
+    <value>联系人邮件</value>
+  </data>
+  <data name="G_ContactPersonTel" xml:space="preserve">
+    <value>联系人电话</value>
+  </data>
+  <data name="G_ContactPersonTitle" xml:space="preserve">
+    <value>名号</value>
+  </data>
+  <data name="G_DunsNo" xml:space="preserve">
+    <value>邓白氏码</value>
+  </data>
+  <data name="G_EnglishAddress" xml:space="preserve">
+    <value>英文地址</value>
+  </data>
+  <data name="G_Fax" xml:space="preserve">
+    <value>传真</value>
+  </data>
+  <data name="G_Phone" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="G_Remark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="G_VendorNo" xml:space="preserve">
+    <value>供应商编号</value>
+  </data>
+  <data name="G_VendorOrgNo" xml:space="preserve">
+    <value>供应商组织代码</value>
+  </data>
+  <data name="MENU_Vendors" xml:space="preserve">
+    <value>供应商管理</value>
+  </data>
+  <data name="G_Amount" xml:space="preserve">
+    <value>金额</value>
+  </data>
+  <data name="G_AmountInRMB" xml:space="preserve">
+    <value>金额(人民币)</value>
+  </data>
+  <data name="G_ApplicantEmail" xml:space="preserve">
+    <value>申请人邮箱</value>
+  </data>
+  <data name="G_ApplicantName" xml:space="preserve">
+    <value>申请人姓名</value>
+  </data>
+  <data name="G_ApplicantPhone" xml:space="preserve">
+    <value>申请人电话</value>
+  </data>
+  <data name="G_Checker" xml:space="preserve">
+    <value>验货人</value>
+  </data>
+  <data name="G_ClosePO" xml:space="preserve">
+    <value>关闭采购订单/合同</value>
+  </data>
+  <data name="G_ClosePR" xml:space="preserve">
+    <value>关闭采购申请</value>
+  </data>
+  <data name="G_CreateGR" xml:space="preserve">
+    <value>创建收货</value>
+  </data>
+  <data name="G_CreatePM" xml:space="preserve">
+    <value>创建付款</value>
+  </data>
+  <data name="G_CreatePO" xml:space="preserve">
+    <value>创建订单/合同</value>
+  </data>
+  <data name="G_DeliveryDate" xml:space="preserve">
+    <value>收货日期</value>
+  </data>
+  <data name="G_DeliveryLocation" xml:space="preserve">
+    <value>收货地址</value>
+  </data>
+  <data name="G_Download" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="G_InvoiceNo" xml:space="preserve">
+    <value>发票号</value>
+  </data>
+  <data name="G_IsAdvancePayment" xml:space="preserve">
+    <value>是否为提前付款</value>
+  </data>
+  <data name="G_IsDownPayment" xml:space="preserve">
+    <value>是否为订金</value>
+  </data>
+  <data name="G_IsImmediatePayment" xml:space="preserve">
+    <value>是否为立即付款</value>
+  </data>
+  <data name="G_IsNormalPayment" xml:space="preserve">
+    <value>是否为正常付款</value>
+  </data>
+  <data name="G_OrderDate" xml:space="preserve">
+    <value>订单日期</value>
+  </data>
+  <data name="G_PackingSlipNo" xml:space="preserve">
+    <value>装箱单号</value>
+  </data>
+  <data name="G_PaidTime" xml:space="preserve">
+    <value>真正付款时间</value>
+  </data>
+  <data name="G_PayingDaysRequirement" xml:space="preserve">
+    <value>需在?天内付清</value>
+  </data>
+  <data name="G_PaymentAreaType" xml:space="preserve">
+    <value>付款目的地类型</value>
+  </data>
+  <data name="G_PaymentCurrencyType" xml:space="preserve">
+    <value>付款币种类型</value>
+  </data>
+  <data name="G_PaymentMethodType" xml:space="preserve">
+    <value>付款方法</value>
+  </data>
+  <data name="G_PaymentTerm" xml:space="preserve">
+    <value>付款条款</value>
+  </data>
+  <data name="G_POType" xml:space="preserve">
+    <value>订单类型</value>
+  </data>
+  <data name="G_Price" xml:space="preserve">
+    <value>价格</value>
+  </data>
+  <data name="G_PurchaseOrder" xml:space="preserve">
+    <value>采购订单</value>
+  </data>
+  <data name="G_Quantity" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="G_ReceivedQuantity" xml:space="preserve">
+    <value>已收数量</value>
+  </data>
+  <data name="G_Receiver" xml:space="preserve">
+    <value>收货人</value>
+  </data>
+  <data name="G_RegisterPaidTime" xml:space="preserve">
+    <value>登记已付的时间</value>
+  </data>
+  <data name="G_RegisterPaidUser" xml:space="preserve">
+    <value>登记已付的用户</value>
+  </data>
+  <data name="G_Reject" xml:space="preserve">
+    <value>退回(拒绝)</value>
+  </data>
+  <data name="G_ShippingInfo" xml:space="preserve">
+    <value>运输信息</value>
+  </data>
+  <data name="G_SWIFTCode" xml:space="preserve">
+    <value>SWIFT码</value>
+  </data>
+  <data name="G_TrackingNo" xml:space="preserve">
+    <value>跟踪号</value>
+  </data>
+  <data name="G_UnitMeasure_Abbr" xml:space="preserve">
+    <value>计量单位</value>
+  </data>
+  <data name="G_Vendor" xml:space="preserve">
+    <value>供应商</value>
+  </data>
+  <data name="G_VendorBankAccount" xml:space="preserve">
+    <value>供应商银行账户</value>
+  </data>
+  <data name="G_VendorBankName" xml:space="preserve">
+    <value>供应商银行名</value>
+  </data>
+  <data name="G_Weight" xml:space="preserve">
+    <value>重量</value>
+  </data>
+  <data name="G__Total" xml:space="preserve">
+    <value>- 总数</value>
+  </data>
+  <data name="MENU_EffectivePOs" xml:space="preserve">
+    <value>采购订单(有效)</value>
+  </data>
+  <data name="MENU_EffectivePRs" xml:space="preserve">
+    <value>采购申请(有效)</value>
+  </data>
+  <data name="G_AttachmentsHistory" xml:space="preserve">
+    <value>已有附件列表</value>
+  </data>
+  <data name="G_GR" xml:space="preserve">
+    <value>收货申请</value>
+  </data>
+  <data name="G_InviteOther" xml:space="preserve">
+    <value>征询意见</value>
+  </data>
+  <data name="G_OtherOperations" xml:space="preserve">
+    <value>其他操作</value>
+  </data>
+  <data name="MENU_FlowInstancesMgmt" xml:space="preserve">
+    <value>流程实例管理</value>
+  </data>
+  <data name="MENU_FlowTemplates" xml:space="preserve">
+    <value>流程模板管理</value>
+  </data>
+</root>
