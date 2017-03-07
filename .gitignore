@@ -2,6 +2,7 @@
 
 # compiled output
 /bin
+/obj
 
 # dependencies
 /node_modules
