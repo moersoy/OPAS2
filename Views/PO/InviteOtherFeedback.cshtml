@@ -12,10 +12,7 @@
   // biz data
   initBag.bizData = {};
   // master datas
-  initBag.PONextFlowActionPath = "/api/PO/ExamineFlowAction/";
-  initBag.PORejectToStartFlowActionPath = 
-    "/api/PO/RejectToStartFlowAction/";
-  initBag.POInviteOtherFlowActionPath="/api/PO/InviteOtherFlowAction/";
+  initBag.POInviteOtherFeedbackFlowActionPath="/api/PO/InviteOtherFeedbackFlowAction/";
   // flow datas
   initBag.availableFlowConnections = JSON.parse(Base64.decode(
     "@ViewBag.availableFlowConnectionsEncoded"));
@@ -26,10 +23,10 @@
   }
 
 @using (Html.BeginForm(
-          "ExamineFlowAction", 
+          "InviteOtherFeedbackFlowAction", 
           (string)ViewBag.flowTemplateCode, FormMethod.Post,
             htmlAttributes: new Dictionary<string, object> {
-        { "v-on:submit.prevent", "onSubmitExamineFlowAction" },
+        { "v-on:submit.prevent", "onSubmitInviteOtherFeedbackFlowAction" },
         { "autocomplete", "off"}  }))
 {
   @Html.AntiForgeryToken()
@@ -49,10 +46,7 @@
 
     @Html.Partial("RenderRemarksOpsPartial")
 
-    @Html.Partial("RenderExamineOpsPartial")
-
-    @Html.Partial("DisplayInviteOtherFeedbacksPartial",
-      (IEnumerable<OPAS2.Models.FlowTask>)ViewBag.inviteOtherFeedbackTasks)
+    @Html.Partial("RenderInviteOtherFeedbackOpsPartial")
   </div>
 }
 

@@ -12,3 +12,7 @@
 /attaches
 obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.cache
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/OPAS2.dll
+obj/Debug/OPAS2.pdb

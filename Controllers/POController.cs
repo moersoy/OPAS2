@@ -138,6 +138,12 @@ namespace OPAS2.Controllers
       ViewBag.purchaseOrderId = po.purchaseOrderId;
       ViewBag.taskGuid = flowTaskForUser.guid;
 
+      #region 获取可能的征询处理意见(InviteOther)的任务反馈意见内容
+      ViewBag.inviteOtherFeedbackTasks =
+        getValidInviteOtherFeedbackTasks(
+          flowTaskForUser.flowTaskForUserId, flowInstDb, db);
+      #endregion
+
       #region 流程相关数据
       fillFlowContinuationDataInViewBag(flowInstance);
       #endregion
@@ -276,6 +282,28 @@ namespace OPAS2.Controllers
       #region 流程相关数据
       fillFlowContinuationDataInViewBag(flowInstance);
       #endregion
+
+      return View(po);
+    }
+
+    // GET: PO/InviteOtherFeedback/5b354131-f2ea-489d-8fc6-119676fdcebe/5b354131-f2ea-489d-8fc6-119676fdcebe
+    [UserLogon]
+    [HttpGet]
+    public ActionResult InviteOtherFeedback(string id, int flowTaskForUserId)
+    {
+      ViewBag.currentMenuIndex = "";
+
+      PurchaseOrder po = db.purchaseOrders.Where(
+        obj => obj.guid == id).FirstOrDefault();
+      ViewBag.purchaseOrderId = po.purchaseOrderId;
+      ViewBag.PR = po.PurchaseReq;
+
+      Tuple<bool, ActionResult> taskValidity = fillInviteOtherFeedback(
+        flowInstDb, flowTaskForUserId);
+      if (!taskValidity.Item1)
+      {
+        return taskValidity.Item2;
+      }
 
       return View(po);
     }

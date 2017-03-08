@@ -52,6 +52,7 @@
       taskGuid: initBag.taskGuid,
       PRDocumentNo: initBag.PRDocumentNo,
       flowInstanceId: initBag.flowInstanceId,
+      // 业务数据
       remarkOfAprrover: "",
       // 流程部分
       currentActivityGuid: initBag.currentActivityGuid,
@@ -63,6 +64,9 @@
         potentialPaticipants: null,
         NextFlowActionPath: initBag.PONextFlowActionPath,
         RejectToStartFlowActionPath: initBag.PORejectToStartFlowActionPath,
+        InviteOtherFlowActionPath: initBag.POInviteOtherFlowActionPath,
+        InviteOtherFeedbackFlowActionPath:
+          initBag.POInviteOtherFeedbackFlowActionPath,
         needChoosePaticipant: true,
       }
     },
