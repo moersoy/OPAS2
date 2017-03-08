@@ -1,1 +1,98 @@
-"use strict";!function i(t,a,e){function n(r,c){if(!a[r]){if(!t[r]){var d="function"==typeof require&&require;if(!c&&d)return d(r,!0);if(o)return o(r,!0);var p=new Error("Cannot find module '"+r+"'");throw p.code="MODULE_NOT_FOUND",p}var u=a[r]={exports:{}};t[r][0].call(u.exports,function(i){var a=t[r][1][i];return n(a?a:i)},u,u.exports,i,t,a,e)}return a[r].exports}for(var o="function"==typeof require&&require,r=0;r<e.length;r++)n(e[r]);return n}({1:[function(i,t,a){new Vue({el:"#app",data:{workingMode:initBag.workingMode,removeAttachPath:initBag.removeAttachPath,detailsName:"PMDetails",newItem:{currentUserGuid:initBag.currentUserGuid,guid:initBag.guid,purchaseOrderId:initBag.purchaseOrderId,paymentId:initBag.paymentId,PODocumentNo:initBag.PODocumentNo,departmentId:initBag.departmentId,flowTemplateGuid:initBag.flowTemplateGuid,currentActivityGuid:initBag.currentActivityGuid,selectedConnectionGuid:"",selectedPaticipantGuid:"",taskGuid:initBag.taskGuid,flowInstanceId:initBag.flowInstanceId,reason:initBag.bizData.reason||"",description:initBag.bizData.description||"",mainCurrencyRate:initBag.bizData.mainCurrencyRate||1,vendorBankName:initBag.bizData.vendorBankName||"",vendorBankAccount:initBag.bizData.vendorBankName||"",SWIFTCode:initBag.bizData.SWIFTCode||"",applicantName:initBag.bizData.applicantName||"",applicantEmail:initBag.bizData.applicantEmail||"",applicantPhone:initBag.bizData.applicantPhone||"",paymentAreaType:initBag.bizData.paymentAreaType||1,paymentCurrencyType:initBag.bizData.paymentCurrencyType||1,paymentMethodType:initBag.bizData.paymentMethodType||1,payingDaysRequirement:initBag.bizData.payingDaysRequirement||0,invoiceNo:initBag.bizData.invoiceNo||"",isDownPayment:initBag.bizData.isDownPayment||!1,isNormalPayment:initBag.bizData.isNormalPayment||!0,isImmediatePayment:initBag.bizData.isImmediatePayment||!1,isAdvancePayment:initBag.bizData.isAdvancePayment||!1,PMDetails:initBag.PMDetails,sessionData:{availableFlowConnections:initBag.availableFlowConnections,potentialPaticipants:null,CreateWithFlowActionPath:initBag.PMCreateWithFlowActionPath,NextFlowActionPath:initBag.PMNextFlowActionPath,needChoosePaticipant:!0}},examineItem:{currentUserGuid:initBag.currentUserGuid,guid:initBag.guid,purchaseOrderId:initBag.purchaseOrderId,paymentId:initBag.paymentId,taskGuid:initBag.taskGuid,PODocumentNo:initBag.PODocumentNo,flowInstanceId:initBag.flowInstanceId,remarkOfAprrover:"",currentActivityGuid:initBag.currentActivityGuid,selectedConnectionGuid:"",selectedPaticipantGuid:"",sessionData:{availableFlowConnections:initBag.availableFlowConnections,potentialPaticipants:null,NextFlowActionPath:initBag.PMNextFlowActionPath,RejectToStartFlowActionPath:initBag.PMRejectToStartFlowActionPath,needChoosePaticipant:!0}},masterData:{paymentAreaTypes:initBag.paymentAreaTypes,paymentCurrencyTypes:initBag.paymentCurrencyTypes,paymentMethodTypes:initBag.paymentMethodTypes}},mixins:[opas_vue_biz_document_mixin],methods:{}})},{}]},{},[1]);
+"use strict";
+
+(function e(t, n, r) {
+  function s(o, u) {
+    if (!n[o]) {
+      if (!t[o]) {
+        var a = typeof require == "function" && require;if (!u && a) return a(o, !0);if (i) return i(o, !0);var f = new Error("Cannot find module '" + o + "'");throw f.code = "MODULE_NOT_FOUND", f;
+      }var l = n[o] = { exports: {} };t[o][0].call(l.exports, function (e) {
+        var n = t[o][1][e];return s(n ? n : e);
+      }, l, l.exports, e, t, n, r);
+    }return n[o].exports;
+  }var i = typeof require == "function" && require;for (var o = 0; o < r.length; o++) {
+    s(r[o]);
+  }return s;
+})({ 1: [function (require, module, exports) {
+    var v = new Vue({
+      el: '#app',
+      data: {
+        workingMode: initBag.workingMode, // backend will fill this variable
+        removeAttachPath: initBag.removeAttachPath, //删除附件的URL路径
+        detailsName: "PMDetails",
+        newItem: { // 新建PM的数据
+          // 流程部分
+          currentUserGuid: initBag.currentUserGuid,
+          guid: initBag.guid, //DocumentId
+          purchaseOrderId: initBag.purchaseOrderId, //前驱的PO
+          paymentId: initBag.paymentId,
+          PODocumentNo: initBag.PODocumentNo,
+          departmentId: initBag.departmentId,
+          flowTemplateGuid: initBag.flowTemplateGuid,
+          currentActivityGuid: initBag.currentActivityGuid,
+          selectedConnectionGuid: '',
+          selectedPaticipantGuid: '',
+          taskGuid: initBag.taskGuid,
+          flowInstanceId: initBag.flowInstanceId,
+          // 业务数据
+          reason: initBag.bizData.reason || '',
+          description: initBag.bizData.description || '',
+          mainCurrencyRate: initBag.bizData.mainCurrencyRate || 1,
+          vendorBankName: initBag.bizData.vendorBankName || '',
+          vendorBankAccount: initBag.bizData.vendorBankName || '',
+          SWIFTCode: initBag.bizData.SWIFTCode || '',
+          applicantName: initBag.bizData.applicantName || '',
+          applicantEmail: initBag.bizData.applicantEmail || '',
+          applicantPhone: initBag.bizData.applicantPhone || '',
+          paymentAreaType: initBag.bizData.paymentAreaType || 1,
+          paymentCurrencyType: initBag.bizData.paymentCurrencyType || 1,
+          paymentMethodType: initBag.bizData.paymentMethodType || 1,
+          payingDaysRequirement: initBag.bizData.payingDaysRequirement || 0,
+          invoiceNo: initBag.bizData.invoiceNo || '',
+          isDownPayment: initBag.bizData.isDownPayment || false,
+          isNormalPayment: initBag.bizData.isNormalPayment || true,
+          isImmediatePayment: initBag.bizData.isImmediatePayment || false,
+          isAdvancePayment: initBag.bizData.isAdvancePayment || false,
+
+          // 子表明细项部分
+          PMDetails: initBag.PMDetails,
+          // 仅在前台操作中用于辅助的临时数据,不属于业务实体,无需回传
+          sessionData: {
+            availableFlowConnections: initBag.availableFlowConnections,
+            potentialPaticipants: null,
+            CreateWithFlowActionPath: initBag.PMCreateWithFlowActionPath,
+            NextFlowActionPath: initBag.PMNextFlowActionPath,
+            needChoosePaticipant: true
+          }
+        },
+        examineItem: { // 审批PM的数据
+          currentUserGuid: initBag.currentUserGuid,
+          guid: initBag.guid, //DocumentId
+          purchaseOrderId: initBag.purchaseOrderId,
+          paymentId: initBag.paymentId,
+          taskGuid: initBag.taskGuid,
+          PODocumentNo: initBag.PODocumentNo,
+          flowInstanceId: initBag.flowInstanceId,
+          remarkOfAprrover: "",
+          // 流程部分
+          currentActivityGuid: initBag.currentActivityGuid,
+          selectedConnectionGuid: '',
+          selectedPaticipantGuid: '',
+          // 仅在前台操作中用于辅助的临时数据,不属于业务实体
+          sessionData: {
+            availableFlowConnections: initBag.availableFlowConnections,
+            potentialPaticipants: null,
+            NextFlowActionPath: initBag.PMNextFlowActionPath,
+            RejectToStartFlowActionPath: initBag.PMRejectToStartFlowActionPath,
+            needChoosePaticipant: true
+          }
+        },
+        masterData: {
+          paymentAreaTypes: initBag.paymentAreaTypes,
+          paymentCurrencyTypes: initBag.paymentCurrencyTypes,
+          paymentMethodTypes: initBag.paymentMethodTypes
+        }
+      },
+      mixins: [opas_vue_biz_document_mixin],
+      methods: {}
+    });
+  }, {}] }, {}, [1]);

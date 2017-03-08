@@ -302,19 +302,21 @@ namespace OPAS2.Api
       FlowTaskForUser flowTaskForUser = tupleBasic.Item3;
       #endregion
 
+      #region 任务失效则退出
       Tuple<bool, IHttpActionResult> taskValidity =
         checkTaskValidity(flowTaskForUser, flowInstance);
       if (!taskValidity.Item1)
       {
         return taskValidity.Item2;
       }
+      #endregion
 
       #region 业务数据: 更新增加PR的remark字段内容
       PurchaseReq pr = db.purchaseReqs.Find(bizObj.purchaseReqId);
       appendRemarkOfAprroversOfDocument(bizObj, userDTO, pr);
       #endregion
 
-      #region 流程数据操作: 创建FlowActionMoveTo, 更改任务状态
+      #region 流程数据操作: 创建FlowActionMoveTo并处理, 更改任务状态
       var flowTemplateDefHelper = new FlowTemplateDefHelper(
         flowInstance.flowTemplateJson);
 
@@ -430,6 +432,127 @@ namespace OPAS2.Api
       UpdateDocumentStateFields(pr, flowInstance);
       #endregion
 
+      #endregion
+
+      return Ok();
+    }
+
+    [HttpPost]
+    [Route("api/PR/InviteOtherFlowAction/")]
+    public IHttpActionResult InviteOtherFlowAction()
+    {
+      dynamic bizObj = getPostedJsonObject();
+      PurchaseReq pr = db.purchaseReqs.Find(bizObj.purchaseReqId);
+
+      #region 从提交的JSON参数中初始化基本变量
+      Tuple<UserDTO, FlowInstance, FlowTaskForUser> tupleBasic =
+        getBasicTaskInfoFromBizObj(bizObj);
+      UserDTO userDTO = tupleBasic.Item1;
+      FlowInstance flowInstance = tupleBasic.Item2;
+      FlowTaskForUser flowTaskForUser = tupleBasic.Item3;
+      #endregion
+
+      #region 任务失效则退出
+      Tuple<bool, IHttpActionResult> taskValidity =
+        checkTaskValidity(flowTaskForUser, flowInstance);
+      if (!taskValidity.Item1)
+      {
+        return taskValidity.Item2;
+      }
+      #endregion
+
+      #region 流程数据操作: 创建FlowActionInviteOther
+      var flowTemplateDefHelper = new FlowTemplateDefHelper(
+        flowInstance.flowTemplateJson);
+
+      var actionInviteOther = FlowInstanceHelper.PostFlowActionInviteOther(
+        Guid.NewGuid().ToString(), // clientRequestGuid
+        bizObj.guid, //bizDocumentGuid
+        flowTemplateCode, //bizDocumentTypeCode
+        flowTaskForUser.bizTimeStamp, // bizTimeStamp
+        bizObj.remarkOfAprrover, // userMemo
+        flowInstance.bizDataPayloadJson, // bizDataPayloadJson
+        null, // optionalFlowActionDataJson
+        userDTO.userId,  // userId
+        userDTO.guid, // userGuid
+        flowInstance.flowInstanceId, //flowInstanceId
+        flowInstance.guid, //flowInstanceGuid
+        pr.documentNo, //code
+        bizObj.currentActivityGuid, //currentActivityGuid
+        new List<Paticipant>() { //roles
+          FlowTemplateDefHelper.getPaticipantFromGuid(
+            bizObj.selectedPaticipantGuid) },
+        flowTaskForUser.flowTaskForUserId //relativeFlowTaskForUserId
+      );
+
+      var flowResult = flowActionRequestDispatcher.processSpecifiedAction(
+        actionInviteOther.flowActionRequestId);
+      if (!flowResult.succeed)
+      {
+        return BadRequest("流程引擎处理错误:" + flowResult.failReason);
+      }
+      #endregion
+
+      return Ok();
+    }
+
+    [HttpPost]
+    [Route("api/PR/InviteOtherFeedbackFlowAction/")]
+    public IHttpActionResult InviteOtherFeedbackFlowAction()
+    {
+      dynamic bizObj = getPostedJsonObject();
+      PurchaseReq pr = db.purchaseReqs.Find(bizObj.purchaseReqId);
+
+      #region 从提交的JSON参数中初始化基本变量
+      Tuple<UserDTO, FlowInstance, FlowTaskForUser> tupleBasic =
+        getBasicTaskInfoFromBizObj(bizObj);
+      UserDTO userDTO = tupleBasic.Item1;
+      FlowInstance flowInstance = tupleBasic.Item2;
+      FlowTaskForUser flowTaskForUser = tupleBasic.Item3;
+      #endregion
+
+      #region 任务失效则退出
+      Tuple<bool, IHttpActionResult> taskValidity =
+        checkTaskValidity(flowTaskForUser, flowInstance);
+      if (!taskValidity.Item1)
+      {
+        return taskValidity.Item2;
+      }
+      #endregion
+
+      #region 流程数据操作: 创建FlowActionInviteOtherFeedback并处理
+      var flowTemplateDefHelper = new FlowTemplateDefHelper(
+        flowInstance.flowTemplateJson);
+
+      var actionInviteOtherFeedback = 
+        FlowInstanceHelper.PostFlowActionInviteOtherFeedback(
+        Guid.NewGuid().ToString(), // clientRequestGuid
+        bizObj.guid, //bizDocumentGuid
+        flowTemplateCode, //bizDocumentTypeCode
+        DateTime.Now, // bizTimeStamp
+        bizObj.remarkOfAprrover, // userMemo
+        generateBizDataPayloadJson(pr), // bizDataPayloadJson
+        null, // optionalFlowActionDataJson
+        userDTO.userId,  // userId
+        userDTO.guid, // userGuid
+        flowInstance.flowInstanceId, //flowInstanceId
+        flowInstance.guid, //flowInstanceGuid
+        pr.documentNo, //code
+        bizObj.currentActivityGuid, //currentActivityGuid
+        bizObj.selectedConnectionGuid, //connectionGuid
+        new List<Paticipant>() { //roles
+          FlowTemplateDefHelper.getPaticipantFromGuid(
+            bizObj.selectedPaticipantGuid)
+        },
+        flowTaskForUser.flowTaskForUserId //relativeFlowTaskForUserId
+      );
+
+      var flowResult = flowActionRequestDispatcher.processSpecifiedAction(
+        actionInviteOtherFeedback.flowActionRequestId);
+      if (!flowResult.succeed)
+      {
+        return BadRequest("流程引擎处理错误:" + flowResult.failReason);
+      }
       #endregion
 
       return Ok();

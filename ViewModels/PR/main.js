@@ -66,6 +66,9 @@
         potentialPaticipants: null,
         NextFlowActionPath: initBag.PRNextFlowActionPath,
         RejectToStartFlowActionPath: initBag.PRRejectToStartFlowActionPath,
+        InviteOtherFlowActionPath: initBag.PRInviteOtherFlowActionPath,
+        InviteOtherFeedbackFlowActionPath:
+          initBag.PRInviteOtherFeedbackFlowActionPath,
         needChoosePaticipant: true,
       }
     },

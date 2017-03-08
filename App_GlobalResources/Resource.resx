@@ -657,8 +657,14 @@
   <data name="G_InviteOther" xml:space="preserve">
     <value>Invite opinion</value>
   </data>
+  <data name="G_InviteOtherFeedback" xml:space="preserve">
+    <value>Opinions invited</value>
+  </data>
   <data name="G_OtherOperations" xml:space="preserve">
     <value>Other operations</value>
+  </data>
+  <data name="G_Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="MENU_FlowInstancesMgmt" xml:space="preserve">
     <value>Processes</value>

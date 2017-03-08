@@ -628,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Opinions invited.
+        /// </summary>
+        internal static string G_InviteOtherFeedback {
+            get {
+                return ResourceManager.GetString("G_InviteOtherFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invoice #.
         /// </summary>
         internal static string G_InvoiceNo {
@@ -1191,6 +1200,15 @@ namespace Resources {
         internal static string G_TrackingNo {
             get {
                 return ResourceManager.GetString("G_TrackingNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string G_Type {
+            get {
+                return ResourceManager.GetString("G_Type", resourceCulture);
             }
         }
         

@@ -60,6 +60,7 @@ namespace OPAS2.Controllers
       return base.BeginExecuteCore(callback, state);
     }
 
+    #region base64编解码
     public string encodeToBase64(string str)
     {
       return Convert.ToBase64String(
@@ -70,12 +71,14 @@ namespace OPAS2.Controllers
       return System.Text.Encoding.UTF8.GetString(
         Convert.FromBase64String(str));
     }
+    #endregion
 
     public bool parseCheckboxValue(string formattedString)
     {
       return Convert.ToBoolean(formattedString.Split(',')[0]);
     }
 
+    #region 流程相关
     protected FlowTemplate getFlowTemplateByCode(string flowTemplateCode)
     {
       var flowTemplates = FlowTemplateDBHelper.getAvailableFlowTemplatesByCode(flowTemplateCode).ToList();
@@ -137,7 +140,9 @@ namespace OPAS2.Controllers
         throw new Exception("未找到指定的当前流程实例节点");
       }
     }
+    #endregion
 
+    #region 为各主数据生成可选列表的JSON
     protected void PrepareSelectListOfDepartment(EnouFlowOrgMgmtContext orgDb)
     {
       ViewBag.departmentListJsonEncoded = encodeToBase64(
@@ -220,6 +225,26 @@ namespace OPAS2.Controllers
       ViewBag.paymentMethodTypesJsonEncoded = encodeToBase64(
         JsonConvert.SerializeObject(TypeSelectLists.PaymentMethodTypeList));
     }
+    #endregion
+
+    #region 流程任务相关
+    protected List<FlowTask> getValidInviteOtherFeedbackTasks(
+      int originFlowTaskForUserId, 
+      EnouFlowInstanceContext flowInstDb,
+      OPAS2DbContext oPAS2Db)
+    {
+      var _tasksInDb = flowInstDb.flowTaskForUsers.Where(
+        t => t.relativeFlowTaskForUserId == originFlowTaskForUserId)
+        .ToList();
+      if(_tasksInDb != null && _tasksInDb.Count()>0)
+      { 
+        return _tasksInDb.Select(t => new FlowTask(t, oPAS2Db)).ToList();
+      }
+      else
+      {
+        return new List<FlowTask>();
+      }
+    }
 
     protected Tuple<bool, ActionResult> checkTaskValidity(
       FlowTaskForUser flowTaskForUser, FlowInstance flowInstance,
@@ -254,5 +279,6 @@ namespace OPAS2.Controllers
 
       return new Tuple<bool, ActionResult>(true, null);
     }
+    #endregion
   }
 }

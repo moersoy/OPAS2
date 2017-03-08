@@ -187,6 +187,7 @@
     <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Models\AvailableFlowAction.cs" />
     <Compile Include="Models\FlowTask.cs" />
+    <Compile Include="Models\TypeSelectListsInFlow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -315,7 +316,6 @@
     <Content Include="Views\FunctionPermission\AddUser.cshtml" />
     <Content Include="Views\FunctionPermission\AddRole.cshtml" />
     <Content Include="Views\PR\Examine.cshtml" />
-    <Content Include="Views\PR\Detail.cshtml" />
     <Content Include="Views\FlowTaskForUser\Index.cshtml" />
     <Content Include="Views\Vendor\Index.cshtml" />
     <Content Include="Views\Vendor\Create.cshtml" />
@@ -361,6 +361,9 @@
     <Content Include="Views\PM\RenderMainFieldsForEditPartial.cshtml" />
     <Content Include="Views\PM\RenderDetailFieldsForEditPartial.cshtml" />
     <Content Include="Views\PM\UpdateAtStart.cshtml" />
+    <Content Include="Views\PR\InviteOtherFeedback.cshtml" />
+    <Content Include="Views\Shared\RenderInviteOtherFeedbackOpsPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayInviteOtherFeedbacksPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

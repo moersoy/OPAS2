@@ -47,18 +47,41 @@ namespace OPAS2.Controllers
     public ActionResult Edit(
       string id, string documentTypeCode, int flowTaskForUserId)
     {
-      string actionName = "Examine";
+      string actionName = "View";
+      int flowTaskForUserIdToShow = flowTaskForUserId;
+
       using (var flowDb = new EnouFlowInstanceContext())
       {
         var task = FlowInstanceHelper.GetFlowTaskForUser(
           flowTaskForUserId, flowDb);
         switch (task.taskType)
         {
+          case EnumFlowTaskType.normal:
+            actionName = "Examine";
+            break;
+          case EnumFlowTaskType.invitationFeedback:
+            // 审批用户获得征询意见的反馈任务,需要改为显示的是原审批任务, 通过:
+            // 反馈任务->征询任务->原任务, 使用relativeFlowTaskForUserId
+            var _taskInviteFeedback = FlowInstanceHelper.GetFlowTaskForUser(flowTaskForUserId, flowDb);
+            if (_taskInviteFeedback.relativeFlowTaskForUserId.HasValue)
+            {
+              var _taskInvite = FlowInstanceHelper.GetFlowTaskForUser(
+                _taskInviteFeedback.relativeFlowTaskForUserId.Value, flowDb);
+              if (_taskInvite.relativeFlowTaskForUserId.HasValue)
+              {
+                flowTaskForUserIdToShow = _taskInvite.relativeFlowTaskForUserId.Value;
+              }
+            }
+            actionName = "Examine";
+            break;
           case EnumFlowTaskType.redraft:
             actionName = "UpdateAtStart";
             break;
+          case EnumFlowTaskType.invitation:
+            actionName = "InviteOtherFeedback";
+            break;
           default:
-            actionName = "Examine";
+            actionName = "View";
             break;
         }
       }
@@ -67,16 +90,16 @@ namespace OPAS2.Controllers
       {
         case "PR":
           return RedirectToAction(actionName, "PR", 
-            new { id = id, flowTaskForUserId = flowTaskForUserId });
+            new { id = id, flowTaskForUserId = flowTaskForUserIdToShow });
         case "PO":
           return RedirectToAction(actionName, "PO",
-            new { id = id, flowTaskForUserId = flowTaskForUserId });
+            new { id = id, flowTaskForUserId = flowTaskForUserIdToShow });
         case "GR":
           return RedirectToAction(actionName, "GR",
-            new { id = id, flowTaskForUserId = flowTaskForUserId });
+            new { id = id, flowTaskForUserId = flowTaskForUserIdToShow });
         case "PM":
           return RedirectToAction(actionName, "PM",
-            new { id = id, flowTaskForUserId = flowTaskForUserId });
+            new { id = id, flowTaskForUserId = flowTaskForUserIdToShow });
         default:
           throw new Exception("Unexpected documentTypeCode: " + 
             documentTypeCode);

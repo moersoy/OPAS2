@@ -1,0 +1,44 @@
+﻿@model IEnumerable<OPAS2.Models.FlowTask>
+@if (Model.Count() > 0) { 
+<div class="form-group">
+  @Html.Label(Resources.Resource.G_InviteOtherFeedback,
+       htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10 show-field">
+    <table class="table table-bordered table-condensed table-striped">
+      <tr>
+        <th>
+          @Resources.Resource.G_User
+        </th>
+        <th>
+          @Resources.Resource.G_ChooseFlowConnection
+        </th>
+        <th>
+          @Resources.Resource.G_ChooseToNodeRole
+        </th>
+        <th>
+          @Resources.Resource.G_Remark
+        </th>
+      </tr>
+
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            @*@Html.DisplayFor(modelItem => item.taskOperationUserId)*@
+            @Html.Action("DisplayNameById","User", new { id = item.taskOperationUserId })
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.stringField_2)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.stringField_3)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.stringField_1)
+          </td>
+        </tr>
+      }
+    </table>
+  </div>
+</div>
+}

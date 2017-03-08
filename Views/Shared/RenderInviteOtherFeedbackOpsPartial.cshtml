@@ -30,38 +30,14 @@
       </el-option>
     </el-select>
 
-    <input type="submit" value="@Resources.Resource.G_Submit" class="btn btn-primary" />
-
     <el-button-group style="padding-top: 5px;">
-      <el-tooltip content="直接退回申请人 / Reject to the creator">
-        <el-button type="danger" icon="d-arrow-left" 
-          @@click="onSubmitRejectToStartFlowAction">
-        </el-button>
-      </el-tooltip>
-      <el-tooltip content="邀请他人提供意见 / Invite other people to review">
-        <el-button type="primary" icon="plus"
-          @@click="onInviteOtherToExamine">
+      <el-tooltip content="提供处理意见 / Provide feedback">
+        <el-button type="primary" icon="edit"
+                   @@click="onSubmitInviteOtherFeedback"
+                   v-bind:disabled="!this.examineItem.remarkOfAprrover">
         </el-button>
       </el-tooltip>
     </el-button-group>
   </div>
 </div>
 
-<el-dialog title="选择用户" v-model="dialogChooseUserVisible">
-  <el-input placeholder="输入查询条件" 
-    v-model="queryUserInfo"><el-button slot="append" icon="search"></el-button>
-  </el-input>
-  <el-table v-bind:data="filteredUserDTOs" highlight-current-row max-height="300"
-    @@current-change="handleSelectedUserDTOChange" >
-    <el-table-column property="name" label="姓名" width="150" sortable></el-table-column>
-    <el-table-column property="englishName" label="英文名" width="200" sortable></el-table-column>
-    <el-table-column property="defaultDepartmentName" label="部门" sortable></el-table-column>
-  </el-table>
-  <div slot="footer" class="dialog-footer">
-    <el-button type="primary" v-bind:disabled="!selectedUserDTO"
-               @@click="onDialogChooseUserConfirmed">
-    确 定
-    </el-button>
-    <el-button @@click="dialogChooseUserVisible = false" >取 消</el-button>
-  </div>
-</el-dialog>

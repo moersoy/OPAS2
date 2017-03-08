@@ -11,10 +11,11 @@
   // biz data
   initBag.bizData = {};
   // session datas
-  initBag.PRNextFlowActionPath = "/api/PR/ExamineFlowAction/";
-  initBag.PRRejectToStartFlowActionPath = 
-    "/api/PR/RejectToStartFlowAction/";
-  initBag.PRInviteOtherFlowActionPath="/api/PR/InviteOtherFlowAction/";
+  //initBag.PRNextFlowActionPath = "";
+  //initBag.PRRejectToStartFlowActionPath = 
+  //  "";
+  //initBag.PRInviteOtherFlowActionPath="/api/PR/InviteOtherFlowAction/";
+  initBag.PRInviteOtherFeedbackFlowActionPath="/api/PR/InviteOtherFeedbackFlowAction/";
   // flow datas
   initBag.availableFlowConnections = JSON.parse(Base64.decode(
     "@ViewBag.availableFlowConnectionsEncoded"));
@@ -25,11 +26,11 @@
   }
 
 @using (Html.BeginForm(
-          "ExamineFlowAction", 
+          "InviteOtherFeedbackFlowAction", 
           (string)ViewBag.flowTemplateCode, 
           FormMethod.Post,
           htmlAttributes: new Dictionary<string, object> {
-            { "v-on:submit.prevent", "onSubmitExamineFlowAction" },
+            { "v-on:submit.prevent", "onSubmitInviteOtherFeedbackFlowAction" },
             { "autocomplete", "off"}  }))
 {
   @Html.AntiForgeryToken()
@@ -50,10 +51,7 @@
 
     @Html.Partial("RenderRemarksOpsPartial")
 
-    @Html.Partial("RenderExamineOpsPartial")
-
-    @Html.Partial("DisplayInviteOtherFeedbacksPartial", 
-      (IEnumerable<OPAS2.Models.FlowTask>)ViewBag.inviteOtherFeedbackTasks)
+    @Html.Partial("RenderInviteOtherFeedbackOpsPartial")
   </div>
 }
 

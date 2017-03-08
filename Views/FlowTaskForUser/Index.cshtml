@@ -23,6 +23,9 @@
     <th>
       @Resources.Resource.G_CreateTime
     </th>
+    <th>
+      @Resources.Resource.G_Type
+    </th>
     <th>@Resources.Resource.G_Operations</th>
   </tr>
 
@@ -43,6 +46,10 @@
       </td>
       <td>
         @item.createTime.ToString("yyyy/MM/dd")
+      </td>
+      <td>
+        @Html.Action("displayFlowTaskType", "EnumTypes",
+          new { id = (int)item.taskType })
       </td>
       <td>
         @Html.ActionLink(Resources.Resource.G_Edit, "Edit", new { id = item.bizDocumentGuid, documentTypeCode=item.documentTypeCode, flowTaskForUserId = item.flowTaskForUserId  })

@@ -7,6 +7,8 @@ using OPAS2Model;
 using System.Dynamic;
 using System.Reflection;
 
+using EnouFlowInstanceLib;
+using OPAS2.Models;
 
 namespace OPAS2.Controllers
 {
@@ -42,6 +44,11 @@ namespace OPAS2.Controllers
         TypeSelectLists.PaymentMethodTypeList, id);
     }
 
+    public string displayFlowTaskType(int id)
+    {
+      return getNameFromIdInList(
+        TypeSelectListsInFlow.FlowTaskTypeList, id);
+    }
 
     private string getNameFromIdInList(List<dynamic> list, int id)
     {

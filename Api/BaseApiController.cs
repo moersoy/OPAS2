@@ -117,7 +117,8 @@ namespace OPAS2.Api
       }
       #endregion
 
-      #region 检查任务状态是否可以进行处理(避免反复提交和任务被已用户自行删除的场景)
+      #region 检查任务状态是否可以进行处理
+      // 避免1.反复提交;2.任务被其他用户的处理而过时;3.用户自行删除的场景
       if (!flowTaskForUser.isValidToProcess())
       {
         return new Tuple<bool, IHttpActionResult>(false,

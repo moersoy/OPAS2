@@ -657,8 +657,14 @@
   <data name="G_InviteOther" xml:space="preserve">
     <value>征询意见</value>
   </data>
+  <data name="G_InviteOtherFeedback" xml:space="preserve">
+    <value>意见征询答复</value>
+  </data>
   <data name="G_OtherOperations" xml:space="preserve">
     <value>其他操作</value>
+  </data>
+  <data name="G_Type" xml:space="preserve">
+    <value>类型</value>
   </data>
   <data name="MENU_FlowInstancesMgmt" xml:space="preserve">
     <value>流程实例管理</value>

@@ -192,7 +192,38 @@
       });
     },
     onSubmitInviteOtherToExamine() {
+      // 克隆业务对象并删除无需上传的部分
+      var examineItemClone = Object.assign({}, this.examineItem);
+      examineItemClone.sessionData = undefined;
       console.log(this.selectedUserDTO);
+      examineItemClone.selectedPaticipantGuid =
+        this.selectedUserDTO.guid;
+
+      var messageBox = this.$message;
+      var _parseError = this.parseErrorOfServerResponse;
+      // 提交
+      axios.post(this.examineItem.sessionData.InviteOtherFlowActionPath,
+        {
+          docJson: JSON.stringify(examineItemClone),
+        }
+      )
+      .then(function (response) {
+        messageBox.success({
+          duration: 10000,
+          message: '成功提交InvokeOther:' + response.toString(),
+          showClose: true
+        });
+        console.info(response);
+      })
+      .catch(function (error) {
+        messageBox.error({
+          duration: 10000,
+          message: '错误:' + _parseError(error),
+          showClose: true
+        });
+        return false;
+      });
+
       this.dialogChooseUserVisible = false;
     },
     onInviteOtherToExamine() {
@@ -219,6 +250,36 @@
         that.dialogChooseUserConfirmHandle =
           that.onSubmitInviteOtherToExamine;
       }
+    },
+    onSubmitInviteOtherFeedback() {
+      // 克隆业务对象并删除无需上传的部分
+      var examineItemClone = Object.assign({}, this.examineItem);
+      examineItemClone.sessionData = undefined;
+
+      var messageBox = this.$message;
+      var _parseError = this.parseErrorOfServerResponse;
+      // 提交
+      axios.post(this.examineItem.sessionData.InviteOtherFeedbackFlowActionPath,
+        {
+          docJson: JSON.stringify(examineItemClone),
+        }
+      )
+      .then(function (response) {
+        messageBox.success({
+          duration: 10000,
+          message: '成功提交InvokeOtherFeedback:' + response.toString(),
+          showClose: true
+        });
+        console.info(response);
+      })
+      .catch(function (error) {
+        messageBox.error({
+          duration: 10000,
+          message: '错误:' + _parseError(error),
+          showClose: true
+        });
+        return false;
+      });
     },
     onDialogChooseUserConfirmed(){
       this.dialogChooseUserConfirmHandle();

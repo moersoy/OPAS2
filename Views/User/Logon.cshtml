@@ -19,6 +19,7 @@
     <div class="col-md-7">
       @Html.TextBox("logonName", (string)ViewBag.logonName, new Dictionary<string, object> {
             { "class", "form-control" },
+            { "style", "max-width: 200px;" },
             { "required", "true" } })
     </div>
   </div>
@@ -32,6 +33,7 @@
     <div class="col-md-7">
       @Html.Password("logonPassword", "", new Dictionary<string, object> {
             { "class", "form-control" },
+            { "style", "max-width: 200px;" },
             { "required", "true" } })
     </div>
   </div>
