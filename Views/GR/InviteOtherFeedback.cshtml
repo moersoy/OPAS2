@@ -14,10 +14,7 @@
   // biz data
   initBag.bizData = {};
   // session datas
-  initBag.GRNextFlowActionPath = "/api/GR/ExamineFlowAction/";
-  initBag.GRRejectToStartFlowActionPath = 
-    "/api/GR/RejectToStartFlowAction/";
-  initBag.GRInviteOtherFlowActionPath="/api/GR/InviteOtherFlowAction/";
+  initBag.GRInviteOtherFeedbackFlowActionPath="/api/GR/InviteOtherFeedbackFlowAction/";
   // flow datas
   initBag.availableFlowConnections = JSON.parse(Base64.decode(
     "@ViewBag.availableFlowConnectionsEncoded"));
@@ -50,11 +47,7 @@
 
     @Html.Partial("RenderRemarksOpsPartial")
 
-    @Html.Partial("RenderExamineOpsPartial")
-
-    @Html.Partial("DisplayInviteOtherFeedbacksPartial",
-      (IEnumerable<OPAS2.Models.FlowTask>)ViewBag.inviteOtherFeedbackTasks)
-
+    @Html.Partial("RenderInviteOtherFeedbackOpsPartial")
   </div>
 }
 
