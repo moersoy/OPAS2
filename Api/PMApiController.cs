@@ -462,6 +462,28 @@ namespace OPAS2.Api
       return Ok();
     }
 
+    [HttpPost]
+    [Route("api/PM/InviteOtherFlowAction/")]
+    public IHttpActionResult InviteOtherFlowAction()
+    {
+      dynamic bizObj = getPostedJsonObject();
+      Payment pm = db.payments.Find(bizObj.paymentId);
+
+      return InviteOtherFlowActionGeneral(
+        bizObj, flowTemplateCode, pm.documentNo);
+    }
+
+    [HttpPost]
+    [Route("api/PM/InviteOtherFeedbackFlowAction/")]
+    public IHttpActionResult InviteOtherFeedbackFlowAction()
+    {
+      dynamic bizObj = getPostedJsonObject();
+      Payment pm = db.payments.Find(bizObj.paymentId);
+
+      return InviteOtherFeedbackFlowActionGeneral(
+        bizObj, flowTemplateCode, pm.documentNo);
+    }
+
     private void AssignBasicFields(
       Payment pm, dynamic bizObj, UserDTO userDTO)
     {

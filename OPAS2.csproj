@@ -366,6 +366,7 @@
     <Content Include="Views\Shared\DisplayInviteOtherFeedbacksPartial.cshtml" />
     <Content Include="Views\PO\InviteOtherFeedback.cshtml" />
     <Content Include="Views\GR\InviteOtherFeedback.cshtml" />
+    <Content Include="Views\PM\InviteOtherFeedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

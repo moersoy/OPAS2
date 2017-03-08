@@ -14,10 +14,7 @@
   // biz data
   initBag.bizData = {};
   // session datas
-  initBag.PMNextFlowActionPath = "/api/PM/ExamineFlowAction/";
-  initBag.PMRejectToStartFlowActionPath = 
-  "/api/PM/RejectToStartFlowAction/";
-  initBag.PMInviteOtherFlowActionPath="/api/PM/InviteOtherFlowAction/";
+  initBag.PMInviteOtherFeedbackFlowActionPath="/api/PM/InviteOtherFeedbackFlowAction/";
   // flow datas
   initBag.availableFlowConnections = JSON.parse(Base64.decode(
     "@ViewBag.availableFlowConnectionsEncoded"));
@@ -49,13 +46,11 @@
 
     @Html.Partial("RenderRemarksOpsPartial")
 
-    @Html.Partial("RenderExamineOpsPartial")
-
-    @Html.Partial("DisplayInviteOtherFeedbacksPartial",
-      (IEnumerable<OPAS2.Models.FlowTask>)ViewBag.inviteOtherFeedbackTasks)
+    @Html.Partial("RenderInviteOtherFeedbackOpsPartial")
   </div>
 }
 
 <div>
   @Html.ActionLink(@Resources.Resource.G_BackToList, "Index", "FlowTaskForUser",null, null)
 </div>
+

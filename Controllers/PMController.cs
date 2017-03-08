@@ -211,9 +211,44 @@ namespace OPAS2.Controllers
       ViewBag.paymentId = pm.paymentId;
       ViewBag.taskGuid = flowTaskForUser.guid;
 
+      #region 获取可能的征询处理意见(InviteOther)的任务反馈意见内容
+      ViewBag.inviteOtherFeedbackTasks =
+        getValidInviteOtherFeedbackTasks(
+          flowTaskForUser.flowTaskForUserId, flowInstDb, db);
+      #endregion
+
       #region 流程相关数据
       fillFlowContinuationDataInViewBag(flowInstance);
       #endregion
+
+      return View(pm);
+    }
+
+    // GET: PM/InviteOtherFeedback/5b354131-f2ea-489d-8fc6-119676fdcebe/5
+    [UserLogon]
+    [HttpGet]
+    public ActionResult InviteOtherFeedback(string id, int flowTaskForUserId)
+    {
+      ViewBag.currentMenuIndex = "";
+
+      Payment pm = db.payments.Where(
+        obj => obj.guid == id).FirstOrDefault();
+      FlowTaskForUser flowTaskForUser = flowInstDb.flowTaskForUsers.Find(
+        flowTaskForUserId);
+      FlowInstance flowInstance = flowTaskForUser.flowInstance;
+
+      #region 检查timestamp是否已过期
+      Tuple<bool, ActionResult> taskValidity = fillInviteOtherFeedback(
+        flowInstDb, flowTaskForUserId);
+      if (!taskValidity.Item1)
+      {
+        return taskValidity.Item2;
+      }
+      #endregion
+
+      ViewBag.PO = pm.PurchaseOrder;
+      ViewBag.paymentId = pm.paymentId;
+      ViewBag.taskGuid = flowTaskForUser.guid;
 
       return View(pm);
     }
