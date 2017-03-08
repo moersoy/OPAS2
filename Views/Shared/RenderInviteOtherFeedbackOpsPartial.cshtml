@@ -1,9 +1,9 @@
 ﻿<div class="form-group">
-  <label class="control-label col-md-2">@Resources.Resource.G_WorkflowOperation :</label>
+  <label class="control-label col-md-2">@Resources.Resource.G_Suggestion :</label>
   <div class="col-md-10">
     <el-select v-model="examineItem.selectedConnectionGuid"
                @@change="handleFlowSelectedConnection"
-               placeholder="@Resources.Resource.G_ChooseFlowConnection">
+               placeholder="@Resources.Resource.G_SuggestFlowConnection">
       <el-option v-for="item in examineItem.sessionData.availableFlowConnections"
                  v-bind:label="item.connection.name"
                  v-bind:value="item.connection.guid">
@@ -14,7 +14,7 @@
       </el-option>
     </el-select>
 
-    <el-select v-model="examineItem.selectedPaticipantGuid" placeholder="@Resources.Resource.G_ChooseToNodeRole">
+    <el-select v-model="examineItem.selectedPaticipantGuid" placeholder="@Resources.Resource.G_SuggestToNodeRole">
       <el-option v-for="item in examineItem.sessionData.potentialPaticipants"
                  v-bind:label="item.PaticipantObj.name"
                  v-bind:value="item.PaticipantObj.guid">

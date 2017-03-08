@@ -663,6 +663,15 @@
   <data name="G_OtherOperations" xml:space="preserve">
     <value>其他操作</value>
   </data>
+  <data name="G_SuggestFlowConnection" xml:space="preserve">
+    <value>建议操作</value>
+  </data>
+  <data name="G_Suggestion" xml:space="preserve">
+    <value>建议</value>
+  </data>
+  <data name="G_SuggestToNodeRole" xml:space="preserve">
+    <value>建议执行人</value>
+  </data>
   <data name="G_Type" xml:space="preserve">
     <value>类型</value>
   </data>

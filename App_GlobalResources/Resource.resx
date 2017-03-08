@@ -663,6 +663,15 @@
   <data name="G_OtherOperations" xml:space="preserve">
     <value>Other operations</value>
   </data>
+  <data name="G_SuggestFlowConnection" xml:space="preserve">
+    <value>Suggest operation</value>
+  </data>
+  <data name="G_Suggestion" xml:space="preserve">
+    <value>Suggestion</value>
+  </data>
+  <data name="G_SuggestToNodeRole" xml:space="preserve">
+    <value>Suggest operator</value>
+  </data>
   <data name="G_Type" xml:space="preserve">
     <value>Type</value>
   </data>

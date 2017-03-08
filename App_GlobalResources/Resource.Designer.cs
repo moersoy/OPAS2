@@ -1168,6 +1168,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Suggest operation.
+        /// </summary>
+        internal static string G_SuggestFlowConnection {
+            get {
+                return ResourceManager.GetString("G_SuggestFlowConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suggestion.
+        /// </summary>
+        internal static string G_Suggestion {
+            get {
+                return ResourceManager.GetString("G_Suggestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suggest operator.
+        /// </summary>
+        internal static string G_SuggestToNodeRole {
+            get {
+                return ResourceManager.GetString("G_SuggestToNodeRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SWIFT code.
         /// </summary>
         internal static string G_SWIFTCode {
