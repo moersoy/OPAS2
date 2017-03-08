@@ -252,7 +252,7 @@ namespace OPAS2.Controllers
       return View(purchaseReq);
     }
 
-    // GET: PR/InviteOtherFeedback/5b354131-f2ea-489d-8fc6-119676fdcebe/5b354131-f2ea-489d-8fc6-119676fdcebe
+    // GET: PR/InviteOtherFeedback/5b354131-f2ea-489d-8fc6-119676fdcebe/5
     [UserLogon]
     [HttpGet]
     public ActionResult InviteOtherFeedback(string id, int flowTaskForUserId)
