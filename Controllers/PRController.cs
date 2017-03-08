@@ -124,10 +124,11 @@ namespace OPAS2.Controllers
       ViewBag.purchaseReqId = purchaseReq.purchaseReqId;
       ViewBag.taskGuid = flowTaskForUser.guid;
 
-      // 获取可能的征询处理意见(InviteOther)的任务反馈意见内容
+      #region 获取可能的征询处理意见(InviteOther)的任务反馈意见内容
       ViewBag.inviteOtherFeedbackTasks = 
         getValidInviteOtherFeedbackTasks( 
           flowTaskForUser.flowTaskForUserId,flowInstDb,db);
+      #endregion
 
       #region 流程相关数据
       fillFlowContinuationDataInViewBag(flowInstance);
@@ -260,25 +261,14 @@ namespace OPAS2.Controllers
 
       PurchaseReq purchaseReq = db.purchaseReqs.Where(
         pr => pr.guid == id).FirstOrDefault();
-      FlowTaskForUser flowTaskForUser = flowInstDb.flowTaskForUsers.Find(
-        flowTaskForUserId);
-      FlowInstance flowInstance = flowTaskForUser.flowInstance;
+      ViewBag.purchaseReqId = purchaseReq.purchaseReqId;
 
-      #region 检查timestamp是否已过期
-      Tuple<bool, ActionResult> taskValidity =
-        checkTaskValidity(flowTaskForUser, flowInstance, flowInstDb);
+      Tuple<bool, ActionResult> taskValidity = fillInviteOtherFeedback(
+        flowInstDb, flowTaskForUserId);
       if (!taskValidity.Item1)
       {
         return taskValidity.Item2;
       }
-      #endregion
-
-      ViewBag.purchaseReqId = purchaseReq.purchaseReqId;
-      ViewBag.taskGuid = flowTaskForUser.guid;
-
-      #region 流程相关数据 被征询处理意见时还是填充流程信息,以便被顾问人给出后续处理意见
-      fillFlowContinuationDataInViewBag(flowInstance);
-      #endregion
 
       return View(purchaseReq);
     }

@@ -279,6 +279,32 @@ namespace OPAS2.Controllers
 
       return new Tuple<bool, ActionResult>(true, null);
     }
+
+    protected Tuple<bool, ActionResult> fillInviteOtherFeedback(
+      EnouFlowInstanceContext flowInstDb, int flowTaskForUserId)
+    {
+      FlowTaskForUser flowTaskForUser = flowInstDb.flowTaskForUsers.Find(
+        flowTaskForUserId);
+      FlowInstance flowInstance = flowTaskForUser.flowInstance;
+
+      #region 检查timestamp是否已过期
+      Tuple<bool, ActionResult> taskValidity =
+        checkTaskValidity(flowTaskForUser, flowInstance, flowInstDb);
+      if (!taskValidity.Item1)
+      {
+        return taskValidity;
+      }
+      #endregion
+
+      ViewBag.taskGuid = flowTaskForUser.guid;
+
+      #region 流程相关数据 被征询处理意见时还是填充流程信息,以便被顾问人给出后续处理意见
+      fillFlowContinuationDataInViewBag(flowInstance);
+      #endregion
+
+      return new Tuple<bool, ActionResult>(true, null);
+    }
+
     #endregion
   }
 }
