@@ -1,0 +1,34 @@
+﻿@model OPAS2Model.GoodsReceiving
+@section init_scripts {
+<script type="text/javascript">
+  var initBag = {};
+  initBag.workingMode = "examine";
+  initBag.purchaseOrderId=@ViewBag.PO.purchaseOrderId;
+  initBag.goodsReceivingId = @Model.goodsReceivingId;
+  initBag.PODocumentNo= "@if (ViewBag.PO != null) { @ViewBag.PO.documentNo }";
+  initBag.currentUserGuid = "@ViewBag.currentUserDTO.guid";
+  initBag.guid = "@Model.guid";
+  initBag.departmentId = @ViewBag.PO.departmentId;
+  // biz data
+  initBag.bizData = {};
+  // session datas
+  // flow datas
+  initBag.flowInstanceId = @ViewBag.flowInstanceId;
+</script>
+  }
+@using (Html.BeginForm(
+          "", (string)ViewBag.flowTemplateCode, FormMethod.Post,
+            htmlAttributes: new Dictionary<string, object> {
+        { "v-on:submit.prevent", "onSubmitExamineFlowAction" },
+        { "autocomplete", "off"}  }))
+{
+  <div class="form-horizontal">
+    @Html.Partial("DisplayBizDocumentHeaderPartial")
+    @Html.Partial("DisplayMainFieldsPartial", Model)
+    @Html.Partial("DisplayRemarkOfApproversPartial")
+    @Html.Partial("DisplaySubTableFieldsPartial", Model)
+    @Html.Partial("DisplayAttachListPartial")
+  </div>
+}
+@Html.Partial("DisplayBackToTaskListLinkPartial")
+
