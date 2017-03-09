@@ -24,12 +24,8 @@
         { "v-on:submit.prevent", "onSubmitExamineFlowAction" },
         { "autocomplete", "off"}  }))
 {
-  @Html.AntiForgeryToken()
-
   <div class="form-horizontal">
     @Html.Partial("DisplayBizDocumentHeaderPartial")
-
-    @Html.HiddenFor(model => model.purchaseOrderId)
 
     @Html.Partial("DisplayMainFieldsPartial", Model)
 
