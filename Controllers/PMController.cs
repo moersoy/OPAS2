@@ -184,7 +184,6 @@ namespace OPAS2.Controllers
       return View(pm);
     }
 
-
     // GET: PM/Examine/5b354131-f2ea-489d-8fc6-119676fdcebe/5b354131-f2ea-489d-8fc6-119676fdcebe
     [UserLogon]
     [HttpGet]
@@ -216,6 +215,28 @@ namespace OPAS2.Controllers
         getValidInviteOtherFeedbackTasks(
           flowTaskForUser.flowTaskForUserId, flowInstDb, db);
       #endregion
+
+      #region 流程相关数据
+      fillFlowContinuationDataInViewBag(flowInstance);
+      #endregion
+
+      return View(pm);
+    }
+
+    // GET: PM/Display/5b354131-f2ea-489d-8fc6-119676fdcebe
+    [UserLogon]
+    [HttpGet]
+    public ActionResult Display(string guid)
+    {
+      ViewBag.currentMenuIndex = "";
+
+      Payment pm = db.payments.Where(
+        obj => obj.guid == guid).FirstOrDefault();
+      FlowInstance flowInstance = FlowInstanceHelper.GetFlowInstance(
+        pm.flowInstanceId.Value, flowInstDb);
+
+      ViewBag.PO = pm.PurchaseOrder;
+      ViewBag.paymentId = pm.paymentId;
 
       #region 流程相关数据
       fillFlowContinuationDataInViewBag(flowInstance);
