@@ -373,6 +373,7 @@
     <Content Include="Views\PR\Display.cshtml" />
     <Content Include="Views\PO\Display.cshtml" />
     <Content Include="Views\PO\DisplayPaymentTermsPartial.cshtml" />
+    <Content Include="Views\GR\Display.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
