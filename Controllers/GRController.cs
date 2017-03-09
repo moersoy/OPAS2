@@ -95,7 +95,7 @@ namespace OPAS2.Controllers
 
       UserDTO currentUserDTO = (UserDTO)ViewBag.currentUserDTO;
       FlowTaskForUser flowTaskForUser = flowInstDb.flowTaskForUsers.Where(
-        task => task.flowInstance.flowInstanceId == flowInstance.flowInstanceId &&
+        task => task.FlowInstance.flowInstanceId == flowInstance.flowInstanceId &&
         task.bizTimeStamp == flowInstance.bizTimeStamp &&
         task.userId == currentUserDTO.userId
       ).FirstOrDefault();
@@ -181,7 +181,7 @@ namespace OPAS2.Controllers
         obj => obj.guid == id).FirstOrDefault();
       FlowTaskForUser flowTaskForUser = flowInstDb.flowTaskForUsers.Find(
         flowTaskForUserId);
-      FlowInstance flowInstance = flowTaskForUser.flowInstance;
+      FlowInstance flowInstance = flowTaskForUser.FlowInstance;
 
       #region 检查timestamp是否已过期
       Tuple<bool, ActionResult> taskValidity =
@@ -220,7 +220,7 @@ namespace OPAS2.Controllers
         obj => obj.guid == id).FirstOrDefault();
       FlowTaskForUser flowTaskForUser = flowInstDb.flowTaskForUsers.Find(
         flowTaskForUserId);
-      FlowInstance flowInstance = flowTaskForUser.flowInstance;
+      FlowInstance flowInstance = flowTaskForUser.FlowInstance;
 
       Tuple<bool, ActionResult> taskValidity = fillInviteOtherFeedback(
         flowInstDb, flowTaskForUserId);

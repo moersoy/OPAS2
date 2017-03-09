@@ -681,4 +681,13 @@
   <data name="MENU_FlowTemplates" xml:space="preserve">
     <value>流程模板管理</value>
   </data>
+  <data name="G_CurrentOperator" xml:space="preserve">
+    <value>当前办理人</value>
+  </data>
+  <data name="G_CurrentStep" xml:space="preserve">
+    <value>当前步骤</value>
+  </data>
+  <data name="G_RunningDays" xml:space="preserve">
+    <value>运转天数</value>
+  </data>
 </root>

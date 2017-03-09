@@ -163,6 +163,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AttachFileController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FlowInstanceController.cs" />
     <Compile Include="Controllers\FlowTaskForUserController.cs" />
     <Compile Include="Controllers\FunctionPermissionController.cs" />
     <Compile Include="Controllers\GRController.cs" />
@@ -255,6 +256,7 @@
     <Content Include="ViewModels\CurrencyRate\main.js" />
     <Content Include="ViewModels\CurrencyType\main.js" />
     <Content Include="ViewModels\Department\main.js" />
+    <Content Include="ViewModels\FlowInstance\main.js" />
     <Content Include="ViewModels\FlowTaskForUser\main.js" />
     <Content Include="ViewModels\FunctionPermission\main.js" />
     <Content Include="ViewModels\GR\main.js" />
@@ -367,6 +369,8 @@
     <Content Include="Views\PO\InviteOtherFeedback.cshtml" />
     <Content Include="Views\GR\InviteOtherFeedback.cshtml" />
     <Content Include="Views\PM\InviteOtherFeedback.cshtml" />
+    <Content Include="Views\FlowInstance\Running.cshtml" />
+    <Content Include="Views\PR\Display.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

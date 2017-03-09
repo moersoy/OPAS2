@@ -19,6 +19,8 @@ namespace OPAS2.Controllers
     }
 
     private OPAS2DbContext db = new OPAS2DbContext();
+    private EnouFlowInstanceContext flowDb = 
+      new EnouFlowInstanceContext();
 
     // GET: FlowTaskForUser
     [UserLogon]
@@ -144,9 +146,28 @@ namespace OPAS2.Controllers
       }
     }
 
+    public ActionResult DisplayCurrentOperatorsOfFlowInstance(int id)
+    {
+      var result = "";
+      using (var orgDb = new EnouFlowOrgMgmtContext())
+      {
+        var flowTaskForUsers = FlowInstanceHelper.
+          GetWaitingFlowTaskForUserListOfFlowInstance(id, flowDb);
+        if(flowTaskForUsers != null && flowTaskForUsers.Count() > 0)
+        {
+          result = flowTaskForUsers.Aggregate("", (names, task) => {
+            return names + orgDb.users.Find(task.userId).name + ";";
+          });
+        }
+      }
+
+      return Content(result, "text/html");
+    }
+
     protected override void Dispose(bool disposing)
     {
       db.Dispose();
+      flowDb.Dispose();
       base.Dispose(disposing);
     }
   }

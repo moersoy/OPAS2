@@ -1,0 +1,63 @@
+﻿@model IEnumerable<EnouFlowInstanceLib.FlowInstance>
+
+<h3>@Resources.Resource.MENU_FlowInstancesMgmt</h3>
+
+<table class="table table-condensed table-striped">
+  <tr>
+    <th>
+      @Resources.Resource.G_DocType
+    </th>
+    <th>
+      @Resources.Resource.G_Code
+    </th>
+    <th>
+      @Resources.Resource.G_CurrentOperator
+    </th>
+    <th>
+      @Resources.Resource.G_CurrentStep
+    </th>
+    <th>
+      @Resources.Resource.G_Creator
+    </th>
+    <th>
+      @Resources.Resource.G_CreateTime
+    </th>
+    <th>
+      @Resources.Resource.G_RunningDays
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.bizDocumentTypeCode)
+      </td>
+      <td>
+        @item.code.Substring(9)
+      </td>
+      <td>
+        @Html.Action("DisplayCurrentOperatorsOfFlowInstance",
+          "FlowTaskForUser", new { id = item.flowInstanceId })
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.currentActivityName)
+      </td>
+      <td>
+        @Html.Action("DisplayNameById","User", new { id = item.creatorId })
+      </td>
+      <td>
+        @item.createTime.ToString("yyyy/MM/dd")
+      </td>
+      <td>
+        @((item.bizTimeStamp-item.createTime).Days+1)
+      </td>
+      <td>
+        @Html.ActionLink(@Resources.Resource.G_Details,
+          "View", new { id = item.flowInstanceId }) 
+      </td>
+    </tr>
+  }
+
+</table>

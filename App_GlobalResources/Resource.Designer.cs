@@ -367,6 +367,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current operator.
+        /// </summary>
+        internal static string G_CurrentOperator {
+            get {
+                return ResourceManager.GetString("G_CurrentOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current step.
+        /// </summary>
+        internal static string G_CurrentStep {
+            get {
+                return ResourceManager.GetString("G_CurrentStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string G_Delete {
@@ -1110,6 +1128,15 @@ namespace Resources {
         internal static string G_Reset {
             get {
                 return ResourceManager.GetString("G_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Running days.
+        /// </summary>
+        internal static string G_RunningDays {
+            get {
+                return ResourceManager.GetString("G_RunningDays", resourceCulture);
             }
         }
         

@@ -681,4 +681,13 @@
   <data name="MENU_FlowTemplates" xml:space="preserve">
     <value>Workflow definition</value>
   </data>
+  <data name="G_CurrentOperator" xml:space="preserve">
+    <value>Current operator</value>
+  </data>
+  <data name="G_CurrentStep" xml:space="preserve">
+    <value>Current step</value>
+  </data>
+  <data name="G_RunningDays" xml:space="preserve">
+    <value>Running days</value>
+  </data>
 </root>

@@ -285,7 +285,7 @@ namespace OPAS2.Controllers
     {
       FlowTaskForUser flowTaskForUser = flowInstDb.flowTaskForUsers.Find(
         flowTaskForUserId);
-      FlowInstance flowInstance = flowTaskForUser.flowInstance;
+      FlowInstance flowInstance = flowTaskForUser.FlowInstance;
 
       #region 检查timestamp是否已过期
       Tuple<bool, ActionResult> taskValidity =
