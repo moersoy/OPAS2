@@ -7,26 +7,18 @@
   initBag.currentUserGuid = "@ViewBag.currentUserDTO.guid";
   initBag.guid = "@Model.guid";
   initBag.purchaseOrderId =  @ViewBag.purchaseOrderId;
-  initBag.taskGuid = "@ViewBag.taskGuid";
   initBag.PRDocumentNo= "@if (ViewBag.PR != null) { @ViewBag.PR.documentNo }";
   // biz data
   initBag.bizData = {};
-  // master datas
-  initBag.PONextFlowActionPath = "/api/PO/ExamineFlowAction/";
-  initBag.PORejectToStartFlowActionPath = 
-    "/api/PO/RejectToStartFlowAction/";
-  initBag.POInviteOtherFlowActionPath="/api/PO/InviteOtherFlowAction/";
+  // session datas
   // flow datas
-  initBag.availableFlowConnections = JSON.parse(Base64.decode(
-    "@ViewBag.availableFlowConnectionsEncoded"));
   initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
   initBag.flowInstanceId = @ViewBag.flowInstanceId;
-
 </script>
   }
 
 @using (Html.BeginForm(
-          "ExamineFlowAction", 
+          "", 
           (string)ViewBag.flowTemplateCode, FormMethod.Post,
             htmlAttributes: new Dictionary<string, object> {
         { "v-on:submit.prevent", "onSubmitExamineFlowAction" },
@@ -49,12 +41,6 @@
 
     @Html.Partial("DisplayAttachListPartial")
 
-    @Html.Partial("RenderRemarksOpsPartial")
-
-    @Html.Partial("RenderExamineOpsPartial")
-
-    @Html.Partial("DisplayInviteOtherFeedbacksPartial",
-      (IEnumerable<OPAS2.Models.FlowTask>)ViewBag.inviteOtherFeedbackTasks)
   </div>
 }
 

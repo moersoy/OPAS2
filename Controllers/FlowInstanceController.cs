@@ -28,6 +28,7 @@ namespace OPAS2.Controllers
 
     // Running: FlowInstance
     [UserLogon]
+    [HttpGet]
     public ActionResult Running()
     {
       var flowInstances = flowInstDb.flowInstances.Where(obj =>
@@ -38,12 +39,38 @@ namespace OPAS2.Controllers
 
     // Stopped: FlowInstance
     [UserLogon]
+    [HttpGet]
     public ActionResult Stopped()
     {
       return View();
     }
 
+    // GET: FlowInstance/DisplayBizDocument/5b354131-f2ea-489d-8fc6-119676fdcebe
+    [UserLogon]
+    [HttpGet]
+    public ActionResult DisplayBizDocument(string guid)
+    {
+      var flowInstance = FlowInstanceHelper.GetFlowInstance(
+        guid,flowInstDb);
 
+      #region 判断流程实例数据合法性
+      if (flowInstance == null)
+      {
+        return new HttpNotFoundResult("未找到流程实例:"+ guid);
+      }
+      else if (string.IsNullOrWhiteSpace(flowInstance.code))
+      {
+        return new HttpNotFoundResult("流程实例bizDocumentTypeCode字段为空:" + guid);
+      }
+      else if (string.IsNullOrWhiteSpace(flowInstance.bizDocumentGuid))
+      {
+        return new HttpNotFoundResult("流程实例bizDocumentGuid字段为空:" + guid);
+      }
+      #endregion
+
+      return RedirectToAction("Display", flowInstance.bizDocumentTypeCode, 
+        new { guid = flowInstance.bizDocumentGuid });
+    }
 
     protected override void Dispose(bool disposing)
     {

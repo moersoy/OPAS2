@@ -151,6 +151,28 @@ namespace OPAS2.Controllers
       return View(po);
     }
 
+    // GET: PO/Display/5b354131-f2ea-489d-8fc6-119676fdcebe
+    [UserLogon]
+    [HttpGet]
+    public ActionResult Display(string guid)
+    {
+      ViewBag.currentMenuIndex = "";
+
+      PurchaseOrder po = db.purchaseOrders.Where(
+        obj => obj.guid == guid).FirstOrDefault();
+      FlowInstance flowInstance = FlowInstanceHelper.GetFlowInstance(
+        po.flowInstanceId.Value, flowInstDb);
+
+      ViewBag.PR = po.PurchaseReq;
+      ViewBag.purchaseOrderId = po.purchaseOrderId;
+
+      #region 流程相关数据
+      fillFlowContinuationDataInViewBag(flowInstance);
+      #endregion
+
+      return View(po);
+    }
+
     [UserLogon]
     [HttpGet]
     public ActionResult UpdateAtStart(string id)

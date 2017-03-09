@@ -1,0 +1,15 @@
+﻿@model OPAS2Model.PurchaseOrder
+
+<div class="form-group">
+  @Html.Label(@Resources.Resource.G_PaymentTerm,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+  <div class="col-md-10">
+    @Html.TextAreaFor(model => model.paymentTerm, 5, 80,
+          new Dictionary<string, object> {
+                  { "class","form-control" } ,
+                  { "style" , "max-width: 750px;" },
+                  { "readonly","readonly" },
+           }
+          )
+  </div>
+</div>

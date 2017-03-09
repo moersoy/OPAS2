@@ -1,0 +1,43 @@
+﻿@model OPAS2Model.PurchaseReq
+
+@section init_scripts {
+  <script type="text/javascript">
+  var initBag = {};
+  initBag.workingMode = "examine";
+  initBag.currentUserGuid = "@ViewBag.currentUserDTO.guid";
+  initBag.guid = "@Model.guid";
+  initBag.purchaseReqId =  @ViewBag.purchaseReqId;
+  // biz data
+  initBag.bizData = {};
+  // session datas
+  // flow datas
+  initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
+  initBag.flowInstanceId = @ViewBag.flowInstanceId;
+  </script>
+}
+
+@using (Html.BeginForm(
+                "",
+                (string)ViewBag.flowTemplateCode,
+                FormMethod.Post,
+                htmlAttributes: new Dictionary<string, object> {
+            { "v-on:submit.prevent", "onSubmitExamineFlowAction" },
+            { "autocomplete", "off"}  }))
+{
+
+  <div class="form-horizontal">
+
+    @Html.Partial("DisplayBizDocumentHeaderPartial")
+
+    @Html.Partial("DisplayMainFieldsPartial", Model)
+
+    @Html.Partial("DisplayRemarkOfApproversPartial")
+
+    @Html.Partial("DisplaySubTableFieldsPartial", Model)
+
+    @Html.Partial("DisplayAttachListPartial")
+
+  </div>
+}
+
+@Html.Partial("DisplayBackToTaskListLinkPartial")
