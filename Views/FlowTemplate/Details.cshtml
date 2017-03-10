@@ -1,0 +1,14 @@
+﻿@model EnouFlowTemplateLib.FlowTemplate
+
+@section init_scripts {
+  <script type="text/javascript">
+    var initBag = {};
+    // biz data
+    initBag.flowTemplateDef = JSON.parse(Base64.decode(
+      '@Html.Raw(ViewBag.templateJsonEncoded)'));
+    initBag.flowTemplateName = "@Model.name";
+  </script>
+}
+<h3>@Resources.Resource.G_FlowChart (@Model.code - @Model.name)</h3>
+<div id="FlowChart"></div>
+

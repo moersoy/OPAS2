@@ -601,6 +601,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flow chart.
+        /// </summary>
+        internal static string G_FlowChart {
+            get {
+                return ResourceManager.GetString("G_FlowChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Goods Receiving.
         /// </summary>
         internal static string G_GR {
@@ -714,6 +723,15 @@ namespace Resources {
         internal static string G_IsNormalPayment {
             get {
                 return ResourceManager.GetString("G_IsNormalPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is published?.
+        /// </summary>
+        internal static string G_IsPublished {
+            get {
+                return ResourceManager.GetString("G_IsPublished", resourceCulture);
             }
         }
         
@@ -1344,6 +1362,15 @@ namespace Resources {
         internal static string G_VendorOrgNo {
             get {
                 return ResourceManager.GetString("G_VendorOrgNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        internal static string G_Version {
+            get {
+                return ResourceManager.GetString("G_Version", resourceCulture);
             }
         }
         

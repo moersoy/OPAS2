@@ -95,6 +95,13 @@ input.el-input__inner.unsaved{
   width: 90px;
 }
 
+.el-button.round-button
+{
+  border-radius: 20px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
 // override bootstrap
 .form-group {
   margin-bottom: 5px;

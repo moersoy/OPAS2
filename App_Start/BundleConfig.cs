@@ -49,6 +49,8 @@ namespace OPAS2
         "~/Scripts/opas-vue-public-mixin.js"));
       bundles.Add(new ScriptBundle("~/bundles/opas-vue-biz-document-mixin").Include(
         "~/Scripts/opas-vue-biz-document-mixin.js"));
+      bundles.Add(new ScriptBundle("~/bundles/raphael").Include(
+        "~/Scripts/raphael.min.js"));
       #endregion
     }
   }

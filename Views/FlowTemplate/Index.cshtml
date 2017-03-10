@@ -1,0 +1,59 @@
+﻿@model IEnumerable<EnouFlowTemplateLib.FlowTemplate>
+@section init_scripts {
+  <script type="text/javascript">
+    var initBag = {};
+  </script>
+}
+<h3>@Resources.Resource.MENU_FlowTemplates</h3>
+<table class="table table-condensed table-striped">
+  <tr>
+    <th>
+      @Resources.Resource.G_Code
+    </th>
+    <th>
+      @Resources.Resource.G_Name
+    </th>
+    <th>
+      @Resources.Resource.G_DisplayName
+    </th>
+    <th>
+      @Resources.Resource.G_Version
+    </th>
+    <th>
+      @Resources.Resource.G_CreateTime
+    </th>
+    <th>
+      @Resources.Resource.G_IsPublished
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.code)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.name)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.displayName)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.version)
+      </td>
+      <td>
+        @item.createTime.ToString("yyyy/MM/dd")
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.isPublished)
+      </td>
+      <td>
+        @Html.ActionLink(@Resources.Resource.G_FlowChart, 
+          "Details", new { guid = item.guid })
+      </td>
+    </tr>
+  }
+
+</table>

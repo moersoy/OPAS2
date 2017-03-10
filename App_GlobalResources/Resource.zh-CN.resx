@@ -690,4 +690,13 @@
   <data name="G_RunningDays" xml:space="preserve">
     <value>运转天数</value>
   </data>
+  <data name="G_FlowChart" xml:space="preserve">
+    <value>流程图</value>
+  </data>
+  <data name="G_IsPublished" xml:space="preserve">
+    <value>已发布?</value>
+  </data>
+  <data name="G_Version" xml:space="preserve">
+    <value>版本</value>
+  </data>
 </root>

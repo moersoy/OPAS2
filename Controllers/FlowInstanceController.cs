@@ -23,7 +23,7 @@ namespace OPAS2.Controllers
 
     public FlowInstanceController() : base()
     {
-      ViewBag.currentMenuIndex = "FLOWINSTANCE-RUNNING";
+      ViewBag.currentMenuIndex = "SYS-FLOW-INSTANCES-MGMT";
     }
 
     // Running: FlowInstance

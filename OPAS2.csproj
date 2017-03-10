@@ -165,6 +165,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\FlowInstanceController.cs" />
     <Compile Include="Controllers\FlowTaskForUserController.cs" />
+    <Compile Include="Controllers\FlowTemplateController.cs" />
     <Compile Include="Controllers\FunctionPermissionController.cs" />
     <Compile Include="Controllers\GRController.cs" />
     <Compile Include="Controllers\PMController.cs" />
@@ -219,6 +220,10 @@
     <Content Include="Content\fonts\element-icons.woff" />
     <None Include="Content\Site.scss" />
     <Content Include="gulpfile.js" />
+    <Content Include="images\flow_end.png" />
+    <Content Include="images\flow_end_selected.png" />
+    <Content Include="images\flow_start.png" />
+    <Content Include="images\flow_start_selected.png" />
     <Content Include="images\Road.jpg" />
     <Content Include="Scripts\axios.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -245,6 +250,7 @@
     <Content Include="Scripts\my-vue-components.js" />
     <Content Include="Scripts\opas-vue-biz-document-mixin.js" />
     <Content Include="Scripts\opas-vue-public-mixin.js" />
+    <Content Include="Scripts\raphael.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\vue-element-ui.js" />
@@ -259,6 +265,7 @@
     <Content Include="ViewModels\Department\main.js" />
     <Content Include="ViewModels\FlowInstance\main.js" />
     <Content Include="ViewModels\FlowTaskForUser\main.js" />
+    <Content Include="ViewModels\FlowTemplate\main.js" />
     <Content Include="ViewModels\FunctionPermission\main.js" />
     <Content Include="ViewModels\GR\main.js" />
     <Content Include="ViewModels\home\main.js" />
@@ -376,6 +383,8 @@
     <Content Include="Views\PO\DisplayPaymentTermsPartial.cshtml" />
     <Content Include="Views\GR\Display.cshtml" />
     <Content Include="Views\PM\Display.cshtml" />
+    <Content Include="Views\FlowTemplate\Index.cshtml" />
+    <Content Include="Views\FlowTemplate\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -690,4 +690,13 @@
   <data name="G_RunningDays" xml:space="preserve">
     <value>Running days</value>
   </data>
+  <data name="G_FlowChart" xml:space="preserve">
+    <value>Flow chart</value>
+  </data>
+  <data name="G_IsPublished" xml:space="preserve">
+    <value>Is published?</value>
+  </data>
+  <data name="G_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
 </root>
