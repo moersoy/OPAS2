@@ -80,7 +80,7 @@
       POTypes: initBag.POTypes,
     }
   },
-  mixins: [opas_vue_biz_document_mixin],
+  mixins: [opas_vue_public_mixin, opas_vue_biz_document_mixin],
   methods: {
     handleDeleteDetail(index, row) {
       this.newItem.PODetails.splice(index, 1);

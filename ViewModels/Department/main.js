@@ -3,6 +3,7 @@
   data: {
     message: 'Department'
   },
+  mixins: [opas_vue_public_mixin],
   methods: {
   }
 });

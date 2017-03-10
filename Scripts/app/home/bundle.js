@@ -19,6 +19,7 @@
         workingMode: workingMode,
         message: 'Home'
       },
+      mixins: [opas_vue_public_mixin],
       methods: {
         handleOpen: function handleOpen(key, keyPath) {
           console.log(key, keyPath);

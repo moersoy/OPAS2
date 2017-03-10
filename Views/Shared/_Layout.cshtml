@@ -30,6 +30,7 @@
   @Scripts.Render("~/bundles/axios")
   @Scripts.Render("~/bundles/currency-validator")
   @Scripts.Render("~/bundles/my-vue-components")
+  @Scripts.Render("~/bundles/opas-vue-public-mixin")
   @Scripts.Render("~/bundles/opas-vue-biz-document-mixin")
   <script type="text/javascript">
     var workingMode = "@actionName";
@@ -59,7 +60,7 @@
               </li>
               <li>
                 <a href="#">
-                  <el-dropdown>
+                  <el-dropdown @@command="alertErrorNotImplemented">
                     <span class="el-dropdown-link">
                       @Resources.Resource.MENU_Delegation<i class="caret"></i>
                     </span>

@@ -18,6 +18,7 @@
       data: {
         message: 'User'
       },
+      mixins: [opas_vue_public_mixin],
       methods: {}
     });
   }, {}] }, {}, [1]);

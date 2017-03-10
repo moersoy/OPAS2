@@ -79,7 +79,7 @@
       costCenterList: initBag.costCenterList,
     }
   },
-  mixins: [opas_vue_biz_document_mixin],
+  mixins: [opas_vue_public_mixin, opas_vue_biz_document_mixin],
   methods: {
     getPRItemTypeName(id) {
       return _.find(

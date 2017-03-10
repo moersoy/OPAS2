@@ -94,7 +94,7 @@
           paymentMethodTypes: initBag.paymentMethodTypes
         }
       },
-      mixins: [opas_vue_biz_document_mixin],
+      mixins: [opas_vue_public_mixin, opas_vue_biz_document_mixin],
       methods: {}
     });
   }, {}] }, {}, [1]);

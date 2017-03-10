@@ -45,8 +45,10 @@ namespace OPAS2
             "~/Scripts/currency-validator.js"));
       bundles.Add(new ScriptBundle("~/bundles/my-vue-components").Include(
             "~/Scripts/my-vue-components.js"));
+      bundles.Add(new ScriptBundle("~/bundles/opas-vue-public-mixin").Include(
+        "~/Scripts/opas-vue-public-mixin.js"));
       bundles.Add(new ScriptBundle("~/bundles/opas-vue-biz-document-mixin").Include(
-      "~/Scripts/opas-vue-biz-document-mixin.js"));
+        "~/Scripts/opas-vue-biz-document-mixin.js"));
       #endregion
     }
   }
