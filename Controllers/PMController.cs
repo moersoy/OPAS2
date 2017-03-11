@@ -293,6 +293,32 @@ namespace OPAS2.Controllers
       return View(result);
     }
 
+    [UserLogon]
+    [HttpGet]
+    public ActionResult MyApplication()
+    {
+      ViewBag.currentMenuIndex = "PM-MY-APPLICATION";
+      UserDTO currentUserDTO = ViewBag.currentUserDTO;
+      var objs = db.payments.Where(
+        obj => obj.creatorUserId == currentUserDTO.userId).
+        OrderByDescending(obj => obj.paymentId);
+
+      return View(objs);
+    }
+
+    [UserLogon]
+    [HttpGet]
+    public ActionResult MyDepartmentApplication()
+    {
+      ViewBag.currentMenuIndex = "PM-MY-DEPARTMENT-APPLICATION";
+      UserDTO currentUserDTO = ViewBag.currentUserDTO;
+      var objs = db.payments.Where(
+        obj => obj.departmentId == currentUserDTO.defaultDepartmentId).
+        OrderByDescending(obj => obj.paymentId);
+
+      return View(objs);
+    }
+
     // GET: PM/InviteOtherFeedback/5b354131-f2ea-489d-8fc6-119676fdcebe/5
     [UserLogon]
     [HttpGet]

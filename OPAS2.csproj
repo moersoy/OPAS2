@@ -395,6 +395,14 @@
     <Content Include="Views\GR\FreeQuery.cshtml" />
     <Content Include="Views\PM\DisplayQueryListResultPartial.cshtml" />
     <Content Include="Views\PM\FreeQuery.cshtml" />
+    <Content Include="Views\PR\MyApplication.cshtml" />
+    <Content Include="Views\PO\MyApplication.cshtml" />
+    <Content Include="Views\PM\MyApplication.cshtml" />
+    <Content Include="Views\GR\MyApplication.cshtml" />
+    <Content Include="Views\PR\MyDepartmentApplication.cshtml" />
+    <Content Include="Views\PO\MyDepartmentApplication.cshtml" />
+    <Content Include="Views\PM\MyDepartmentApplication.cshtml" />
+    <Content Include="Views\GR\MyDepartmentApplication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

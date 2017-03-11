@@ -103,6 +103,32 @@ namespace OPAS2.Controllers
 
       return View(result);
     }
+    
+    [UserLogon]
+    [HttpGet]
+    public ActionResult MyApplication()
+    {
+      ViewBag.currentMenuIndex = "PR-MY-APPLICATION";
+      UserDTO currentUserDTO = ViewBag.currentUserDTO;
+      var objs = db.purchaseReqs.Where(
+        obj => obj.creatorUserId==currentUserDTO.userId).
+        OrderByDescending(obj => obj.purchaseReqId);
+
+      return View(objs);
+    }
+
+    [UserLogon]
+    [HttpGet]
+    public ActionResult MyDepartmentApplication()
+    {
+      ViewBag.currentMenuIndex = "PR-MY-DEPARTMENT-APPLICATION";
+      UserDTO currentUserDTO = ViewBag.currentUserDTO;
+      var objs = db.purchaseReqs.Where(
+        obj => obj.departmentId == currentUserDTO.defaultDepartmentId).
+        OrderByDescending(obj => obj.purchaseReqId);
+
+      return View(objs);
+    }
 
     // GET: PR/Create
     [UserLogon]

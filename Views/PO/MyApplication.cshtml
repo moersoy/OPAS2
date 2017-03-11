@@ -1,0 +1,17 @@
+﻿@model IEnumerable<OPAS2Model.PurchaseOrder>
+@{
+    ViewBag.Title = "MyApplication";
+}
+
+@section init_scripts {
+  <script type="text/javascript">
+  var initBag = {};
+  initBag.bizData = {};
+  </script>
+}
+
+<h3>@Resources.Resource.MENU_MyApplications - 
+  @Resources.Resource.MENU_PO
+</h3>
+
+@Html.Partial("DisplayQueryListResultPartial", @Model)

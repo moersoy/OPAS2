@@ -87,14 +87,15 @@
                 <el-menu-item index="PR-NEW">
                   @Html.ActionLink(@Resources.Resource.MENU_New, "Create", "PR")
                 </el-menu-item>
-                <el-menu-item index="PR-MY">
-                  @Html.ActionLink(@Resources.Resource.MENU_MyApplications, "Index", "PR")
+                <el-menu-item index="PR-MY-APPLICATION">
+                  @Html.ActionLink(@Resources.Resource.MENU_MyApplications, "MyApplication", "PR")
                 </el-menu-item>
-                <el-menu-item index="PR-MY-DEPARTMENT">
-                  @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications, "Index", "PR")
+                <el-menu-item index="PR-MY-DEPARTMENT-APPLICATION">
+                  @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
+                    "MyDepartmentApplication", "PR")
                 </el-menu-item>
-                <el-menu-item index="PR-APPROVALS">
-                  @Html.ActionLink(@Resources.Resource.MENU_History, "Index", "PR")
+                <el-menu-item index="PR-MY-APPROVAL-HISTORY">
+                  @Html.ActionLink(@Resources.Resource.MENU_History, "MyApprovalHistory", "PR")
                 </el-menu-item>
                 <el-menu-item index="PR-FREE-QUERY">
                   @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "PR")
@@ -111,7 +112,13 @@
                 <el-menu-item index="PO-NEW">
                   @Html.ActionLink(@Resources.Resource.MENU_New, "ListEffective", "PR")
                 </el-menu-item>
-                <el-menu-item index="PO-MY">我的申请</el-menu-item>
+                <el-menu-item index="PO-MY-APPLICATION">
+                  @Html.ActionLink(@Resources.Resource.MENU_MyApplications, "MyApplication", "PO")
+                </el-menu-item>
+                <el-menu-item index="PO-MY-DEPARTMENT-APPLICATION">
+                  @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
+                    "MyDepartmentApplication", "PO")
+                </el-menu-item>
                 <el-menu-item index="PO-APPROVALS">审批记录</el-menu-item>
                 <el-menu-item index="PO-FREE-QUERY">
                   @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "PO")
@@ -128,7 +135,13 @@
                 <el-menu-item index="GR-NEW">
                   @Html.ActionLink(@Resources.Resource.MENU_New, "ListEffective", "PO")
                 </el-menu-item>
-                <el-menu-item index="GR-MY">我的申请</el-menu-item>
+                <el-menu-item index="GR-MY-APPLICATION">
+                  @Html.ActionLink(@Resources.Resource.MENU_MyApplications, "MyApplication", "GR")
+                </el-menu-item>
+                <el-menu-item index="GR-MY-DEPARTMENT-APPLICATION">
+                  @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
+                    "MyDepartmentApplication", "GR")
+                </el-menu-item>
                 <el-menu-item index="GR-APPROVALS">审批记录</el-menu-item>
                 <el-menu-item index="GR-FREE-QUERY">
                 @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "GR")
@@ -142,7 +155,13 @@
                 <el-menu-item index="PM-NEW">
                   @Html.ActionLink(@Resources.Resource.MENU_New, "ListEffective", "PO")
                 </el-menu-item>
-                <el-menu-item index="PM-MY">我的申请</el-menu-item>
+                <el-menu-item index="PM-MY-APPLICATION">
+                  @Html.ActionLink(@Resources.Resource.MENU_MyApplications, "MyApplication", "PM")
+                </el-menu-item>
+                <el-menu-item index="PM-MY-DEPARTMENT-APPLICATION">
+                  @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
+                    "MyDepartmentApplication", "PM")
+                </el-menu-item>
                 <el-menu-item index="PM-APPROVALS">审批记录</el-menu-item>
                 <el-menu-item index="PM-FREE-QUERY">
                   @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "PM")

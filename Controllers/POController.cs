@@ -221,6 +221,32 @@ namespace OPAS2.Controllers
 
     [UserLogon]
     [HttpGet]
+    public ActionResult MyApplication()
+    {
+      ViewBag.currentMenuIndex = "PO-MY-APPLICATION";
+      UserDTO currentUserDTO = ViewBag.currentUserDTO;
+      var objs = db.purchaseOrders.Where(
+        obj => obj.creatorUserId == currentUserDTO.userId).
+        OrderByDescending(obj => obj.purchaseOrderId);
+
+      return View(objs);
+    }
+
+    [UserLogon]
+    [HttpGet]
+    public ActionResult MyDepartmentApplication()
+    {
+      ViewBag.currentMenuIndex = "PO-MY-DEPARTMENT-APPLICATION";
+      UserDTO currentUserDTO = ViewBag.currentUserDTO;
+      var objs = db.purchaseOrders.Where(
+        obj => obj.departmentId == currentUserDTO.defaultDepartmentId).
+        OrderByDescending(obj => obj.purchaseOrderId);
+
+      return View(objs);
+    }
+
+    [UserLogon]
+    [HttpGet]
     public ActionResult UpdateAtStart(string id)
     {
       ViewBag.currentMenuIndex = "PO-NEW";
