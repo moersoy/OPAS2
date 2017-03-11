@@ -699,4 +699,16 @@
   <data name="G_Version" xml:space="preserve">
     <value>版本</value>
   </data>
+  <data name="G_InputQueryCondition" xml:space="preserve">
+    <value>输入查询条件</value>
+  </data>
+  <data name="G_Keyword" xml:space="preserve">
+    <value>关键词</value>
+  </data>
+  <data name="G_Query" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="G_TotalRecordsCount" xml:space="preserve">
+    <value>总共记录数:</value>
+  </data>
 </root>

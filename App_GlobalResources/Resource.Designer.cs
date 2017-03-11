@@ -628,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input query conditions.
+        /// </summary>
+        internal static string G_InputQueryCondition {
+            get {
+                return ResourceManager.GetString("G_InputQueryCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to invalid.
         /// </summary>
         internal static string G_Invalid {
@@ -750,6 +759,15 @@ namespace Resources {
         internal static string G_ItemType {
             get {
                 return ResourceManager.GetString("G_ItemType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyword.
+        /// </summary>
+        internal static string G_Keyword {
+            get {
+                return ResourceManager.GetString("G_Keyword", resourceCulture);
             }
         }
         
@@ -1060,6 +1078,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Query.
+        /// </summary>
+        internal static string G_Query {
+            get {
+                return ResourceManager.GetString("G_Query", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reason.
         /// </summary>
         internal static string G_Reason {
@@ -1263,6 +1290,15 @@ namespace Resources {
         internal static string G_SystemManager {
             get {
                 return ResourceManager.GetString("G_SystemManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total records count:.
+        /// </summary>
+        internal static string G_TotalRecordsCount {
+            get {
+                return ResourceManager.GetString("G_TotalRecordsCount", resourceCulture);
             }
         }
         

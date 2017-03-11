@@ -36,8 +36,9 @@ namespace OPAS2.Controllers
     [UserLogon]
     public ActionResult Create()
     {
-      var departments = OrgMgmtDBHelper.getAllDepartmentDTOs(db);
-      ViewBag.selectList = new SelectList(departments, "departmentId", "name");
+      //var departments = OrgMgmtDBHelper.getAllDepartmentDTOs(db);
+      //ViewBag.selectList = new SelectList(departments, "departmentId", "name");
+      SetSelectListOfDepartment(db);
       return View();
     }
 

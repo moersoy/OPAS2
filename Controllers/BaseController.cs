@@ -142,6 +142,15 @@ namespace OPAS2.Controllers
     }
     #endregion
 
+    #region 为各主数据生成可选列表
+    protected void SetSelectListOfDepartment(EnouFlowOrgMgmtContext orgDb)
+    {
+      var departments = OrgMgmtDBHelper.getAllDepartmentDTOs(orgDb);
+      ViewBag.departmentSelectList = new SelectList(departments, "departmentId", "name");
+    }
+
+    #endregion
+
     #region 为各主数据生成可选列表的JSON
     protected void PrepareSelectListOfDepartment(EnouFlowOrgMgmtContext orgDb)
     {

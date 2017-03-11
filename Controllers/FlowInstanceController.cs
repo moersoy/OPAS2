@@ -17,9 +17,11 @@ namespace OPAS2.Controllers
 {
   public class FlowInstanceController : BaseController
   {
-    private EnouFlowOrgMgmtContext orgDb = new EnouFlowOrgMgmtContext();
+    private EnouFlowOrgMgmtContext orgDb = 
+      new EnouFlowOrgMgmtContext();
     private OPAS2DbContext db = new OPAS2DbContext();
-    private EnouFlowInstanceContext flowInstDb = new EnouFlowInstanceContext();
+    private EnouFlowInstanceContext flowInstDb = 
+      new EnouFlowInstanceContext();
 
     public FlowInstanceController() : base()
     {

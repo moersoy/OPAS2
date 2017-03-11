@@ -1,0 +1,42 @@
+﻿@model IEnumerable<OPAS2Model.PurchaseOrder>
+
+<table class="table table-condensed table-striped table-bordered">
+  <tr>
+    <th class="primary">
+      @Resources.Resource.G_DocSubject
+    </th>
+    <th class="primary">
+      @Resources.Resource.G_Department
+    </th>
+    <th class="primary">
+      @Resources.Resource.G_User
+    </th>
+    <th class="primary">
+      @Resources.Resource.G_CreateTime
+    </th>
+    <th class="primary">@Resources.Resource.G_Operations</th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.reason)
+      </td>
+      <td>
+        @Html.Action("DisplayNameById", "Department", new { id = item.departmentId })
+      </td>
+      <td>
+        @Html.Action("DisplayNameById", "User", new { id = item.creatorUserId })
+      </td>
+      <td>
+        @item.createTime.ToString("yyyy/MM/dd")
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Details, "Display", 
+          (string)ViewBag.flowTemplateCode, new { guid = item.guid }, null)
+      </td>
+    </tr>
+  }
+</table>
+

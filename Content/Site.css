@@ -87,7 +87,19 @@ hr {
 div.form-group .show-field {
   padding-top: 7px; }
 
+th.primary {
+  color: white !important;
+  background-color: #428bca !important; }
+
 .no-left-right-padding {
   padding-right: 0px !important;
   padding-left: 0px !important; }
+
+#loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto; }
 

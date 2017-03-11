@@ -17,7 +17,8 @@
           { "style", "padding-top: 10px;"}
         })
     <div class="col-md-7">
-      @Html.TextBox("logonName", (string)ViewBag.logonName, new Dictionary<string, object> {
+      @Html.TextBox("logonName", (string)ViewBag.logonName, 
+        new Dictionary<string, object> {
             { "class", "form-control" },
             { "style", "max-width: 200px;" },
             { "required", "true" } })

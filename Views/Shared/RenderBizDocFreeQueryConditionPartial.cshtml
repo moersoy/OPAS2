@@ -1,0 +1,40 @@
+﻿
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="panel-title">@Resources.Resource.G_InputQueryCondition</h4>
+  </div>
+  <div class="panel-body">
+    <div class="input-group col-md-5">
+      <span class="input-group-addon">
+        @Resources.Resource.G_Department
+      </span>
+      @Html.DropDownList("departmentId",
+      (SelectList)ViewBag.departmentSelectList, "所有部门 / All",
+      new
+      {
+        @class = "form-control",
+        id = "departmentId",
+        value = ViewBag.departmentId
+      })
+    </div>
+
+    <div class="input-group col-md-5">
+      <span class="input-group-addon">
+        @Resources.Resource.G_Keyword
+      </span>
+      @Html.TextBox("keyword", (string)ViewBag.keyword,
+      new Dictionary<string, object> {
+        { "class", "form-control" },
+        { "id", "keyword" },
+      })
+    </div>
+
+    <button type="button" class="btn btn-primary"
+            onclick='window.location =
+              location.toString().replace(location.search, "") +
+              "?departmentId=" + $("#departmentId").val() +
+              "&keyword=" + encodeURIComponent($("#keyword").val())'>
+      @Resources.Resource.G_Query
+    </button>
+  </div>
+</div>

@@ -385,6 +385,16 @@
     <Content Include="Views\PM\Display.cshtml" />
     <Content Include="Views\FlowTemplate\Index.cshtml" />
     <Content Include="Views\FlowTemplate\Details.cshtml" />
+    <Content Include="Views\PR\FreeQuery.cshtml" />
+    <Content Include="Views\PR\DisplayQueryListResultPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayBizDocFreeQueryPaginatorPartial.cshtml" />
+    <Content Include="Views\Shared\RenderBizDocFreeQueryConditionPartial.cshtml" />
+    <Content Include="Views\PO\FreeQuery.cshtml" />
+    <Content Include="Views\PO\DisplayQueryListResultPartial.cshtml" />
+    <Content Include="Views\GR\DisplayQueryListResultPartial.cshtml" />
+    <Content Include="Views\GR\FreeQuery.cshtml" />
+    <Content Include="Views\PM\DisplayQueryListResultPartial.cshtml" />
+    <Content Include="Views\PM\FreeQuery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

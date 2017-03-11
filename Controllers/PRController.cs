@@ -26,6 +26,7 @@ namespace OPAS2.Controllers
     public PRController() : base()
     {
       ViewBag.currentMenuIndex = "PR-NEW";
+      ViewBag.flowTemplateCode = flowTemplateCode;
     }
 
     [UserLogon]
@@ -55,6 +56,52 @@ namespace OPAS2.Controllers
       #endregion
 
       return View(purchaseReq);
+    }
+
+    [UserLogon]
+    [HttpGet]
+    public ActionResult FreeQuery(int? departmentId,
+      int pageIndex = 1, int rowsPerPage = 4, 
+      string keyword = "")
+    {
+      ViewBag.currentMenuIndex = "PR-FREE-QUERY";
+      if (pageIndex <= 0) pageIndex = 1;
+      if (rowsPerPage <= 0) rowsPerPage = 4;
+
+      #region 根据查询条件查出所有记录
+      var purchaseReqs = (IQueryable<PurchaseReq>)db.purchaseReqs;
+      if(departmentId.HasValue && departmentId > 0)
+      {
+        purchaseReqs = purchaseReqs.Where(
+          obj => obj.departmentId == departmentId);
+      }
+
+      if (!string.IsNullOrWhiteSpace(keyword))
+      {
+        purchaseReqs = purchaseReqs.Where(
+          obj => (obj.reason!=null && obj.reason.Contains(keyword)) ||
+          (obj.description!=null && obj.description.Contains(keyword)));
+      }
+      #endregion 
+
+      ViewBag.rowsCount = purchaseReqs.Count();
+
+      #region 准备前端继续查询/查看条件
+      ViewBag.pagesCount = ViewBag.rowsCount / rowsPerPage;
+      ViewBag.pageIndex = pageIndex;
+      ViewBag.keyword = keyword;
+      ViewBag.departmentId = departmentId;
+      SetSelectListOfDepartment(orgDb);
+      #endregion
+
+      #region 获得指定页记录集
+      var result = purchaseReqs.
+        OrderByDescending(obj=>obj.purchaseReqId).
+        Take(pageIndex * rowsPerPage).
+        Skip((pageIndex-1) * rowsPerPage).ToList();
+      #endregion
+
+      return View(result);
     }
 
     // GET: PR/Create

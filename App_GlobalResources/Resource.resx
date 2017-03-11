@@ -699,4 +699,16 @@
   <data name="G_Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="G_InputQueryCondition" xml:space="preserve">
+    <value>Input query conditions</value>
+  </data>
+  <data name="G_Keyword" xml:space="preserve">
+    <value>Keyword</value>
+  </data>
+  <data name="G_Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="G_TotalRecordsCount" xml:space="preserve">
+    <value>Total records count:</value>
+  </data>
 </root>

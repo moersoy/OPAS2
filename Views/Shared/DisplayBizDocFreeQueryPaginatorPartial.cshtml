@@ -1,0 +1,59 @@
+﻿<nav aria-label="Page navigation">
+  <ul class="pagination">
+@if (ViewBag.rowsCount > 0) { 
+    <li>
+      @Html.ActionLink(HttpUtility.HtmlDecode("&laquo;"),
+      "FreeQuery", (string)ViewBag.flowTemplateCode, new
+      {
+        departmentId = ViewBag.departmentId,
+        pageIndex = 1,
+        rowsPerPage = ViewBag.rowsPerPage,
+        keyword = ViewBag.keyword
+      }, null)
+    </li>
+    if (ViewBag.pageIndex > 1)
+    {
+      <li>
+        @Html.ActionLink((string)(ViewBag.pageIndex - 1).ToString(),
+      "FreeQuery", (string)ViewBag.flowTemplateCode, new
+      {
+        departmentId = ViewBag.departmentId,
+        pageIndex = ViewBag.pageIndex - 1,
+        rowsPerPage = ViewBag.rowsPerPage,
+        keyword = ViewBag.keyword
+      }, null)
+      </li>
+    }
+    <li class="active"><a href="#">@ViewBag.pageIndex</a></li>
+    if (ViewBag.pageIndex < ViewBag.pagesCount)
+    {
+      <li>
+        @Html.ActionLink((string)(ViewBag.pageIndex + 1).ToString(),
+        "FreeQuery", (string)ViewBag.flowTemplateCode, new
+        {
+          departmentId = ViewBag.departmentId,
+          pageIndex = ViewBag.pageIndex + 1,
+          rowsPerPage = ViewBag.rowsPerPage,
+          keyword = ViewBag.keyword
+        }, null)
+      </li>
+    }
+    <li>
+      @Html.ActionLink(HttpUtility.HtmlDecode("&raquo;"),
+      "FreeQuery", (string)ViewBag.flowTemplateCode, new
+      {
+        departmentId = ViewBag.departmentId,
+        pageIndex = ViewBag.pagesCount,
+        rowsPerPage = ViewBag.rowsPerPage,
+        keyword = ViewBag.keyword
+      }, null)
+    </li>
+}
+    <li class="disabled">
+      <a href="">
+        @Resources.Resource.G_TotalRecordsCount @ViewBag.rowsCount
+      </a>
+    </li>
+  </ul>
+</nav>
+

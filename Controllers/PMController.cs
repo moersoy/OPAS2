@@ -245,6 +245,54 @@ namespace OPAS2.Controllers
       return View(pm);
     }
 
+    [UserLogon]
+    [HttpGet]
+    public ActionResult FreeQuery(int? departmentId,
+      int pageIndex = 1, int rowsPerPage = 4,
+      string keyword = "")
+    {
+      ViewBag.currentMenuIndex = "PM-FREE-QUERY";
+      if (pageIndex <= 0) pageIndex = 1;
+      if (rowsPerPage <= 0) rowsPerPage = 4;
+
+      #region 根据查询条件查出所有记录
+      var pMs = (IQueryable<Payment>)db.payments;
+      if (departmentId.HasValue && departmentId > 0)
+      {
+        pMs = pMs.Where(
+          obj => obj.departmentId == departmentId);
+      }
+
+      if (!string.IsNullOrWhiteSpace(keyword))
+      {
+        pMs = pMs.Where(
+          obj => (obj.reason != null &&
+            obj.reason.Contains(keyword)) ||
+          (obj.description != null && 
+            obj.description.Contains(keyword)));
+      }
+      #endregion 
+
+      ViewBag.rowsCount = pMs.Count();
+
+      #region 准备前端继续查询/查看条件
+      ViewBag.pagesCount = Math.Ceiling((double)ViewBag.rowsCount / rowsPerPage);
+      ViewBag.pageIndex = pageIndex;
+      ViewBag.keyword = keyword;
+      ViewBag.departmentId = departmentId;
+      SetSelectListOfDepartment(orgDb);
+      #endregion
+
+      #region 获得指定页记录集
+      var result = pMs.
+        OrderByDescending(obj => obj.paymentId).
+        Take(pageIndex * rowsPerPage).
+        Skip((pageIndex - 1) * rowsPerPage).ToList();
+      #endregion
+
+      return View(result);
+    }
+
     // GET: PM/InviteOtherFeedback/5b354131-f2ea-489d-8fc6-119676fdcebe/5
     [UserLogon]
     [HttpGet]

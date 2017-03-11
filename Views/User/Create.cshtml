@@ -18,7 +18,8 @@
     <div class="form-group">
       @Html.Label(Resources.Resource.G_Department, htmlAttributes: new { @class = "control-label col-md-2" })
       <div class="col-md-10">
-        @Html.DropDownList("departmentId", (SelectList)ViewBag.selectList, "请选择", new { @class = "form-control", required ="true" })
+        @Html.DropDownList("departmentId", (SelectList)ViewBag.departmentSelectList, 
+          "请选择", new { @class = "form-control", required ="true" })
       </div>
     </div>
 
