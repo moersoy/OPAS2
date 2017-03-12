@@ -79,7 +79,8 @@
           @* 左侧菜单栏 *@
           <div class="col-md-2 no-left-right-padding">
             <el-menu default-active="@ViewBag.currentMenuIndex" ref="main-nav-menu"
-                     class="el-menu-vertical-demo" theme="dark">
+                     class="el-menu-vertical-demo" theme="dark"
+                     @@select="handleLeftNavMenuItemSelected">
               <el-submenu index="PR">
                 <template slot="title">
                   <i class="el-icon-menu"></i>@Resources.Resource.MENU_PR

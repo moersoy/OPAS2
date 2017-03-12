@@ -12,7 +12,7 @@ namespace OPAS2.Controllers
   {
     public HomeController(): base()
     {
-      ViewBag.currentMenuIndex = "SYS-USER";
+      ViewBag.currentMenuIndex = "";
     }
 
     [UserLogon]

@@ -8,6 +8,14 @@
         message: '本功能尚未实现'
       });
     },
+    handleLeftNavMenuItemSelected(key, keyPath) {
+      if (key == "MY-ACCOUNT" ||
+        key == "MY-ALERT" ||
+        key == "MY-DELEGATE" ||
+        key == "REPORT-TODO") {
+        this.alertErrorNotImplemented();
+      }
+    },
     drawFlowChart(flowTemplateDef, currentActivityNodeGuid) {
       console.log(flowTemplateDef);
       if (flowTemplateDef) {
@@ -22,5 +30,6 @@
         }
       }
     },
+
   }
 };
