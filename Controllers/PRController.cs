@@ -87,7 +87,7 @@ namespace OPAS2.Controllers
       ViewBag.rowsCount = purchaseReqs.Count();
 
       #region 准备前端继续查询/查看条件
-      ViewBag.pagesCount = ViewBag.rowsCount / rowsPerPage;
+      ViewBag.pagesCount = Math.Ceiling((double)ViewBag.rowsCount / rowsPerPage);
       ViewBag.pageIndex = pageIndex;
       ViewBag.keyword = keyword;
       ViewBag.departmentId = departmentId;
@@ -192,7 +192,7 @@ namespace OPAS2.Controllers
       return View();
     }
 
-    // GET: PR/Examine/5b354131-f2ea-489d-8fc6-119676fdcebe/5b354131-f2ea-489d-8fc6-119676fdcebe
+    // GET: PR/Examine/5b354131-f2ea-489d-8fc6-119676fdcebe/1
     [UserLogon]
     [HttpGet]
     public ActionResult Examine(string id, int flowTaskForUserId)
@@ -364,6 +364,37 @@ namespace OPAS2.Controllers
       }
 
       return View(purchaseReq);
+    }
+
+    public PartialViewResult RelevantBizDocPartial(int id)
+    {
+      var prs = new List<PurchaseReq>();
+
+      var pos = new List<PurchaseOrder>();
+      pos = db.purchaseOrders.Where(
+        obj => obj.purchaseReqId == id)?.ToList();
+      var poIds = new List<int>();
+      poIds = pos?.Select(obj => obj.purchaseOrderId).ToList();
+
+      var grs = new List<GoodsReceiving>();
+      grs = db.goodsReceivings.Where(
+        obj => obj.purchaseReqId == id ||
+          (obj.purchaseOrderId.HasValue && 
+            poIds.Contains(obj.purchaseOrderId.Value)))?
+          .ToList();
+
+      var pms = new List<Payment>();
+      pms = db.payments.Where(
+        obj => obj.purchaseReqId == id ||
+          (obj.purchaseOrderId.HasValue && 
+            poIds.Contains(obj.purchaseOrderId.Value)))?
+          .ToList();
+
+      return PartialView( 
+        new Tuple<IEnumerable<PurchaseReq>,
+                  IEnumerable<PurchaseOrder>, 
+                  IEnumerable<GoodsReceiving>,
+                  IEnumerable<Payment>> (prs,pos, grs,pms) );
     }
 
     public ActionResult DisplayNameByGuid(string guid)

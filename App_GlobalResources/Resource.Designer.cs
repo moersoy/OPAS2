@@ -1159,6 +1159,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Relevant documents list.
+        /// </summary>
+        internal static string G_RelevantDocuments {
+            get {
+                return ResourceManager.GetString("G_RelevantDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remark.
         /// </summary>
         internal static string G_Remark {

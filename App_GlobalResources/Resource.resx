@@ -714,6 +714,9 @@
   <data name="G_Query" xml:space="preserve">
     <value>Query</value>
   </data>
+  <data name="G_RelevantDocuments" xml:space="preserve">
+    <value>Relevant documents list</value>
+  </data>
   <data name="G_TotalRecordsCount" xml:space="preserve">
     <value>Total records count:</value>
   </data>

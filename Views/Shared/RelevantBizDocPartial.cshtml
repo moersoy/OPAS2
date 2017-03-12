@@ -1,0 +1,90 @@
+﻿@model Tuple<IEnumerable<OPAS2Model.PurchaseReq>, IEnumerable<OPAS2Model.PurchaseOrder>, IEnumerable<OPAS2Model.GoodsReceiving>, IEnumerable<OPAS2Model.Payment>>
+<table class="table table-condensed table-hover">
+  <tr>
+    <th class="primary">
+      @Resources.Resource.G_DocNo
+    </th>
+    <th class="primary">
+      @Resources.Resource.G_DocSubject
+    </th>
+    <th class="primary">
+      @Resources.Resource.G_Amount
+    </th>
+    <th class="primary">@Resources.Resource.G_Operations</th>
+  </tr>
+  @foreach (var item in Model.Item1)
+      {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.documentNo)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.reason)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.estimatedCostInRMB)
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Details, "Display",
+            "PR", new { guid = item.guid }, null)
+      </td>
+    </tr>
+  }
+  @foreach (var item in Model.Item2)
+      {
+    <tr class="danger">
+      <td>
+        @Html.DisplayFor(modelItem => item.documentNo)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.reason)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.totalAmount)
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Details, "Display",
+            "PO", new { guid = item.guid }, null)
+      </td>
+    </tr>
+  }
+
+  @foreach (var item in Model.Item3)
+      {
+    <tr class="warning">
+      <td>
+        @Html.DisplayFor(modelItem => item.documentNo)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.PurchaseOrder.reason)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.totalAmount)
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Details, "Display",
+            "GR", new { guid = item.guid }, null)
+      </td>
+    </tr>
+  }
+
+  @foreach (var item in Model.Item4)
+      {
+    <tr class="success">
+      <td>
+        @Html.DisplayFor(modelItem => item.documentNo)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.reason)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.totalAmount)
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Details, "Display",
+            "PM", new { guid = item.guid }, null)
+      </td>
+    </tr>
+  }
+</table>
+

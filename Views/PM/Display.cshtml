@@ -29,5 +29,7 @@
     @Html.Partial("DisplayRemarkOfApproversPartial")
     @Html.Partial("DisplaySubTableFieldsPartial", Model)
     @Html.Partial("DisplayAttachListPartial")
+    @Html.Partial("DisplayRelevantBizDocFramePartial",
+      Model.paymentId)
   </div>
 }

@@ -1,0 +1,13 @@
+﻿@model int
+<div class="col-md-12 form-group">
+  <el-collapse accordion>
+    <el-collapse-item>
+      <template slot="title">
+        @Resources.Resource.G_RelevantDocuments
+      </template>
+      @{Html.RenderAction("RelevantBizDocPartial", (string)ViewBag.flowTemplateCode, 
+          new { id = Model});}
+    </el-collapse-item>
+  </el-collapse>
+</div>
+

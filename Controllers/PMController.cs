@@ -357,6 +357,41 @@ namespace OPAS2.Controllers
       return View(pm);
     }
 
+    public PartialViewResult RelevantBizDocPartial(int id)
+    {
+      var pm = db.payments.Find(id);
+      var gr = db.goodsReceivings.Find(id);
+
+      var prs = new List<PurchaseReq>();
+      if (pm.PurchaseReq != null) prs.Add(pm.PurchaseReq);
+
+      var pos = new List<PurchaseOrder>();
+      if (pm.PurchaseOrder != null) pos.Add(pm.PurchaseOrder);
+      if (prs.Count() == 0 &&
+        pm.PurchaseOrder != null &&
+        pm.PurchaseOrder.PurchaseReq != null)
+      {
+        prs.Add(pm.PurchaseOrder.PurchaseReq);
+      }
+
+      var grs = new List<GoodsReceiving>();
+      if (pm.PurchaseOrder != null)
+      {
+        grs = db.goodsReceivings.Where(
+          obj => (obj.purchaseOrderId.HasValue &&
+              obj.purchaseOrderId.Value ==
+              pm.PurchaseOrder.purchaseOrderId))?
+            .ToList();
+      }
+
+      var pms = new List<Payment>();
+      return PartialView(
+        new Tuple<IEnumerable<PurchaseReq>,
+                  IEnumerable<PurchaseOrder>,
+                  IEnumerable<GoodsReceiving>,
+                  IEnumerable<Payment>>(prs, pos, grs, pms));
+    }
+
     public ActionResult DisplayNameByGuid(string guid)
     {
       var result = "";

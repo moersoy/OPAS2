@@ -714,6 +714,9 @@
   <data name="G_Query" xml:space="preserve">
     <value>查询</value>
   </data>
+  <data name="G_RelevantDocuments" xml:space="preserve">
+    <value>关联单据列表</value>
+  </data>
   <data name="G_TotalRecordsCount" xml:space="preserve">
     <value>总共记录数:</value>
   </data>
