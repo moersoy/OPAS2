@@ -699,6 +699,9 @@
   <data name="G_Version" xml:space="preserve">
     <value>版本</value>
   </data>
+  <data name="G_CurrentActivity" xml:space="preserve">
+    <value>当前流程活动</value>
+  </data>
   <data name="G_DoneTime" xml:space="preserve">
     <value>完成时间</value>
   </data>

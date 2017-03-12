@@ -74,6 +74,14 @@ namespace OPAS2.Controllers
         new { guid = flowInstance.bizDocumentGuid });
     }
 
+    public ActionResult DisplayCurrentActivityNameById(int id)
+    {
+      var result = "";
+      result = flowInstDb.flowInstances.Find(id).currentActivityName;
+
+      return Content(result, "text/html");
+    }
+
     protected override void Dispose(bool disposing)
     {
       db.Dispose();

@@ -699,6 +699,9 @@
   <data name="G_Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="G_CurrentActivity" xml:space="preserve">
+    <value>Current activity</value>
+  </data>
   <data name="G_DoneTime" xml:space="preserve">
     <value>Done time</value>
   </data>

@@ -9,6 +9,9 @@
       @Resources.Resource.G_DocNo
     </th>
     <th class="primary">
+      @Resources.Resource.G_CurrentActivity
+    </th>
+    <th class="primary">
       @Resources.Resource.G_Department
     </th>
     <th class="primary">
@@ -28,6 +31,10 @@
       </td>
       <td>
         @Html.DisplayFor(modelItem => item.documentNo)
+      </td>
+      <td>
+        @Html.Action("DisplayCurrentActivityNameById", "FlowInstance",
+          new { id = item.flowInstanceId })
       </td>
       <td>
         @Html.Action("DisplayNameById", "Department", new { id = item.departmentId })

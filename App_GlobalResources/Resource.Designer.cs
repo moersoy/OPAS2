@@ -367,6 +367,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current activity.
+        /// </summary>
+        internal static string G_CurrentActivity {
+            get {
+                return ResourceManager.GetString("G_CurrentActivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current operator.
         /// </summary>
         internal static string G_CurrentOperator {
