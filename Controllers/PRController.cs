@@ -25,7 +25,7 @@ namespace OPAS2.Controllers
 
     public PRController() : base()
     {
-      ViewBag.currentMenuIndex = "PR-NEW";
+      ViewBag.currentMenuIndex = "PR";
       ViewBag.flowTemplateCode = flowTemplateCode;
     }
 
@@ -128,6 +128,15 @@ namespace OPAS2.Controllers
         OrderByDescending(obj => obj.purchaseReqId);
 
       return View(objs);
+    }
+
+    [UserLogon]
+    [HttpGet]
+    public ActionResult MyApprovalHistory()
+    {
+      ViewBag.currentMenuIndex = "PR-MY-APPROVAL-HISTORY";
+      return View(getMyApprovalHistory(
+        flowTemplateCode,flowInstDb));
     }
 
     // GET: PR/Create
@@ -355,6 +364,14 @@ namespace OPAS2.Controllers
       }
 
       return View(purchaseReq);
+    }
+
+    public ActionResult DisplayNameByGuid(string guid)
+    {
+      var result = "";
+      result = db.purchaseReqs.Where(obj => obj.guid == guid).
+        FirstOrDefault()?.reason;
+      return Content(result, "text/html");
     }
 
     private void PrepareSelectLists()

@@ -699,6 +699,9 @@
   <data name="G_Version" xml:space="preserve">
     <value>版本</value>
   </data>
+  <data name="G_DoneTime" xml:space="preserve">
+    <value>完成时间</value>
+  </data>
   <data name="G_InputQueryCondition" xml:space="preserve">
     <value>输入查询条件</value>
   </data>

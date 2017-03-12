@@ -224,6 +224,7 @@
     <Content Include="images\flow_end_selected.png" />
     <Content Include="images\flow_start.png" />
     <Content Include="images\flow_start_selected.png" />
+    <Content Include="images\login_panel_bg.png" />
     <Content Include="images\Road.jpg" />
     <Content Include="Scripts\axios.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -403,6 +404,11 @@
     <Content Include="Views\PO\MyDepartmentApplication.cshtml" />
     <Content Include="Views\PM\MyDepartmentApplication.cshtml" />
     <Content Include="Views\GR\MyDepartmentApplication.cshtml" />
+    <Content Include="Views\PR\MyApprovalHistory.cshtml" />
+    <Content Include="Views\Shared\DisplayMyApprovalHistoryPartial.cshtml" />
+    <Content Include="Views\PO\MyApprovalHistory.cshtml" />
+    <Content Include="Views\PM\MyApprovalHistory.cshtml" />
+    <Content Include="Views\GR\MyApprovalHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

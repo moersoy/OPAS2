@@ -319,6 +319,15 @@ namespace OPAS2.Controllers
       return View(objs);
     }
 
+    [UserLogon]
+    [HttpGet]
+    public ActionResult MyApprovalHistory()
+    {
+      ViewBag.currentMenuIndex = "PM-MY-APPROVAL-HISTORY";
+      return View(getMyApprovalHistory(
+        flowTemplateCode, flowInstDb));
+    }
+
     // GET: PM/InviteOtherFeedback/5b354131-f2ea-489d-8fc6-119676fdcebe/5
     [UserLogon]
     [HttpGet]
@@ -346,6 +355,14 @@ namespace OPAS2.Controllers
       ViewBag.taskGuid = flowTaskForUser.guid;
 
       return View(pm);
+    }
+
+    public ActionResult DisplayNameByGuid(string guid)
+    {
+      var result = "";
+      result = db.payments.Where(obj => obj.guid == guid).
+        FirstOrDefault()?.reason;
+      return Content(result, "text/html");
     }
 
     private void PrepareSelectLists()

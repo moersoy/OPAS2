@@ -119,7 +119,9 @@
                   @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
                     "MyDepartmentApplication", "PO")
                 </el-menu-item>
-                <el-menu-item index="PO-APPROVALS">审批记录</el-menu-item>
+                <el-menu-item index="PO-MY-APPROVAL-HISTORY">
+                  @Html.ActionLink(@Resources.Resource.MENU_History, "MyApprovalHistory", "PO")
+                </el-menu-item>
                 <el-menu-item index="PO-FREE-QUERY">
                   @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "PO")
                 </el-menu-item>
@@ -142,7 +144,9 @@
                   @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
                     "MyDepartmentApplication", "GR")
                 </el-menu-item>
-                <el-menu-item index="GR-APPROVALS">审批记录</el-menu-item>
+                <el-menu-item index="GR-MY-APPROVAL-HISTORY">
+                  @Html.ActionLink(@Resources.Resource.MENU_History, "MyApprovalHistory", "GR")
+                </el-menu-item>
                 <el-menu-item index="GR-FREE-QUERY">
                 @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "GR")
                 </el-menu-item>
@@ -162,7 +166,9 @@
                   @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
                     "MyDepartmentApplication", "PM")
                 </el-menu-item>
-                <el-menu-item index="PM-APPROVALS">审批记录</el-menu-item>
+                <el-menu-item index="PM-MY-APPROVAL-HISTORY">
+                  @Html.ActionLink(@Resources.Resource.MENU_History, "MyApprovalHistory", "PM")
+                </el-menu-item>
                 <el-menu-item index="PM-FREE-QUERY">
                   @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "PM")
                 </el-menu-item>

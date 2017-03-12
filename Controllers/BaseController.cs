@@ -314,6 +314,26 @@ namespace OPAS2.Controllers
       return new Tuple<bool, ActionResult>(true, null);
     }
 
+    protected List<FlowTaskForUser> getMyApprovalHistory(
+      string flowTemplateCode, EnouFlowInstanceContext flowInstDb)
+    {
+      var result = new List<FlowTaskForUser>();
+      UserDTO currentUserDTO = ViewBag.currentUserDTO;
+      var flowTaskForUsers = flowInstDb.flowTaskForUsers.Where(
+        task => task.userId == currentUserDTO.userId
+          && (task.taskType == EnumFlowTaskType.normal
+            || task.taskType == EnumFlowTaskType.invitation)
+          && task.taskState == EnumFlowTaskState.done
+          && task.FlowInstance.bizDocumentTypeCode == flowTemplateCode).
+          OrderByDescending(task => task.flowTaskForUserId);
+      if(flowTaskForUsers!=null && flowTaskForUsers.Count() > 0)
+      {
+        result = flowTaskForUsers.ToList();
+      }
+
+      return result;
+    }
+
     #endregion
   }
 }

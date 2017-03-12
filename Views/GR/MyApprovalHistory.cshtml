@@ -1,0 +1,18 @@
+﻿@model IEnumerable<EnouFlowInstanceLib.FlowTaskForUser>
+@{
+  ViewBag.Title = "MyApprovalHistory";
+}
+
+@section init_scripts {
+  <script type="text/javascript">
+  var initBag = {};
+  initBag.bizData = {};
+  </script>
+}
+
+<h3>
+  @Resources.Resource.MENU_History -
+@Resources.Resource.MENU_GR
+</h3>
+@Html.Partial("DisplayMyApprovalHistoryPartial", @Model)
+

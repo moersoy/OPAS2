@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EnouFlowInstanceLib.FlowTaskForUser>
+<table class="table">
+  <tr>
+    <th>
+      @Resources.Resource.G_DocSubject
+    </th>
+    <th>
+      @Resources.Resource.G_DocNo
+    </th>
+    <th>
+      @Resources.Resource.G_DoneTime
+    </th>
+    <th>
+      @Resources.Resource.G_Type
+    </th>
+    <th>@Resources.Resource.G_Operations</th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.Action("DisplayNameByGuid",
+          (string)ViewBag.flowTemplateCode,
+          new { guid = item.bizDocumentGuid })
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.FlowInstance.code)
+      </td>
+      <td>
+        @item.finishTime.GetValueOrDefault().ToString("yyyy/MM/dd")
+      </td>
+      <td>
+        @Html.Action("displayFlowTaskType", "EnumTypes",
+          new { id = (int)item.taskType })
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Details, "Display",
+          (string)ViewBag.flowTemplateCode,
+          new { guid = item.bizDocumentGuid }, null)
+      </td>
+    </tr>
+  }
+
+</table>

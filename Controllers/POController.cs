@@ -247,6 +247,15 @@ namespace OPAS2.Controllers
 
     [UserLogon]
     [HttpGet]
+    public ActionResult MyApprovalHistory()
+    {
+      ViewBag.currentMenuIndex = "PO-MY-APPROVAL-HISTORY";
+      return View(getMyApprovalHistory(
+        flowTemplateCode, flowInstDb));
+    }
+
+    [UserLogon]
+    [HttpGet]
     public ActionResult UpdateAtStart(string id)
     {
       ViewBag.currentMenuIndex = "PO-NEW";
@@ -400,6 +409,14 @@ namespace OPAS2.Controllers
       }
 
       return View(po);
+    }
+
+    public ActionResult DisplayNameByGuid(string guid)
+    {
+      var result = "";
+      result = db.purchaseOrders.Where(obj => obj.guid == guid).
+        FirstOrDefault()?.reason;
+      return Content(result, "text/html");
     }
 
     private void PrepareSelectLists(PurchaseReq pr)

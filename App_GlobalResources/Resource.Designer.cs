@@ -475,6 +475,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Done time.
+        /// </summary>
+        internal static string G_DoneTime {
+            get {
+                return ResourceManager.GetString("G_DoneTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download.
         /// </summary>
         internal static string G_Download {
