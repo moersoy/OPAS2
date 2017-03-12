@@ -19,7 +19,10 @@
         workingMode: initBag.workingMode, // backend will fill this global variable
         removeAttachPath: initBag.removeAttachPath, //删除附件的URL路径
         detailsName: "PRDetails",
-        newItem: { // 新建PR的数据
+        dialogShowFlowChart: false,
+        flowChartCached: false,
+        flowTemplateDef: initBag.flowTemplateDef,
+        newItem: {
           // 流程数据
           flowTemplateGuid: initBag.flowTemplateGuid,
           currentActivityGuid: initBag.currentActivityGuid,
@@ -63,7 +66,7 @@
             needChoosePaticipant: true
           }
         },
-        examineItem: { // 审批PR的数据
+        examineItem: {
           currentUserGuid: initBag.currentUserGuid,
           guid: initBag.guid, //DocumentId
           purchaseReqId: initBag.purchaseReqId,

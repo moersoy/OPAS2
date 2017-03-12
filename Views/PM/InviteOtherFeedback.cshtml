@@ -20,6 +20,8 @@
     "@ViewBag.availableFlowConnectionsEncoded"));
   initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
   initBag.flowInstanceId = @ViewBag.flowInstanceId;
+  initBag.flowTemplateDef= JSON.parse(JSON.parse(Base64.decode(
+'@Html.Raw(ViewBag.flowTemplateDef)')));
 </script>
   }
 
@@ -32,8 +34,7 @@
   @Html.AntiForgeryToken()
 
   <div class="form-horizontal">
-    <h3 class="text-center">@Resources.Resource.MENU_PM</h3>
-    <hr />
+    @Html.Partial("DisplayBizDocumentHeaderPartial")
     @Html.HiddenFor(model => model.paymentId)
 
     @Html.Partial("DisplayMainFieldsPartial", Model)
@@ -47,6 +48,8 @@
     @Html.Partial("RenderRemarksOpsPartial")
 
     @Html.Partial("RenderInviteOtherFeedbackOpsPartial")
+
+    @Html.Partial("DisplayFlowChartDialogPartial")
   </div>
 }
 

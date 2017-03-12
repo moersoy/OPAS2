@@ -51,6 +51,9 @@ namespace OPAS2
         "~/Scripts/opas-vue-biz-document-mixin.js"));
       bundles.Add(new ScriptBundle("~/bundles/raphael").Include(
         "~/Scripts/raphael.min.js"));
+      bundles.Add(new ScriptBundle("~/bundles/draw-flow-chart").Include(
+        "~/Scripts/draw-flow-chart.js"));
+      
       #endregion
     }
   }

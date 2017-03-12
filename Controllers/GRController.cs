@@ -334,6 +334,10 @@ namespace OPAS2.Controllers
         return taskValidity.Item2;
       }
 
+      var task = flowInstDb.flowTaskForUsers.Find(flowTaskForUserId);
+      ViewBag.flowTemplateDef = encodeToBase64(
+        JsonConvert.SerializeObject(task.FlowInstance.flowTemplateJson));
+
       ViewBag.PO = gr.PurchaseOrder;
       ViewBag.goodsReceivingId = gr.goodsReceivingId;
       ViewBag.taskGuid = flowTaskForUser.guid;

@@ -14,6 +14,9 @@
   // session datas
   // flow datas
   initBag.flowInstanceId = @ViewBag.flowInstanceId;
+  initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
+  initBag.flowTemplateDef= JSON.parse(JSON.parse(Base64.decode(
+'@Html.Raw(ViewBag.flowTemplateDef)')));
 </script>
   }
 @using (Html.BeginForm(
@@ -30,6 +33,7 @@
     @Html.Partial("DisplayAttachListPartial")
     @Html.Partial("DisplayRelevantBizDocFramePartial", 
       Model.goodsReceivingId)
+    @Html.Partial("DisplayFlowChartDialogPartial")
   </div>
 }
 

@@ -24,6 +24,8 @@
     "@ViewBag.availableFlowConnectionsEncoded"));
   initBag.flowTemplateGuid = "@ViewBag.flowTemplateGuid";
   initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
+  initBag.flowTemplateDef= JSON.parse(JSON.parse(Base64.decode(
+'@Html.Raw(ViewBag.flowTemplateDef)')));
 </script>
   }
 
@@ -46,6 +48,7 @@
 
     @Html.Partial("RenderCreateWorkflowOpsPartial")
 
+    @Html.Partial("DisplayFlowChartDialogPartial")
   </div>
 }
 

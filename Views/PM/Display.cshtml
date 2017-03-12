@@ -14,6 +14,9 @@
   // session datas
   // flow datas
   initBag.flowInstanceId = @ViewBag.flowInstanceId;
+  initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
+  initBag.flowTemplateDef= JSON.parse(JSON.parse(Base64.decode(
+'@Html.Raw(ViewBag.flowTemplateDef)')));
 </script>
   }
 @using (Html.BeginForm("", 
@@ -23,13 +26,13 @@
           { "autocomplete", "off"} }))
 {
   <div class="form-horizontal">
-    <h3 class="text-center">@Resources.Resource.MENU_PM</h3>
-    <hr />
+    @Html.Partial("DisplayBizDocumentHeaderPartial")
     @Html.Partial("DisplayMainFieldsPartial", Model)
     @Html.Partial("DisplayRemarkOfApproversPartial")
     @Html.Partial("DisplaySubTableFieldsPartial", Model)
     @Html.Partial("DisplayAttachListPartial")
     @Html.Partial("DisplayRelevantBizDocFramePartial",
       Model.paymentId)
+    @Html.Partial("DisplayFlowChartDialogPartial")
   </div>
 }

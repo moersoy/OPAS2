@@ -19,6 +19,9 @@
         workingMode: initBag.workingMode, // backend will fill this global variable
         removeAttachPath: initBag.removeAttachPath, //删除附件的URL路径
         detailsName: "PODetails",
+        dialogShowFlowChart: false,
+        flowChartCached: false,
+        flowTemplateDef: initBag.flowTemplateDef,
         newItem: { // 新建PO的数据
           // 流程部分
           flowTemplateGuid: initBag.flowTemplateGuid,

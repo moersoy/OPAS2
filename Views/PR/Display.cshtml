@@ -13,6 +13,8 @@
   // flow datas
   initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
   initBag.flowInstanceId = @ViewBag.flowInstanceId;
+  initBag.flowTemplateDef= JSON.parse(JSON.parse(Base64.decode(
+    '@Html.Raw(ViewBag.flowTemplateDef)')));
   </script>
 }
 
@@ -39,7 +41,8 @@
 
     @Html.Partial("DisplayRelevantBizDocFramePartial",
       Model.purchaseReqId)
-
+    @Html.Partial("DisplayFlowChartDialogPartial")
   </div>
 }
+
 

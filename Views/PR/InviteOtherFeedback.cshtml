@@ -17,6 +17,8 @@
     "@ViewBag.availableFlowConnectionsEncoded"));
   initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
   initBag.flowInstanceId = @ViewBag.flowInstanceId;
+  initBag.flowTemplateDef= JSON.parse(JSON.parse(Base64.decode(
+  '@Html.Raw(ViewBag.flowTemplateDef)')));
 </script>
   }
 
@@ -50,4 +52,4 @@
   </div>
 }
 
-@Html.Partial("DisplayBackToTaskListLinkPartial")
+@Html.Partial("DisplayFlowChartDialogPartial")

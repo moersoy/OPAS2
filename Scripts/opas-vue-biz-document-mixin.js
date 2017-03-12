@@ -321,6 +321,17 @@
         dataItem.sessionData.potentialPaticipants = null;
       }
     },
+    showFlowChart() {
+      this.dialogShowFlowChart = true;
+      var that = this;
+      if (!this.flowChartCached) {
+        setTimeout(function () {
+          that.drawFlowChart(that.flowTemplateDef,
+            that.getCorrenspondingDataItem(that.workingMode).currentActivityGuid);
+          that.flowChartCached = true;
+        }, 0);
+      }
+    },
     isDestNodePaticipantRequired(destNodeType) {
       return destNodeType != "st-autoActivity" &&
         destNodeType != "st-end" &&

@@ -19,6 +19,9 @@
         workingMode: initBag.workingMode, // backend will fill this variable
         removeAttachPath: initBag.removeAttachPath, //删除附件的URL路径
         detailsName: "GRDetails",
+        dialogShowFlowChart: false,
+        flowChartCached: false,
+        flowTemplateDef: initBag.flowTemplateDef,
         newItem: { // 新建GR的数据
           // 流程部分
           currentUserGuid: initBag.currentUserGuid,

@@ -50,6 +50,8 @@ namespace OPAS2.Controllers
         purchaseReq.flowInstanceId.Value,flowInstDb);
 
       ViewBag.purchaseReqId = purchaseReq.purchaseReqId;
+      //ViewBag.flowTemplateDef = encodeToBase64(
+      //  JsonConvert.SerializeObject(flowInstance.flowTemplateJson));
 
       #region 流程相关数据
       fillFlowContinuationDataInViewBag(flowInstance);
@@ -362,6 +364,10 @@ namespace OPAS2.Controllers
       {
         return taskValidity.Item2;
       }
+
+      var task = flowInstDb.flowTaskForUsers.Find(flowTaskForUserId);
+      ViewBag.flowTemplateDef = encodeToBase64(
+        JsonConvert.SerializeObject(task.FlowInstance.flowTemplateJson));
 
       return View(purchaseReq);
     }

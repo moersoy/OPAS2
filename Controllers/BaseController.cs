@@ -99,6 +99,8 @@ namespace OPAS2.Controllers
       var flowTemplate = getFlowTemplateByCode(flowTemplateCode);
       var flowTemplateDefHelper = new FlowTemplateDefHelper(
         flowTemplate.flowTemplateJson);
+      ViewBag.flowTemplateDef = encodeToBase64(
+        JsonConvert.SerializeObject(flowTemplate.flowTemplateJson));
       var firstStartNode = flowTemplateDefHelper.
         getNodesOfStartType().FirstOrDefault();
       if (firstStartNode != null)
@@ -122,6 +124,8 @@ namespace OPAS2.Controllers
     {
       ViewBag.currentActivityGuid = flowInstance.currentActivityGuid;
       ViewBag.flowInstanceId = flowInstance.flowInstanceId;
+      ViewBag.flowTemplateDef = encodeToBase64(
+        JsonConvert.SerializeObject(flowInstance.flowTemplateJson));
 
       FlowTemplateDefHelper flowTemplateDefHelper = new FlowTemplateDefHelper(
         flowInstance.flowTemplateJson);

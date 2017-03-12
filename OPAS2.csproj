@@ -238,6 +238,7 @@
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\currency-validator.js" />
+    <Content Include="Scripts\draw-flow-chart.js" />
     <Content Include="Scripts\guid.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -411,6 +412,7 @@
     <Content Include="Views\GR\MyApprovalHistory.cshtml" />
     <Content Include="Views\Shared\RelevantBizDocPartial.cshtml" />
     <Content Include="Views\Shared\DisplayRelevantBizDocFramePartial.cshtml" />
+    <Content Include="Views\Shared\DisplayFlowChartDialogPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

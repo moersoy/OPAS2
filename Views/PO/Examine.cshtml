@@ -21,7 +21,8 @@
     "@ViewBag.availableFlowConnectionsEncoded"));
   initBag.currentActivityGuid = "@ViewBag.currentActivityGuid";
   initBag.flowInstanceId = @ViewBag.flowInstanceId;
-
+  initBag.flowTemplateDef= JSON.parse(JSON.parse(Base64.decode(
+'@Html.Raw(ViewBag.flowTemplateDef)')));
 </script>
   }
 
@@ -55,6 +56,8 @@
 
     @Html.Partial("DisplayInviteOtherFeedbacksPartial",
       (IEnumerable<OPAS2.Models.FlowTask>)ViewBag.inviteOtherFeedbackTasks)
+
+    @Html.Partial("DisplayFlowChartDialogPartial")
   </div>
 }
 
