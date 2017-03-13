@@ -1,0 +1,41 @@
+﻿@{
+  var currentUserDTO = (EnouFlowOrgMgmtLib.UserDTO)
+    HttpContext.Current.Session["currentUserDTO"];
+  var currentUserName = currentUserDTO != null ? currentUserDTO.name : "";
+}
+<div class="navbar-header">
+  @Html.ActionLink("OPAS2 - " + @Resources.Resource.G_OPAS + " V2.0",
+              "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+</div>
+<div class="navbar-collapse collapse navbar-right">
+  <ul class="nav navbar-nav">
+    <li>
+      @Html.ActionLink(Resources.Resource.MENU_Messages, "Index", "FlowTaskForUser", null,
+                  htmlAttributes: new { style = "display: inline-block; padding-right: 0px;" })
+      <span class="badge-danger"> @ViewBag.flowTaskForUsers.Count</span>
+    </li>
+
+    <li>
+      @Html.ActionLink(Resources.Resource.MENU_Logout + " (" + currentUserName + ") ",
+                "Logout", "User", null, null)
+    </li>
+    <li>
+      <a href="#">
+        <el-dropdown @@command="alertErrorNotImplemented">
+          <span class="el-dropdown-link">
+            @Resources.Resource.MENU_Delegation<i class="caret"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>张三 <span class="badge-danger"> 1</span></el-dropdown-item>
+            <el-dropdown-item>李四 <span class="badge-danger"> 2</span></el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </a>
+    </li>
+    @*<li><a href="#">@Resources.Resource.MENU_Help</a></li>*@
+    <li>
+      @Html.ActionLink("中文-EN", "SetCulture", "Home",
+               new { culture = (ViewBag.cultureName == "zh-CN" ? "en-US" : "zh-CN") }, null)
+    </li>
+  </ul>
+</div>

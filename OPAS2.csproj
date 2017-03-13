@@ -247,6 +247,7 @@
     <Content Include="Scripts\app\PR\bundle.js" />
     <Content Include="Scripts\app\Role\bundle.js" />
     <Content Include="Scripts\app\User\bundle.js" />
+    <Content Include="Scripts\app\VendorBank\bundle.js" />
     <Content Include="Scripts\app\Vendor\bundle.js" />
     <Content Include="Scripts\axios.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -303,6 +304,7 @@
     <Content Include="ViewModels\PR\main.js" />
     <Content Include="ViewModels\Role\main.js" />
     <Content Include="ViewModels\User\main.js" />
+    <Content Include="ViewModels\VendorBank\main.js" />
     <Content Include="ViewModels\Vendor\main.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -438,12 +440,14 @@
     <Content Include="Views\Shared\RelevantBizDocPartial.cshtml" />
     <Content Include="Views\Shared\DisplayRelevantBizDocFramePartial.cshtml" />
     <Content Include="Views\Shared\DisplayFlowChartDialogPartial.cshtml" />
+    <Content Include="Views\VendorBank\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_Nav_Menu_Partial.cshtml" />
+    <Content Include="Views\Shared\_Layout_Top_Nav_Bar_Partial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Basic\" />
     <Folder Include="Views\EnumTypes\" />
-    <Folder Include="Views\VendorBank\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

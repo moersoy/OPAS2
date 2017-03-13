@@ -1,0 +1,166 @@
+﻿@helper hasPermission(string code) // 判定当前用户是否有指定code的功能权限
+{
+  @ViewBag.functionPermissionCodes.Contains(code).ToString().ToLower()
+}
+<el-menu default-active="@ViewBag.currentMenuIndex" ref="main-nav-menu"
+         class="el-menu-vertical-demo" theme="dark"
+         @@select="handleLeftNavMenuItemSelected">
+  <el-submenu index="PR">
+    <template slot="title">
+      <i class="el-icon-menu"></i>@Resources.Resource.MENU_PR
+    </template>
+    <el-menu-item index="PR-NEW">
+      @Html.ActionLink(@Resources.Resource.MENU_New, "Create", "PR")
+    </el-menu-item>
+    <el-menu-item index="PR-MY-APPLICATION">
+      @Html.ActionLink(@Resources.Resource.MENU_MyApplications, "MyApplication", "PR")
+    </el-menu-item>
+    <el-menu-item index="PR-MY-DEPARTMENT-APPLICATION">
+      @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
+                    "MyDepartmentApplication", "PR")
+    </el-menu-item>
+    <el-menu-item index="PR-MY-APPROVAL-HISTORY">
+      @Html.ActionLink(@Resources.Resource.MENU_History, "MyApprovalHistory", "PR")
+    </el-menu-item>
+    <el-menu-item index="PR-FREE-QUERY">
+      @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "PR")
+    </el-menu-item>
+    <el-menu-item index="PR-OPEN">
+      @Html.ActionLink(@Resources.Resource.MENU_EffectivePRs, "ListEffective", "PR")
+    </el-menu-item>
+  </el-submenu>
+
+  <el-submenu index="PO">
+    <template slot="title">
+      <i class="el-icon-menu"></i>@Resources.Resource.MENU_PO
+    </template>
+    <el-menu-item index="PO-NEW">
+      @Html.ActionLink(@Resources.Resource.MENU_New, "ListEffective", "PR")
+    </el-menu-item>
+    <el-menu-item index="PO-MY-APPLICATION">
+      @Html.ActionLink(@Resources.Resource.MENU_MyApplications, "MyApplication", "PO")
+    </el-menu-item>
+    <el-menu-item index="PO-MY-DEPARTMENT-APPLICATION">
+      @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
+                    "MyDepartmentApplication", "PO")
+    </el-menu-item>
+    <el-menu-item index="PO-MY-APPROVAL-HISTORY">
+      @Html.ActionLink(@Resources.Resource.MENU_History, "MyApprovalHistory", "PO")
+    </el-menu-item>
+    <el-menu-item index="PO-FREE-QUERY">
+      @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "PO")
+    </el-menu-item>
+    <el-menu-item index="PO-OPEN">
+      @Html.ActionLink(@Resources.Resource.MENU_EffectivePOs, "ListEffective", "PO")
+    </el-menu-item>
+  </el-submenu>
+
+  <el-submenu index="GR">
+    <template slot="title">
+      <i class="el-icon-menu"></i>@Resources.Resource.MENU_GR
+    </template>
+    <el-menu-item index="GR-NEW">
+      @Html.ActionLink(@Resources.Resource.MENU_New, "ListEffective", "PO")
+    </el-menu-item>
+    <el-menu-item index="GR-MY-APPLICATION">
+      @Html.ActionLink(@Resources.Resource.MENU_MyApplications, "MyApplication", "GR")
+    </el-menu-item>
+    <el-menu-item index="GR-MY-DEPARTMENT-APPLICATION">
+      @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
+                    "MyDepartmentApplication", "GR")
+    </el-menu-item>
+    <el-menu-item index="GR-MY-APPROVAL-HISTORY">
+      @Html.ActionLink(@Resources.Resource.MENU_History, "MyApprovalHistory", "GR")
+    </el-menu-item>
+    <el-menu-item index="GR-FREE-QUERY">
+      @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "GR")
+    </el-menu-item>
+  </el-submenu>
+
+  <el-submenu index="PM">
+    <template slot="title">
+      <i class="el-icon-menu"></i>@Resources.Resource.MENU_PM
+    </template>
+    <el-menu-item index="PM-NEW">
+      @Html.ActionLink(@Resources.Resource.MENU_New, "ListEffective", "PO")
+    </el-menu-item>
+    <el-menu-item index="PM-MY-APPLICATION">
+      @Html.ActionLink(@Resources.Resource.MENU_MyApplications, "MyApplication", "PM")
+    </el-menu-item>
+    <el-menu-item index="PM-MY-DEPARTMENT-APPLICATION">
+      @Html.ActionLink(@Resources.Resource.MENU_MyDepartmentApplications,
+                    "MyDepartmentApplication", "PM")
+    </el-menu-item>
+    <el-menu-item index="PM-MY-APPROVAL-HISTORY">
+      @Html.ActionLink(@Resources.Resource.MENU_History, "MyApprovalHistory", "PM")
+    </el-menu-item>
+    <el-menu-item index="PM-FREE-QUERY">
+      @Html.ActionLink(@Resources.Resource.MENU_FreeQuery, "FreeQuery", "PM")
+    </el-menu-item>
+  </el-submenu>
+
+  <el-submenu index="MY">
+    <template slot="title">
+      <i class="el-icon-menu"></i>@Resources.Resource.MENU_MY
+    </template>
+    <el-menu-item index="MY-ACCOUNT">账户信息</el-menu-item>
+    <el-menu-item index="MY-ALERT">提醒设置</el-menu-item>
+    <el-menu-item index="MY-DELEGATE">外出代理设置</el-menu-item>
+  </el-submenu>
+
+  <el-submenu index="MDM">
+    <template slot="title">
+      <i class="el-icon-menu"></i>@Resources.Resource.MENU_MDM
+    </template>
+    @*<el-menu-item index="MDM-CALENDAR">工作日历维护</el-menu-item>*@
+    <el-menu-item index="MDM-COST-CENTER">
+      @Html.ActionLink(@Resources.Resource.MENU_CostCenters, "index", "CostCenter")
+    </el-menu-item>
+    <el-menu-item index="MDM-COST-ELEMENT">
+      @Html.ActionLink(@Resources.Resource.MENU_CostElements, "index", "CostElement")
+    </el-menu-item>
+    <el-menu-item index="MDM-COST-ELEMENT-TYPE">
+      @Html.ActionLink(@Resources.Resource.MENU_CostElementTypes, "index", "CostElementType")
+    </el-menu-item>
+    <el-menu-item index="MDM-CURRENCY-RATE">
+      @Html.ActionLink(@Resources.Resource.MENU_CurrencyRates, "index", "CurrencyRate")
+    </el-menu-item>
+    <el-menu-item index="MDM-CURRENCY-TYPE">
+      @Html.ActionLink(@Resources.Resource.MENU_CurrencyTypes, "index", "CurrencyType")
+    </el-menu-item>
+    <el-menu-item index="MDM-VENDOR">
+      @Html.ActionLink(@Resources.Resource.MENU_Vendors, "index", "Vendor")
+    </el-menu-item>
+  </el-submenu>
+
+  <el-submenu index="REPORT" v-if='@hasPermission("REPORT")'>
+    <template slot="title">
+      <i class="el-icon-menu"></i>@Resources.Resource.MENU_Report
+    </template>
+    <el-menu-item index="REPORT-TODO">待确定</el-menu-item>
+  </el-submenu>
+
+  <el-submenu index="SYS">
+    <template slot="title">
+      <i class="el-icon-menu"></i>@Resources.Resource.MENU_SysManage
+    </template>
+    <el-menu-item index="SYS-USER">
+      @Html.ActionLink(@Resources.Resource.MENU_Users, "index", "User")
+    </el-menu-item>
+    <el-menu-item index="SYS-DEPARTMENT">
+      @Html.ActionLink(@Resources.Resource.MENU_Departments, "index", "Department")
+    </el-menu-item>
+    <el-menu-item index="SYS-ROLE">
+      @Html.ActionLink(@Resources.Resource.MENU_Roles, "index", "Role")
+    </el-menu-item>
+    <el-menu-item index="SYS-PERMISSION">
+      @Html.ActionLink(@Resources.Resource.MENU_Permission, "index", "FunctionPermission")
+    </el-menu-item>
+    <el-menu-item index="SYS-FLOW-INSTANCES-MGMT">
+      @Html.ActionLink(@Resources.Resource.MENU_FlowInstancesMgmt, "running", "FlowInstance")
+    </el-menu-item>
+    <el-menu-item index="SYS-FLOW-TEMPLATE">
+      @Html.ActionLink(@Resources.Resource.MENU_FlowTemplates, "index", "FlowTemplate")
+    </el-menu-item>
+  </el-submenu>
+</el-menu>
