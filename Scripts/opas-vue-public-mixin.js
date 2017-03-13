@@ -17,7 +17,6 @@
       }
     },
     drawFlowChart(flowTemplateDef, currentActivityNodeGuid) {
-      console.log(flowTemplateDef);
       if (flowTemplateDef) {
         let raphael = Raphael('FlowChart',
           $('FlowChart').width(), $('FlowChart').height());

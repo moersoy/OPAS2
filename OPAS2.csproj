@@ -151,11 +151,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="App_GlobalResources\Resource.zh-CN1.Designer.cs">
+    <Compile Include="App_GlobalResources\Resource.zh-CN.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.zh-CN.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -181,6 +183,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VendorBankController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Filters\SessionExpireFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -206,11 +209,12 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <EmbeddedResource Include="App_GlobalResources\Resource.zh-CN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.zh-CN1.Designer.cs</LastGenOutput>
+    <Content Include="App_GlobalResources\Resource.zh-CN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.zh-CN.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -226,6 +230,24 @@
     <Content Include="images\flow_start_selected.png" />
     <Content Include="images\login_panel_bg.png" />
     <Content Include="images\Road.jpg" />
+    <Content Include="Scripts\app\CostCenter\bundle.js" />
+    <Content Include="Scripts\app\CostElementType\bundle.js" />
+    <Content Include="Scripts\app\CostElement\bundle.js" />
+    <Content Include="Scripts\app\CurrencyRate\bundle.js" />
+    <Content Include="Scripts\app\CurrencyType\bundle.js" />
+    <Content Include="Scripts\app\Department\bundle.js" />
+    <Content Include="Scripts\app\FlowInstance\bundle.js" />
+    <Content Include="Scripts\app\FlowTaskForUser\bundle.js" />
+    <Content Include="Scripts\app\FlowTemplate\bundle.js" />
+    <Content Include="Scripts\app\FunctionPermission\bundle.js" />
+    <Content Include="Scripts\app\GR\bundle.js" />
+    <Content Include="Scripts\app\home\bundle.js" />
+    <Content Include="Scripts\app\PM\bundle.js" />
+    <Content Include="Scripts\app\PO\bundle.js" />
+    <Content Include="Scripts\app\PR\bundle.js" />
+    <Content Include="Scripts\app\Role\bundle.js" />
+    <Content Include="Scripts\app\User\bundle.js" />
+    <Content Include="Scripts\app\Vendor\bundle.js" />
     <Content Include="Scripts\axios.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -236,6 +258,11 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\opas2.pubxml" />
+    <Content Include="Scripts\app\CostCenter\bundle.js.map" />
+    <Content Include="Scripts\app\Department\bundle.js.map" />
+    <Content Include="Scripts\app\home\bundle.js.map" />
+    <Content Include="Scripts\app\User\bundle.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\currency-validator.js" />
     <Content Include="Scripts\draw-flow-chart.js" />
@@ -288,8 +315,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout - Origin.cshtml" />
     <Content Include="Views\CostCenter\Index.cshtml" />
@@ -418,6 +443,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Basic\" />
     <Folder Include="Views\EnumTypes\" />
+    <Folder Include="Views\VendorBank\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -453,6 +479,7 @@
     <Content Include="App_GlobalResources\Resource.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <PropertyGroup>
