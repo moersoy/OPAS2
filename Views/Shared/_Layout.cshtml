@@ -3,9 +3,6 @@
     RouteData.Values["Controller"].ToString();
   var actionName = HttpContext.Current.Request.RequestContext.
     RouteData.Values["Action"].ToString();
-  //var currentUserDTO = (EnouFlowOrgMgmtLib.UserDTO)
-  //  HttpContext.Current.Session["currentUserDTO"];
-  //var currentUserName = currentUserDTO != null ? currentUserDTO.name : "";
 }
 
 @helper hasPermission(string code) // 判定当前用户是否有指定code的功能权限

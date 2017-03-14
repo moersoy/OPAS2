@@ -8,8 +8,9 @@
   },
   mixins: [opas_vue_public_mixin],
   methods: {
+    otherMountedActions() {
+      this.drawFlowChart(this.flowTemplateDef, null);
+    }
   },
-  mounted () {
-    this.drawFlowChart(this.flowTemplateDef, null);
-  }
+
 });

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<OPAS2Model.VendorBank>
+@{
+  ViewBag.Title = "Index";
+}
+<h2>@Html.Action("ShowNameOfId","Vendor",new {
+         id = (int)ViewBag.vendorId
+       })</h2>
+<p>
+  @Html.ActionLink(@Resources.Resource.G_Create, "Create",
+    new { vendorId = (int)ViewBag.vendorId })
+</p>
+<table class="table">
+  <tr>
+    <th>
+      @Resources.Resource.G_VendorBankName
+    </th>
+    <th>
+      @Resources.Resource.G_VendorBankAccount
+    </th>
+    <th>
+      @Resources.Resource.G_BranchName
+    </th>
+    <th>
+      @Resources.Resource.G_Creator
+    </th>
+    <th>
+      @Resources.Resource.G_CreateTime
+    </th>
+    <th>
+      @Resources.Resource.G_IsDefaultBank
+    </th>
+    <th>@Resources.Resource.G_Operations</th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.bankName)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.bankAccount)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.branchName)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.creator)
+      </td>
+      <td>
+        @item.createTime.ToString("yyyy/MM/dd")
+      </td>
+      <td>
+        <div>
+          @Html.DisplayFor(modelItem => item.isDefaultBank)
+          </div>
+        </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Edit, 
+          "Edit", new { id = item.vendorBankId }) |
+        @Html.ActionLink(Resources.Resource.G_SetDefault, 
+          "SetDefault", new { id = item.vendorBankId })
+      </td>
+    </tr>
+  }
+</table>
+

@@ -187,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch name.
+        /// </summary>
+        internal static string G_BranchName {
+            get {
+                return ResourceManager.GetString("G_BranchName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Checker.
         /// </summary>
         internal static string G_Checker {
@@ -718,6 +727,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is default bank.
+        /// </summary>
+        internal static string G_IsDefaultBank {
+            get {
+                return ResourceManager.GetString("G_IsDefaultBank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is down payment.
         /// </summary>
         internal static string G_IsDownPayment {
@@ -1231,6 +1249,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set default.
+        /// </summary>
+        internal static string G_SetDefault {
+            get {
+                return ResourceManager.GetString("G_SetDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shipping info.
         /// </summary>
         internal static string G_ShippingInfo {
@@ -1407,6 +1434,15 @@ namespace Resources {
         internal static string G_VendorBankName {
             get {
                 return ResourceManager.GetString("G_VendorBankName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vendor banks.
+        /// </summary>
+        internal static string G_VendorBanks {
+            get {
+                return ResourceManager.GetString("G_VendorBanks", resourceCulture);
             }
         }
         

@@ -1,0 +1,98 @@
+﻿@model OPAS2Model.VendorBank
+
+@{
+  ViewBag.Title = "Create";
+}
+
+@section init_scripts {
+  <script type="text/javascript">
+  var initBag={};
+  initBag.backendError = "@ViewBag.backendError";
+  </script>
+}
+
+<h3>
+  @Resources.Resource.G_Create
+@Resources.Resource.G_VendorBankAccount -
+@Html.Action("ShowNameOfId", "Vendor", new
+{
+  id = Model.Vendor.vendorId
+})
+</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <div class="form-group" style="display:none">
+      @Html.LabelFor(model => model.vendorId, 
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.vendorId, 
+          new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.bankName,
+        "*" + Resources.Resource.G_VendorBankName,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.bankName, new { htmlAttributes = 
+          new { @class = "form-control", required="true" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.bankAccount,
+        "*" + Resources.Resource.G_VendorBankAccount,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.bankAccount, new { htmlAttributes = 
+          new { @class = "form-control", required = "true" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.branchName,
+        "*" + Resources.Resource.G_BranchName,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.branchName, new { htmlAttributes = 
+          new { @class = "form-control", required = "true" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.SWIFTCode,
+        Resources.Resource.G_SWIFTCode,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.SWIFTCode, new { htmlAttributes = 
+          new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.remark,
+        Resources.Resource.G_Remark,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.TextAreaFor(model => model.remark, new { @class = "form-control" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="@Resources.Resource.G_Create"
+               class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+
+<div>
+  @Html.ActionLink(@Resources.Resource.G_BackToList, "Index", 
+    new {id = Model.Vendor.vendorId})
+</div>

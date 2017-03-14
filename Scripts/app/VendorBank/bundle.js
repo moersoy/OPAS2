@@ -16,17 +16,9 @@
     var v = new Vue({
       el: '#app',
       data: {
-        message: 'FlowTemplate',
-        flowTemplateName: initBag.flowTemplateName,
-        flowTemplateDef: initBag.flowTemplateDef,
-        currentActivityNodeGuid: initBag.currentActivityNodeGuid
+        backendError: window.initBag && window.initBag.backendError
       },
       mixins: [opas_vue_public_mixin],
-      methods: {
-        otherMountedActions: function otherMountedActions() {
-          this.drawFlowChart(this.flowTemplateDef, null);
-        }
-      }
-
+      methods: {}
     });
   }, {}] }, {}, [1]);

@@ -43,7 +43,10 @@
         @Html.DisplayFor(modelItem => item.contactPersonTel)
       </td>
       <td>
-        @Html.ActionLink(Resources.Resource.G_Edit, "Edit", new { id = item.vendorId })
+        @Html.ActionLink(Resources.Resource.G_Edit, 
+          "Edit", new { id = item.vendorId }) |
+        @Html.ActionLink(Resources.Resource.G_VendorBankAccount,
+          "Index" , "VendorBank", new { vendorId = item.vendorId },null) 
       </td>
     </tr>
   }

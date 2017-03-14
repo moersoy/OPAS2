@@ -720,4 +720,16 @@
   <data name="G_TotalRecordsCount" xml:space="preserve">
     <value>总共记录数:</value>
   </data>
+  <data name="G_VendorBanks" xml:space="preserve">
+    <value>供应商银行</value>
+  </data>
+  <data name="G_BranchName" xml:space="preserve">
+    <value>支行名</value>
+  </data>
+  <data name="G_IsDefaultBank" xml:space="preserve">
+    <value>是否为默认银行</value>
+  </data>
+  <data name="G_SetDefault" xml:space="preserve">
+    <value>设为默认</value>
+  </data>
 </root>

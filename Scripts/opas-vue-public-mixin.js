@@ -29,6 +29,22 @@
         }
       }
     },
+    alertBackendError() {
+      if (this.backendError) {
+        this.$message({
+          showClose: true,
+          message: this.backendError,
+          type: 'error',
+          duration: 0,
+        });
+      }
+    }
+  },
+  mounted () {
+    this.alertBackendError();
 
+    if (this.otherMountedActions) {
+      this.otherMountedActions();
+    }
   }
 };
