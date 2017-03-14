@@ -5,6 +5,7 @@
     allUserDTOs: null,
     selectedUserDTO: null,
     dialogChooseUserConfirmHandle: null,
+    messageBoxDurationConfig: { success: 30000, error :60000},
   },
   computed: {
     filteredUserDTOs: function () {
@@ -40,7 +41,7 @@
       }
     },
     onSubmitCreate() {
-      var messageBox = this.$message;
+      var that = this;
       // TODO: 检查业务对象合法性
 
       // 检查流程操作合法性
@@ -49,14 +50,14 @@
       }
 
       // 克隆业务对象并删除无需上传的部分
-      var newItemClone = Object.assign({}, this.newItem);
+      var newItemClone = _.cloneDeep(this.newItem) // 不能用Object.assign的浅拷贝
       newItemClone.sessionData = undefined;
       //如果需要删除无效的detail记录,则调用进行处理
       if (this.eraseInvalidDetail) {
         this.eraseInvalidDetail(newItemClone[this.detailsName]);
       }
-
       var _parseError = this.parseErrorOfServerResponse;
+
       // 提交到后端
       axios.post(this.newItem.sessionData.CreateWithFlowActionPath,
         {
@@ -64,16 +65,15 @@
         }
       )
       .then(function (response) {
-        messageBox.success({
-          duration: 10000,
-          message: '提交表单成功:' + response.toString(),
+        that.$message.success({
+          duration: that.messageBoxDurationConfig.success,
+          message: '提交表单成功:' + response.data.toString(),
           showClose: true
         });
-        console.info(response);
       })
       .catch(function (error) {
-        messageBox.error({
-          duration: 10000,
+        that.$message.error({
+          duration: that.messageBoxDurationConfig.error,
           message: '提交表单失败,发生错误:' + _parseError(error),
           showClose: true
         });
@@ -83,17 +83,15 @@
     },
     onSubmitExamineFlowAction() {
       // TODO: 检查业务对象合法性
-
       // 检查流程操作合法性
       if (!this.isFlowOperationDataValid(this.examineItem)) {
         return false;
       }
-
       // 克隆业务对象并删除无需上传的部分
       var examineItemClone = Object.assign({}, this.examineItem);
       examineItemClone.sessionData = undefined;
 
-      var messageBox = this.$message;
+      var that = this;
       var _parseError = this.parseErrorOfServerResponse;
       // 提交
       axios.post(this.examineItem.sessionData.NextFlowActionPath,
@@ -102,16 +100,15 @@
         }
       )
       .then(function (response) {
-        messageBox.success({
-          duration: 10000,
-          message: '完成审批:' + response.toString(),
+        that.$message.success({
+          duration: that.messageBoxDurationConfig.success,
+          message: '完成审批:' + response.data.toString(),
           showClose: true
         });
-        console.info(response);
       })
       .catch(function (error) {
-        messageBox.error({
-          duration: 10000,
+        that.$message.error({
+          duration: that.messageBoxDurationConfig.error,
           message: '错误:' + _parseError(error),
           showClose: true
         });
@@ -123,7 +120,7 @@
       var examineItemClone = Object.assign({}, this.examineItem);
       examineItemClone.sessionData = undefined;
 
-      var messageBox = this.$message;
+      var that = this;
       var _parseError = this.parseErrorOfServerResponse;
       // 提交
       axios.post(this.examineItem.sessionData.RejectToStartFlowActionPath,
@@ -132,16 +129,15 @@
         }
       )
       .then(function (response) {
-        messageBox.success({
-          duration: 10000,
-          message: '成功提交Reject:' + response.toString(),
+        that.$message.success({
+          duration: that.messageBoxDurationConfig.success,
+          message: '成功提交退回申请人 / Reject to creator successfully.',
           showClose: true
         });
-        console.info(response);
       })
       .catch(function (error) {
-        messageBox.error({
-          duration: 10000,
+        that.$message.error({
+          duration: that.messageBoxDurationConfig.error,
           message: '错误:' + _parseError(error),
           showClose: true
         });
@@ -149,7 +145,7 @@
       });
     },
     onSubmitUpdateAtStartFlowAction() {
-      var messageBox = this.$message;
+      var that = this;
       // TODO: 检查业务对象合法性
 
       // 检查流程操作合法性
@@ -158,7 +154,7 @@
       }
 
       // 克隆业务对象并删除无需上传的部分
-      var newItemClone = Object.assign({}, this.newItem);
+      var newItemClone = _.cloneDeep(this.newItem);
       newItemClone.sessionData = undefined;
       //如果需要删除无效的detail记录,则调用进行处理
       if (this.eraseInvalidDetail) {
@@ -174,16 +170,15 @@
         }
       )
       .then(function (response) {
-        messageBox.success({
-          duration: 10000,
-          message: '成功重新提交:' + response.toString(),
+        that.$message.success({
+          duration: that.messageBoxDurationConfig.success,
+          message: '成功重新提交:' + response.data.toString(),
           showClose: true
         });
-        console.info(response);
       })
       .catch(function (error) {
-        messageBox.error({
-          duration: 10000,
+        that.$message.error({
+          duration: that.messageBoxDurationConfig.error,
           message: '错误:' + _parseError(error),
           showClose: true
         });
@@ -199,7 +194,7 @@
       examineItemClone.selectedPaticipantGuid =
         this.selectedUserDTO.guid;
 
-      var messageBox = this.$message;
+      var that = this;
       var _parseError = this.parseErrorOfServerResponse;
       // 提交
       axios.post(this.examineItem.sessionData.InviteOtherFlowActionPath,
@@ -208,16 +203,15 @@
         }
       )
       .then(function (response) {
-        messageBox.success({
-          duration: 10000,
-          message: '成功提交InvokeOther:' + response.toString(),
+        that.$message.success({
+          duration: that.messageBoxDurationConfig.success,
+          message: '成功提交',
           showClose: true
         });
-        console.info(response);
       })
       .catch(function (error) {
-        messageBox.error({
-          duration: 10000,
+        that.$message.error({
+          duration: that.messageBoxDurationConfig.error,
           message: '错误:' + _parseError(error),
           showClose: true
         });
@@ -228,7 +222,6 @@
     },
     onInviteOtherToExamine() {
       var that = this;
-      var messageBox = this.$message;
       if (!this.allUserDTOs) {
         axios.get("/api/UserApi")
         .then(function (response) {
@@ -238,8 +231,8 @@
             that.onSubmitInviteOtherToExamine;
         })
         .catch(function (error) {
-          messageBox.error({
-            duration: 10000,
+          that.$message.error({
+            duration: that.messageBoxDurationConfig.error,
             message: '获取用户列表错误:' + _parseError(error),
             showClose: true
           });
@@ -256,7 +249,7 @@
       var examineItemClone = Object.assign({}, this.examineItem);
       examineItemClone.sessionData = undefined;
 
-      var messageBox = this.$message;
+      var that = this;
       var _parseError = this.parseErrorOfServerResponse;
       // 提交
       axios.post(this.examineItem.sessionData.InviteOtherFeedbackFlowActionPath,
@@ -265,16 +258,16 @@
         }
       )
       .then(function (response) {
-        messageBox.success({
-          duration: 10000,
-          message: '成功提交InvokeOtherFeedback:' + response.toString(),
+        that.$message.success({
+          duration: that.messageBoxDurationConfig.success,
+          message: '成功提交',
           showClose: true
         });
         console.info(response);
       })
       .catch(function (error) {
-        messageBox.error({
-          duration: 10000,
+        that.$message.error({
+          duration: that.messageBoxDurationConfig.error,
           message: '错误:' + _parseError(error),
           showClose: true
         });

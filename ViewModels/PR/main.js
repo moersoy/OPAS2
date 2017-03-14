@@ -119,7 +119,7 @@
       }
     },
     eraseInvalidDetail(details) {
-      if (!details[details.length - 1].guid) {
+      if (details.length>0 && !details[details.length - 1].guid) {
         details.splice(-1, 1);
       }
     },
