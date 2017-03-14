@@ -28,10 +28,8 @@ namespace OPAS2.Controllers
     {
       var userDTO = (UserDTO)Session["currentUserDTO"];
       List<FlowTaskForUser> flowTaskForUsers = new List<FlowTaskForUser>();
-      using (var flowDb = new EnouFlowInstanceContext())
-      {
-        flowTaskForUsers = FlowInstanceHelper.GetFlowTaskForUserListOfUser(userDTO.guid, flowDb);
-      }
+      flowTaskForUsers = FlowInstanceHelper.GetFlowTaskForUserListOfUser(
+        userDTO.guid, flowDb);
 
       List<Models.FlowTask> tasks = flowTaskForUsers.Select(
         task => new Models.FlowTask(task, db)).ToList();

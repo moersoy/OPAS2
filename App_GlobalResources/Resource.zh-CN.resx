@@ -732,4 +732,16 @@
   <data name="G_SetDefault" xml:space="preserve">
     <value>设为默认</value>
   </data>
+  <data name="G_Invitations" xml:space="preserve">
+    <value>邀请</value>
+  </data>
+  <data name="G_MyPassedApplications" xml:space="preserve">
+    <value>成功申请</value>
+  </data>
+  <data name="G_MyWaitingApplications" xml:space="preserve">
+    <value>我的申请</value>
+  </data>
+  <data name="G_Tasks" xml:space="preserve">
+    <value>任务</value>
+  </data>
 </root>

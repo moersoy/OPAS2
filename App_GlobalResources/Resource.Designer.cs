@@ -682,6 +682,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invitations.
+        /// </summary>
+        internal static string G_Invitations {
+            get {
+                return ResourceManager.GetString("G_Invitations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invite opinion.
         /// </summary>
         internal static string G_InviteOther {
@@ -858,6 +867,24 @@ namespace Resources {
         internal static string G_Mobile {
             get {
                 return ResourceManager.GetString("G_Mobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My passed applications.
+        /// </summary>
+        internal static string G_MyPassedApplications {
+            get {
+                return ResourceManager.GetString("G_MyPassedApplications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My waiting applications .
+        /// </summary>
+        internal static string G_MyWaitingApplications {
+            get {
+                return ResourceManager.GetString("G_MyWaitingApplications", resourceCulture);
             }
         }
         
@@ -1344,6 +1371,15 @@ namespace Resources {
         internal static string G_SystemManager {
             get {
                 return ResourceManager.GetString("G_SystemManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        internal static string G_Tasks {
+            get {
+                return ResourceManager.GetString("G_Tasks", resourceCulture);
             }
         }
         

@@ -732,4 +732,16 @@
   <data name="G_SetDefault" xml:space="preserve">
     <value>Set default</value>
   </data>
+  <data name="G_Invitations" xml:space="preserve">
+    <value>Invitations</value>
+  </data>
+  <data name="G_MyPassedApplications" xml:space="preserve">
+    <value>My passed applications</value>
+  </data>
+  <data name="G_MyWaitingApplications" xml:space="preserve">
+    <value>My waiting applications </value>
+  </data>
+  <data name="G_Tasks" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
 </root>

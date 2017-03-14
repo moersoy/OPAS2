@@ -1,8 +1,79 @@
 ﻿@{
   ViewBag.Title = "Home Page";
 }
+<hr />
 <div class="row">
-  <div class="col-md-12 no-left-right-padding" style="box-shadow: 0 -1.1em 2em 2em #324157;">
-    <img src="~/images/Road.jpg" style="width: 100%;"/>
+  @*<div class="col-md-12 no-left-right-padding" style="box-shadow: 0 -1.1em 2em 2em #324157;">
+      <img src="~/images/Road.jpg" style="width: 100%;"/>
+    </div>*@
+  <div class="col-md-6">
+    <div class="panel panel-primary" style="max-height:240px;overflow-y:auto">
+      <div class="panel-heading">@Resources.Resource.G_Tasks</div>
+      <ul class="list-group">
+        @foreach (OPAS2.Models.FlowTask item in ViewBag.MyTasks)
+        {
+          <li class="list-group-item">
+            @item.documentTypeCode - 
+            @item.documentSubject - 
+            @Html.Action("DisplayNameById", "User", new { id = item.creatorUserId }) - 
+            @item.createTime.ToString("yyyy/MM/dd") -
+            @Html.ActionLink(Resources.Resource.G_Edit, "Edit", "FlowTaskForUser",
+            new
+            {
+              id = item.bizDocumentGuid,
+              documentTypeCode = item.documentTypeCode,
+              flowTaskForUserId = item.flowTaskForUserId
+            },null)
+          </li>
+        }
+      <li v-show="@ViewBag.MyTasks.Count==0" class="list-group-item">无记录</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-info" style="max-height:240px;overflow-y:auto">
+      <div class="panel-heading">@Resources.Resource.G_Invitations</div>
+      <ul class="list-group">
+        @foreach (OPAS2.Models.FlowTask item in ViewBag.InvitationTasks)
+        {
+          <li class="list-group-item">
+            @item.documentTypeCode -
+            @item.documentSubject -
+            @Html.Action("DisplayNameById", "User", new { id = item.creatorUserId }) -
+            @item.createTime.ToString("yyyy/MM/dd") -
+            @Html.ActionLink(Resources.Resource.G_Edit, "Edit", "FlowTaskForUser",
+                    new
+                    {
+                      id = item.bizDocumentGuid,
+                      documentTypeCode = item.documentTypeCode,
+                      flowTaskForUserId = item.flowTaskForUserId
+                    }, null)
+          </li>
+        }
+        <li v-show="@ViewBag.InvitationTasks.Count==0" class="list-group-item">无记录</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-success" style="max-height:300px;overflow-y:auto">
+      <div class="panel-heading">@Resources.Resource.G_MyWaitingApplications</div>
+      <ul class="list-group">
+        @foreach (EnouFlowInstanceLib.FlowInstance item in ViewBag.MyWaitingApplications)
+        {
+          <li class="list-group-item">
+            @item.bizDocumentTypeCode -
+            @Html.Action("DisplayNameByGuid", item.bizDocumentTypeCode, 
+              new { guid = item.bizDocumentGuid }) -
+            @item.currentActivityName -
+            @item.createTime.ToString("yyyy/MM/dd") -
+            @Html.ActionLink(Resources.Resource.G_Details, "Display",
+                      item.bizDocumentTypeCode, new { guid = item.bizDocumentGuid }, null)
+          </li>
+        }
+        <li v-show="@ViewBag.MyWaitingApplications.Count==0" class="list-group-item">无记录</li>
+      </ul>
+    </div>
   </div>
 </div>
