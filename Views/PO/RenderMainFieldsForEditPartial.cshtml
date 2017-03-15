@@ -126,7 +126,8 @@
   @Html.Label("* " + Resources.Resource.G_Vendor,
         htmlAttributes: new { @class = "control-label col-md-2" })
   <div class="col-md-10">
-    <select v-model="newItem.vendorId" style="max-width: 640px" class="form-control" required>
+    <select v-model="newItem.vendorId" v-on:change="vendorChanged"
+            style="max-width: 640px" class="form-control" required>
       <option v-for="option in masterData.vendorList" v-bind:value="option.id">
         {{ option.name }}
       </option>

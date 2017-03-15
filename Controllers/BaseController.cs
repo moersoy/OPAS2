@@ -207,10 +207,12 @@ namespace OPAS2.Controllers
     {
       ViewBag.vendorListJsonEncoded = encodeToBase64(
       JsonConvert.SerializeObject(
-        db.vendors.Select(
+        db.vendors.OrderBy(obj=>obj.vendorNo).Select(
           obj => new {
             id = obj.vendorId,
-            name = obj.chineseName,
+            name = obj.vendorNo + " - " + obj.chineseName,
+            contactPerson = obj.contactPerson,
+            contactPersonTel = obj.contactPersonTel
           }
           ).ToList()
         ));

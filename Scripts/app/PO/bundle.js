@@ -142,10 +142,20 @@
         currencyTypeChanged: function currencyTypeChanged(e) {
           var _this = this;
 
-          console.log(this.newItem.currencyTypeId);
           this.newItem.mainCurrencyRate = _.find(this.masterData.currencyRateList, function (o) {
             return o.id == _this.newItem.currencyTypeId;
           }).currencyRate || 1;
+        },
+        vendorChanged: function vendorChanged() {
+          var _this2 = this;
+
+          var _vendor = _.find(this.masterData.vendorList, function (o) {
+            return o.id == _this2.newItem.vendorId;
+          });
+          if (_vendor) {
+            this.newItem.vendorContactPerson = _vendor.contactPerson;
+            this.newItem.vendorTel = _vendor.contactPersonTel;
+          }
         }
       }
     });

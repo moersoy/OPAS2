@@ -133,5 +133,16 @@
             this.newItem.currencyTypeId
         }).currencyRate || 1;
     },
+    vendorChanged() {
+      var _vendor = _.find(this.masterData.vendorList,
+        (o) => {
+          return o.id ==
+            this.newItem.vendorId
+        });
+      if (_vendor){
+        this.newItem.vendorContactPerson = _vendor.contactPerson;
+        this.newItem.vendorTel = _vendor.contactPersonTel;
+      }
+    }
   }
 });

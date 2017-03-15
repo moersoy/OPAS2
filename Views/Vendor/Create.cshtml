@@ -24,19 +24,27 @@
 
     <div class="form-group">
       @Html.LabelFor(model => model.vendorNo,
-        Resources.Resource.G_VendorNo,
+        "*" + Resources.Resource.G_VendorNo,
         htmlAttributes: new { @class = "control-label col-md-2" })
       <div class="col-md-10">
-        @Html.EditorFor(model => model.vendorNo, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.vendorNo,
+          new { htmlAttributes = new {
+            @class = "form-control",
+            required = "true"
+          } })
       </div>
     </div>
 
     <div class="form-group">
       @Html.LabelFor(model => model.chineseName,
-        Resources.Resource.MD_ChineseName,
+        "*" + Resources.Resource.MD_ChineseName,
         htmlAttributes: new { @class = "control-label col-md-2" })
       <div class="col-md-10">
-        @Html.EditorFor(model => model.chineseName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.EditorFor(model => model.chineseName,
+          new { htmlAttributes = new {
+            @class = "form-control",
+            required = "true"
+          } })
       </div>
     </div>
 
@@ -105,7 +113,7 @@
 
     <div class="form-group">
       @Html.LabelFor(model => model.contactPerson,
-        Resources.Resource.G_ContactPerson,
+        "*" + Resources.Resource.G_ContactPerson,
         htmlAttributes: new { @class = "control-label col-md-2" })
       <div class="col-md-10">
         @Html.EditorFor(model => model.contactPerson, new { htmlAttributes = new { @class = "form-control" } })
@@ -114,7 +122,7 @@
 
     <div class="form-group">
       @Html.LabelFor(model => model.contactPersonTel,
-        Resources.Resource.G_ContactPersonTel,
+        "*" + Resources.Resource.G_ContactPersonTel,
         htmlAttributes: new { @class = "control-label col-md-2" })
       <div class="col-md-10">
         @Html.EditorFor(model => model.contactPersonTel, new { htmlAttributes = new { @class = "form-control" } })
