@@ -115,6 +115,21 @@
         return false;
       });
     },
+    onAskSubmitRejectToStartFlowAction() {
+      this.$confirm('此操作将退回申请人, 是否继续? / Reject to the creator?',
+        '请三思 / Confirm', {
+          confirmButtonText: '确定 / Confirm',
+          cancelButtonText: '取消 / Cancel',
+          type: 'warning'
+        }).then(() => {
+          this.onSubmitRejectToStartFlowAction();
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消退回  / Operation cancelled'
+          });
+        });
+    },
     onSubmitRejectToStartFlowAction() {
       // 克隆业务对象并删除无需上传的部分
       var examineItemClone = Object.assign({}, this.examineItem);
