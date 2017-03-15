@@ -91,6 +91,14 @@
     },
     handleDeleteDetail(index, row) {
       this.newItem.PRDetails.splice(index, 1);
+      this.newItem.estimatedCostInRMB = _.sumBy(
+        this.newItem.PRDetails, detail => {
+          if (detail.guid) {
+            return detail.estimatedCost || 0;
+          } else {
+            return 0;
+          }
+      });
     },
     handleAppendDetailNew(index, row) {
       if (row.guid) { // existed record
@@ -117,6 +125,14 @@
           }
         );
       }
+      this.newItem.estimatedCostInRMB = _.sumBy(
+        this.newItem.PRDetails, detail => {
+          if (detail.guid) {
+            return detail.estimatedCost || 0;
+          } else {
+            return 0;
+          }
+      });
     },
     eraseInvalidDetail(details) {
       if (details.length>0 && !details[details.length - 1].guid) {

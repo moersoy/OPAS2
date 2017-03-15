@@ -103,6 +103,13 @@
         },
         handleDeleteDetail: function handleDeleteDetail(index, row) {
           this.newItem.PRDetails.splice(index, 1);
+          this.newItem.estimatedCostInRMB = _.sumBy(this.newItem.PRDetails, function (detail) {
+            if (detail.guid) {
+              return detail.estimatedCost || 0;
+            } else {
+              return 0;
+            }
+          });
         },
         handleAppendDetailNew: function handleAppendDetailNew(index, row) {
           if (row.guid) {
@@ -128,9 +135,16 @@
               description: ''
             });
           }
+          this.newItem.estimatedCostInRMB = _.sumBy(this.newItem.PRDetails, function (detail) {
+            if (detail.guid) {
+              return detail.estimatedCost || 0;
+            } else {
+              return 0;
+            }
+          });
         },
         eraseInvalidDetail: function eraseInvalidDetail(details) {
-          if (!details[details.length - 1].guid) {
+          if (details.length > 0 && !details[details.length - 1].guid) {
             details.splice(-1, 1);
           }
         }
