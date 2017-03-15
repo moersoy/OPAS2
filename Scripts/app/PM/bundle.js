@@ -41,7 +41,7 @@
           description: initBag.bizData.description || '',
           mainCurrencyRate: initBag.bizData.mainCurrencyRate || 1,
           vendorBankName: initBag.bizData.vendorBankName || '',
-          vendorBankAccount: initBag.bizData.vendorBankName || '',
+          vendorBankAccount: initBag.bizData.vendorBankAccount || '',
           SWIFTCode: initBag.bizData.SWIFTCode || '',
           applicantName: initBag.bizData.applicantName || '',
           applicantEmail: initBag.bizData.applicantEmail || '',

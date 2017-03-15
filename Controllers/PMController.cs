@@ -42,6 +42,9 @@ namespace OPAS2.Controllers
       Department department = orgDb.departments.Find(po.departmentId);
 
       #region 业务单据相关初始数据
+      var vendorBank = po.Vendor.banks.Where(
+        obj => obj.vendorId == po.vendorId &&
+                obj.isVisible && obj.isDefaultBank).FirstOrDefault();
       ViewBag.bizDataJsonEncoded = encodeToBase64(
         JsonConvert.SerializeObject(new
         {
@@ -49,6 +52,9 @@ namespace OPAS2.Controllers
           applicantEmail = user.email,
           applicantPhone = user.officeTel,
           mainCurrencyRate = po.mainCurrencyRate,
+          vendorBankName = vendorBank!=null ? vendorBank.bankName : "",
+          vendorBankAccount = vendorBank != null ? vendorBank.bankAccount : "",
+          SWIFTCode = vendorBank != null ? vendorBank.SWIFTCode : "",
           isDownPayment = false,
           isNormalPayment = true,
           isImmediatePayment = false,
