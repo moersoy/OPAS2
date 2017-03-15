@@ -68,7 +68,7 @@ namespace OPAS2.Controllers
           departmentIdBelongTo = department.departmentId,
           currencyTypeId = 0,
           mainCurrencyRate = 1,
-          vendorId = 0,
+          //vendorId = null,
           vendorContactPerson = "",
           vendorTel = "",
           orderDate = "",
