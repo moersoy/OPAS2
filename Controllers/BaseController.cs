@@ -153,6 +153,14 @@ namespace OPAS2.Controllers
       ViewBag.departmentSelectList = new SelectList(departments, "departmentId", "name");
     }
 
+    protected void SetSelectListOfCostCenter(OPAS2DbContext OPASDb)
+    {
+      var costCenters = OPASDb.costCenters.ToList().Select(obj=>
+        new { costCenterId= obj.costCenterId,
+          name = obj.chineseName + " / " + obj.englishName });
+
+      ViewBag.costCenterSelectList = new SelectList(costCenters, "costCenterId", "name");
+    }
     #endregion
 
     #region 为各主数据生成可选列表的JSON

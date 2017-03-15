@@ -149,8 +149,12 @@ namespace OPAS2.Controllers
       ViewBag.currentMenuIndex = "PR-NEW";
 
       ViewBag.guid = Guid.NewGuid().ToString();
-      User user = orgDb.users.Find(((UserDTO)Session["currentUserDTO"]).userId);
-      Department department = user.getDepartmentsBelongTo(orgDb, true).FirstOrDefault();
+      User user = orgDb.users.Find(
+        ((UserDTO)Session["currentUserDTO"]).userId);
+      Department department = user.
+        getDepartmentsBelongTo(orgDb, true).FirstOrDefault();
+      CostCenter costCenter = OPAS2ModelDBHelper.
+        getUserCostCenter(user.userId, db);
 
       #region 业务数据基本字段
       ViewBag.bizDataJsonEncoded = encodeToBase64(
@@ -160,6 +164,8 @@ namespace OPAS2.Controllers
           contactMobile = user.personalMobile,
           departmentId = department.departmentId,
           departmentIdBelongTo = department.departmentId,
+          costCenterId = (costCenter != null ? 
+                          costCenter.costCenterId : 0),
           isFirstBuy = true,
           isBidingRequired = true,
           reason = "For: ",

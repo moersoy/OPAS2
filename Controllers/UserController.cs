@@ -36,9 +36,8 @@ namespace OPAS2.Controllers
     [UserLogon]
     public ActionResult Create()
     {
-      //var departments = OrgMgmtDBHelper.getAllDepartmentDTOs(db);
-      //ViewBag.selectList = new SelectList(departments, "departmentId", "name");
       SetSelectListOfDepartment(db);
+      SetSelectListOfCostCenter(OPASDb);
       return View();
     }
 
@@ -47,9 +46,9 @@ namespace OPAS2.Controllers
     [UserLogon]
     public ActionResult Create(FormCollection collection)
     {
+      var obj = OrgMgmtDBHelper.createUser(db);
       try
       {
-        var obj = OrgMgmtDBHelper.createUser(db);
         obj.name = collection["name"];
         obj.code = collection["code"];
         obj.indexNumber = collection["indexNumber"];
@@ -72,18 +71,26 @@ namespace OPAS2.Controllers
 
         OrgMgmtDBHelper.saveCreatedUser(obj, db);
 
+        // 设置部门隶属关系
         var department = db.departments.Find(int.Parse(collection["departmentId"]));
         if (department != null)
         {
           OrgMgmtDBHelper.saveDepartmentUserRelation(department, obj, db);
+        }
+        // 设置成本中心隶属关系
+        var costCenter = OPASDb.costCenters.Find(int.Parse(collection["costCenterId"]));
+        if (costCenter != null)
+        {
+          OPAS2ModelDBHelper.setUserCostCenter(
+            costCenter.costCenterId, obj.userId, obj.guid, OPASDb);
         }
 
         return RedirectToAction("Index");
       }
       catch (Exception ex)
       {
-
-        return View();
+        ViewBag.backendError = ex.Message;
+        return View(obj);
       }
     }
 
@@ -91,13 +98,74 @@ namespace OPAS2.Controllers
     [UserLogon]
     public ActionResult Edit(string id)
     {
-      var departments = OrgMgmtDBHelper.getAllDepartmentDTOs(db);
-      ViewBag.selectList = new SelectList(departments, "departmentId", "name");
+      SetSelectListOfDepartment(db);
+      SetSelectListOfCostCenter(OPASDb);
 
-      var user = OrgMgmtDBHelper.convertUser2DTO(db.users.Where(_user =>
+      var user = OrgMgmtDBHelper.convertUser2DTO(
+        db.users.Where(_user =>
         _user.guid == id).FirstOrDefault(), db);
 
+      ViewBag.costCenterId = 0;
+      var costCenter = OPAS2ModelDBHelper.getUserCostCenter(
+        user.userId, OPASDb);
+      if (costCenter != null)
+      {
+        ViewBag.costCenterId = costCenter.costCenterId;
+      }
+
       return View(user);
+    }
+
+    // POST: User/Edit/5
+    [UserLogon]
+    [HttpPost]
+    public ActionResult Edit(string id, FormCollection collection)
+    {
+      var obj = db.users.Where(_user =>
+        _user.guid == id).FirstOrDefault();
+
+      try
+      {
+        obj.name = collection["name"];
+        obj.code = collection["code"];
+        obj.indexNumber = collection["indexNumber"];
+        obj.displayName = collection["displayName"];
+        obj.englishName = collection["englishName"];
+        if (!string.IsNullOrWhiteSpace(collection["email"]))
+        {
+          obj.email = collection["email"];
+        }
+        obj.logonName = collection["logonName"];
+        #region password processing
+        string logonPasswordOrigin = collection["logonPassword"];
+        if (!string.IsNullOrWhiteSpace(logonPasswordOrigin))
+        {
+          var PasswordHashAndSalt = OrgMgmtDBHelper.generatePasswordHashAndSalt(logonPasswordOrigin);
+          obj.logonPasswordHash = PasswordHashAndSalt.Item1;
+          obj.logonSalt = PasswordHashAndSalt.Item2;
+        }
+        #endregion
+        obj.officeTel = collection["officeTel"];
+        obj.personalTel = collection["personalTel"];
+        obj.personalMobile = collection["personalMobile"];
+
+        db.SaveChanges();
+
+        // 设置成本中心隶属关系
+        var costCenter = OPASDb.costCenters.Find(int.Parse(collection["costCenterId"]));
+        if (costCenter != null)
+        {
+          OPAS2ModelDBHelper.setUserCostCenter(
+            costCenter.costCenterId, obj.userId, obj.guid, OPASDb);
+        }
+
+        return RedirectToAction("Index");
+      }
+      catch (Exception ex)
+      {
+        ViewBag.backendError = ex.Message;
+        return View(obj);
+      }
     }
 
     [HttpGet]
@@ -128,14 +196,14 @@ namespace OPAS2.Controllers
           List<Role> roles = user.getRolesBelongTo(db, true);
           var roleFunctionPermissions = roles.ConvertAll(role =>
             OPAS2ModelDBHelper.getDirectFunctionPermissionsOfRole(role.roleId, OPASDb)).
-            Aggregate(new List<FunctionPermission>(), 
+            Aggregate(new List<FunctionPermission>(),
               (list, next) => { list.AddRange(next); return list; });
           userFunctionPermissions.AddRange(roleFunctionPermissions);
           //计算用户权限列表并存入Session用于前端功能权限判定
-          Session["functionPermissionCodes"] = 
+          Session["functionPermissionCodes"] =
             userFunctionPermissions.Distinct().Select(f => f.code).ToList();
 
-          return RedirectToAction("Index","Home",null);
+          return RedirectToAction("Index", "Home", null);
         }
       }
       return View(); // 继续显示登陆界面
@@ -146,48 +214,6 @@ namespace OPAS2.Controllers
     {
       Session.RemoveAll();
       return RedirectToAction("Logon");
-    }
-
-    // POST: User/Edit/5
-    [UserLogon]
-    [HttpPost]
-    public ActionResult Edit(string id, FormCollection collection)
-    {
-      try
-      {
-        var obj = db.users.Where(_user =>
-          _user.guid == id).FirstOrDefault();
-        obj.name = collection["name"];
-        obj.code = collection["code"];
-        obj.indexNumber = collection["indexNumber"];
-        obj.displayName = collection["displayName"];
-        obj.englishName = collection["englishName"];
-        if (!string.IsNullOrWhiteSpace(collection["email"]))
-        {
-          obj.email = collection["email"];
-        }
-        obj.logonName = collection["logonName"];
-        #region password processing
-        string logonPasswordOrigin = collection["logonPassword"];
-        if (!string.IsNullOrWhiteSpace(logonPasswordOrigin))
-        { 
-          var PasswordHashAndSalt = OrgMgmtDBHelper.generatePasswordHashAndSalt(logonPasswordOrigin);
-          obj.logonPasswordHash = PasswordHashAndSalt.Item1;
-          obj.logonSalt = PasswordHashAndSalt.Item2;
-        }
-        #endregion
-        obj.officeTel = collection["officeTel"];
-        obj.personalTel = collection["personalTel"];
-        obj.personalMobile = collection["personalMobile"];
-
-        db.SaveChanges();
-
-        return RedirectToAction("Index");
-      }
-      catch
-      {
-        return View();
-      }
     }
 
     public ActionResult ShowFirstDepartment(int id)
@@ -213,12 +239,6 @@ namespace OPAS2.Controllers
 
       return Content(result, "text/html");
     }
-
-
-
-
-
-
 
     // GET: User/Delete/5
     public ActionResult Delete(int id)
