@@ -466,6 +466,7 @@ namespace OPAS2.Controllers
       PrepareSelectListOfUnitMeasure();
       PrepareSelectListOfDepartment(orgDb);
       PrepareSelectListOfCurrencyType(db);
+      PrepareSelectListOfCurrencyRate(db);
       PrepareSelectListOfCostCenter(db);
       PrepareSelectListOfVendor(db);
       PrepareSelectListOfPOType();

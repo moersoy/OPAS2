@@ -92,6 +92,7 @@
           unitMeasureTypes: initBag.unitMeasureTypes,
           departmentList: initBag.departmentList,
           currencyTypeList: initBag.currencyTypeList,
+          currencyRateList: initBag.currencyRateList,
           costCenterList: initBag.costCenterList,
           vendorList: initBag.vendorList,
           POTypes: initBag.POTypes
@@ -137,6 +138,14 @@
           if (!details[details.length - 1].guid) {
             details.splice(-1, 1);
           }
+        },
+        currencyTypeChanged: function currencyTypeChanged(e) {
+          var _this = this;
+
+          console.log(this.newItem.currencyTypeId);
+          this.newItem.mainCurrencyRate = _.find(this.masterData.currencyRateList, function (o) {
+            return o.id == _this.newItem.currencyTypeId;
+          }).currencyRate || 1;
         }
       }
     });

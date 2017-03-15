@@ -78,6 +78,7 @@
       unitMeasureTypes: initBag.unitMeasureTypes,
       departmentList: initBag.departmentList,
       currencyTypeList: initBag.currencyTypeList,
+      currencyRateList: initBag.currencyRateList,
       costCenterList: initBag.costCenterList,
       vendorList: initBag.vendorList,
       POTypes: initBag.POTypes,
@@ -124,6 +125,13 @@
       if (!details[details.length - 1].guid) {
         details.splice(-1, 1);
       }
+    },
+    currencyTypeChanged(e) {
+      this.newItem.mainCurrencyRate = _.find(
+        this.masterData.currencyRateList, (o) => {
+          return o.id ==
+            this.newItem.currencyTypeId
+        }).currencyRate || 1;
     },
   }
 });

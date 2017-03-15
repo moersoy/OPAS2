@@ -24,6 +24,8 @@
   '@Html.Raw(ViewBag.departmentListJsonEncoded)'));
   initBag.currencyTypeList = JSON.parse(Base64.decode(
     '@Html.Raw(ViewBag.currencyTypeListJsonEncoded)'));
+  initBag.currencyRateList = JSON.parse(Base64.decode(
+    '@Html.Raw(ViewBag.currencyRateListJsonEncoded)'));
   initBag.costCenterList = JSON.parse(Base64.decode(
     '@Html.Raw(ViewBag.costCenterListJsonEncoded)'));
   initBag.vendorList = JSON.parse(Base64.decode(

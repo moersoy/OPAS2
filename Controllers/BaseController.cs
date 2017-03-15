@@ -216,6 +216,21 @@ namespace OPAS2.Controllers
         ));
     }
 
+    protected void PrepareSelectListOfCurrencyRate(OPAS2DbContext db)
+    {
+      ViewBag.currencyRateListJsonEncoded = encodeToBase64(
+        JsonConvert.SerializeObject(
+          db.currencyTypes.Select(obj => new {
+            id = obj.currencyTypeId,
+            currencyRate = db.currencyHistoryRecords.Where(
+              history => history.currencyTypeId==obj.currencyTypeId).
+                OrderByDescending(record=>record.effectiveDateFrom).
+                  FirstOrDefault().effectiveRate
+          })
+        )
+      );
+    }
+
     protected void PrepareSelectListOfPOType()
     {
       ViewBag.POTypeListJsonEncoded = encodeToBase64(
