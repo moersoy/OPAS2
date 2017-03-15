@@ -16,17 +16,11 @@
     var v = new Vue({
       el: '#app',
       data: {
-        workingMode: workingMode,
         message: 'Home'
       },
       mixins: [opas_vue_public_mixin],
       methods: {
-        handleOpen: function handleOpen(key, keyPath) {
-          console.log(key, keyPath);
-        },
-        handleClose: function handleClose(key, keyPath) {
-          console.log(key, keyPath);
-        }
+        otherMountedActions: function otherMountedActions() {}
       },
       computed: {}
     });

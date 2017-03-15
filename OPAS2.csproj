@@ -283,6 +283,7 @@
     <Content Include="Scripts\raphael.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\simple-float-math.js" />
     <Content Include="Scripts\vue-element-ui.js" />
     <Content Include="Scripts\vue-2.1.0.js" />
     <Content Include="Scripts\webtoolkitbase64.js" />

@@ -37,6 +37,8 @@ namespace OPAS2
             "~/Scripts/lodash.js"));
       bundles.Add(new ScriptBundle("~/bundles/guid").Include(
             "~/Scripts/guid.js"));
+      bundles.Add(new ScriptBundle("~/bundles/simple-float-math").Include(
+  "~/Scripts/simple-float-math.js"));
       bundles.Add(new ScriptBundle("~/bundles/webtoolkitbase64").Include(
             "~/Scripts/webtoolkitbase64.js"));
       bundles.Add(new ScriptBundle("~/bundles/axios").Include(
