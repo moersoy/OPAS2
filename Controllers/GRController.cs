@@ -151,8 +151,7 @@ namespace OPAS2.Controllers
             quantity = db.purchaseOrderDetails.Find(
               detail.purchaseOrderDetailId).quantity,
             receivingQuantity = detail.quantity,
-            receivedQuantity =  db.purchaseOrderDetails.Find(
-              detail.purchaseOrderDetailId).receivedQuantity,
+            receivedQuantity =  detail.PurchaseOrderDetail.receivedQuantity,
             amount = detail.amount,
             paidAmount = db.purchaseOrderDetails.Find(
               detail.purchaseOrderDetailId).paidAmount,
