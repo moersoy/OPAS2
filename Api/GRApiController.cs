@@ -199,6 +199,14 @@ namespace OPAS2.Api
       }
       #endregion
 
+      if(gr.bizDocumentFlowState== EnumBizDocumentFlowState.StoppedValid)
+      { // 收货流程审批完毕,需要更新对应的PO明细表的已收货数量
+        gr.details.ForEach(grDtl => {
+          grDtl.PurchaseOrderDetail.receivedQuantity += grDtl.quantity;
+        });
+      }
+      db.SaveChanges();
+
       return Ok("成功提交 / Sucessfully submitted.");
     }
 
