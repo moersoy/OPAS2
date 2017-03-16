@@ -13,7 +13,7 @@
     </el-table-column>
 
     <el-table-column label="@Resources.Resource.G_ItemName"
-                     width="170" align="center">
+                     width="140" align="center">
       <template scope="scope">
         <span class="text-in-table-cell">
           {{ scope.row.itemName }}
@@ -48,15 +48,6 @@
       </template>
     </el-table-column>
 
-    <el-table-column label="@Resources.Resource.G_ReceivedQuantity"
-                     width="100" align="center">
-      <template scope="scope">
-        <span class="text-in-table-cell">
-          {{ scope.row.receivedQuantity }}
-        </span>
-      </template>
-    </el-table-column>
-
     <el-table-column label="* @Resources.Resource.G_Quantity"
                      width="100" align="center">
       <template scope="scope">
@@ -70,6 +61,24 @@
       <template scope="scope">
         <span style="margin-left: 5px">
           {{ Math._mul((scope.row.price || 0) , (scope.row.payingQuantity || 0)) }}
+        </span>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.G_ReceivedQuantity"
+                     width="100" align="center" style="color: rgb(150, 150, 150);">
+      <template scope="scope">
+        <span class="text-in-table-cell" style="color: rgb(150, 150, 150);">
+          {{ scope.row.receivedQuantity }}
+        </span>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="@Resources.Resource.G_PaidQuantity"
+                     width="100" align="center">
+      <template scope="scope">
+        <span class="text-in-table-cell" style="color: rgb(150, 150, 150);">
+          {{ scope.row.paidQuantity }}
         </span>
       </template>
     </el-table-column>

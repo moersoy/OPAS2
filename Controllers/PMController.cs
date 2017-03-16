@@ -74,6 +74,7 @@ namespace OPAS2.Controllers
               unitMeasure = detail.unitMeasure,
               price = detail.price,
               quantity = detail.quantity,
+              paidQuantity = detail.paidQuantity,
               payingQuantity = 0.0,
               receivedQuantity = detail.receivedQuantity,
               amount = detail.amount,
@@ -170,6 +171,7 @@ namespace OPAS2.Controllers
             price = detail.price,
             quantity = db.purchaseOrderDetails.Find(
               detail.purchaseOrderDetailId).quantity,
+            paidQuantity = detail.PurchaseOrderDetail.paidQuantity,
             payingQuantity = detail.quantity,
             receivedQuantity = db.purchaseOrderDetails.Find(
               detail.purchaseOrderDetailId).receivedQuantity,

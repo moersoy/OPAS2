@@ -744,4 +744,7 @@
   <data name="G_Tasks" xml:space="preserve">
     <value>Tasks</value>
   </data>
+  <data name="G_PaidQuantity" xml:space="preserve">
+    <value>Paid quantity</value>
+  </data>
 </root>

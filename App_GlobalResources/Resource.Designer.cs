@@ -997,6 +997,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paid quantity.
+        /// </summary>
+        internal static string G_PaidQuantity {
+            get {
+                return ResourceManager.GetString("G_PaidQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paid time.
         /// </summary>
         internal static string G_PaidTime {
