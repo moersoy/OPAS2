@@ -165,6 +165,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AttachFileController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FlowDynamicUserController.cs" />
     <Compile Include="Controllers\FlowInstanceController.cs" />
     <Compile Include="Controllers\FlowTaskForUserController.cs" />
     <Compile Include="Controllers\FlowTemplateController.cs" />
@@ -236,6 +237,7 @@
     <Content Include="Scripts\app\CurrencyRate\bundle.js" />
     <Content Include="Scripts\app\CurrencyType\bundle.js" />
     <Content Include="Scripts\app\Department\bundle.js" />
+    <Content Include="Scripts\app\FlowDynamicUser\bundle.js" />
     <Content Include="Scripts\app\FlowInstance\bundle.js" />
     <Content Include="Scripts\app\FlowTaskForUser\bundle.js" />
     <Content Include="Scripts\app\FlowTemplate\bundle.js" />
@@ -294,6 +296,7 @@
     <Content Include="ViewModels\CurrencyRate\main.js" />
     <Content Include="ViewModels\CurrencyType\main.js" />
     <Content Include="ViewModels\Department\main.js" />
+    <Content Include="ViewModels\FlowDynamicUser\main.js" />
     <Content Include="ViewModels\FlowInstance\main.js" />
     <Content Include="ViewModels\FlowTaskForUser\main.js" />
     <Content Include="ViewModels\FlowTemplate\main.js" />
@@ -450,6 +453,8 @@
     <Content Include="Views\Shared\_Layout_Top_Nav_Bar_Partial.cshtml" />
     <Content Include="Views\VendorBank\Create.cshtml" />
     <Content Include="Views\VendorBank\Edit.cshtml" />
+    <Content Include="Views\FlowDynamicUser\Index.cshtml" />
+    <Content Include="Views\FlowDynamicUser\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

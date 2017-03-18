@@ -747,4 +747,10 @@
   <data name="G_PaidQuantity" xml:space="preserve">
     <value>已付数量</value>
   </data>
+  <data name="G_Script" xml:space="preserve">
+    <value>脚本代码</value>
+  </data>
+  <data name="MENU_FlowDynamicUsers" xml:space="preserve">
+    <value>流程动态用户</value>
+  </data>
 </root>

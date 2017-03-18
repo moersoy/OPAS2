@@ -747,4 +747,10 @@
   <data name="G_PaidQuantity" xml:space="preserve">
     <value>Paid quantity</value>
   </data>
+  <data name="G_Script" xml:space="preserve">
+    <value>Script code</value>
+  </data>
+  <data name="MENU_FlowDynamicUsers" xml:space="preserve">
+    <value>Dynamic users</value>
+  </data>
 </root>

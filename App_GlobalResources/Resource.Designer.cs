@@ -1285,6 +1285,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Script code.
+        /// </summary>
+        internal static string G_Script {
+            get {
+                return ResourceManager.GetString("G_Script", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set default.
         /// </summary>
         internal static string G_SetDefault {
@@ -1740,6 +1749,15 @@ namespace Resources {
         internal static string MENU_EffectivePRs {
             get {
                 return ResourceManager.GetString("MENU_EffectivePRs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamic users.
+        /// </summary>
+        internal static string MENU_FlowDynamicUsers {
+            get {
+                return ResourceManager.GetString("MENU_FlowDynamicUsers", resourceCulture);
             }
         }
         

@@ -1,0 +1,79 @@
+﻿@model EnouFlowTemplateLib.FlowDynamicUser
+
+@{
+  ViewBag.Title = "Create";
+}
+
+@section init_scripts {
+  <script type="text/javascript">
+  var initBag={};
+  initBag.backendError = "@ViewBag.backendError";
+  </script>
+}
+
+<h3>@Resources.Resource.G_Create</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <h4>@Resources.Resource.MENU_FlowDynamicUsers</h4>
+    <hr />
+    <div class="form-group">
+      @Html.LabelFor(model => model.name, "* " + @Resources.Resource.G_Name, 
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.name, new { htmlAttributes = 
+          new { @class = "form-control", required= "true" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.displayName, @Resources.Resource.G_DisplayName,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.displayName, 
+          new { htmlAttributes = new { @class = "form-control" } })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.memo, @Resources.Resource.G_Memo,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.TextAreaFor(model => model.memo,
+          new { @class = "form-control", rows = 3 })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.script, @Resources.Resource.G_Script,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.TextAreaFor(model => model.script, 
+          new { @class = "form-control", rows=10 })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.LabelFor(model => model.isPublished, @Resources.Resource.G_IsPublished,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        <div class="checkbox">
+          @Html.EditorFor(model => model.isPublished)
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="@Resources.Resource.G_Create" class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+
+<div>
+  @Html.ActionLink(@Resources.Resource.G_BackToList, "Index")
+</div>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<EnouFlowTemplateLib.FlowDynamicUser>
+
+@section init_scripts {
+  <script type="text/javascript">
+    var initBag = {};
+  </script>
+}
+<h3>@Resources.Resource.MENU_FlowDynamicUsers</h3>
+<p>
+  @Html.ActionLink(@Resources.Resource.G_Create, "Create")
+</p>
+<table class="table">
+  <tr>
+    <th>
+      @Resources.Resource.G_Name
+    </th>
+    <th>
+      @Resources.Resource.G_DisplayName
+    </th>
+    <th>
+      @Resources.Resource.G_Memo
+    </th>
+    <th>
+      @Resources.Resource.G_IsPublished
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.name)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.displayName)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.memo)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.isPublished)
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Edit, 
+          "Edit", new { id = item.flowDynamicUserId }) |
+        @Html.ActionLink(Resources.Resource.G_Details, 
+          "Details", new { id = item.flowDynamicUserId })
+      </td>
+    </tr>
+  }
+
+</table>
