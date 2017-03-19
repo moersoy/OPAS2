@@ -753,4 +753,7 @@
   <data name="MENU_FlowDynamicUsers" xml:space="preserve">
     <value>Dynamic users</value>
   </data>
+  <data name="G_TogglePublishState" xml:space="preserve">
+    <value>Toggle publish</value>
+  </data>
 </root>

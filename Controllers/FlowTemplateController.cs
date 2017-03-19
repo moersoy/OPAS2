@@ -39,5 +39,18 @@ namespace OPAS2.Controllers
       ViewBag.templateJsonEncoded = encodeToBase64(obj.flowTemplateJson);
       return View(obj);
     }
+
+    // GET: FlowTemplate/TogglePublish/5b354131-f2ea-489d-8fc6-119676fdcebe
+    [UserLogon]
+    public ActionResult TogglePublish(string guid)
+    {
+      var obj = FlowTemplateDBHelper.getFlowTemplate(guid);
+      if (obj != null)
+      {
+        FlowTemplateDBHelper.togglePublishOfFlowTemplate(obj.flowTemplateId);
+      }
+
+      return RedirectToAction("Index");
+    }
   }
 }

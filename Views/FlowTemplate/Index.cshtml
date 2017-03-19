@@ -51,7 +51,9 @@
       </td>
       <td>
         @Html.ActionLink(@Resources.Resource.G_FlowChart, 
-          "Details", new { guid = item.guid })
+          "Details", new { guid = item.guid }) |
+        @Html.ActionLink(@Resources.Resource.G_TogglePublishState,
+          "TogglePublish", new { guid = item.guid })
       </td>
     </tr>
   }

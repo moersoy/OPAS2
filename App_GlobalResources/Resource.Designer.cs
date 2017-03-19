@@ -1402,6 +1402,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Toggle publish.
+        /// </summary>
+        internal static string G_TogglePublishState {
+            get {
+                return ResourceManager.GetString("G_TogglePublishState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total records count:.
         /// </summary>
         internal static string G_TotalRecordsCount {

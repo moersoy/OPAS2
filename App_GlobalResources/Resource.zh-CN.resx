@@ -753,4 +753,7 @@
   <data name="MENU_FlowDynamicUsers" xml:space="preserve">
     <value>流程动态用户</value>
   </data>
+  <data name="G_TogglePublishState" xml:space="preserve">
+    <value>切换发布状态</value>
+  </data>
 </root>
