@@ -32,6 +32,15 @@
     </div>
 
     <div class="form-group">
+      @Html.Label("* " + Resources.Resource.G_UserPosition,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.DropDownList("userPosition", (SelectList)ViewBag.userPositionToDepartmentSelectList,
+          Resources.Resource.G_PleaseChoose, new { @class = "form-control", required = "true" })
+      </div>
+    </div>
+
+    <div class="form-group">
       @Html.Label("* " + Resources.Resource.MD_CostCenter, 
         htmlAttributes: new { @class = "control-label col-md-2" })
       <div class="col-md-10">

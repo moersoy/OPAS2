@@ -83,7 +83,7 @@ namespace OPAS2.Controllers
     {
       var flowTemplates = FlowTemplateDBHelper.getAvailableFlowTemplatesByCode(flowTemplateCode).ToList();
 
-      var flowTemplate = 
+      var flowTemplate =
         flowTemplates.OrderByDescending(t => t.version).FirstOrDefault();
 
       if (flowTemplate == null)
@@ -155,11 +155,24 @@ namespace OPAS2.Controllers
 
     protected void SetSelectListOfCostCenter(OPAS2DbContext OPASDb)
     {
-      var costCenters = OPASDb.costCenters.ToList().Select(obj=>
-        new { costCenterId= obj.costCenterId,
-          name = obj.chineseName + " / " + obj.englishName });
+      var costCenters = OPASDb.costCenters.ToList().Select(obj =>
+        new
+        {
+          costCenterId = obj.costCenterId,
+          name = obj.chineseName + " / " + obj.englishName
+        });
 
       ViewBag.costCenterSelectList = new SelectList(costCenters, "costCenterId", "name");
+    }
+
+    protected void SetSelectListOfUserPositionToDepartment()
+    {
+      ViewBag.userPositionToDepartmentSelectList =
+        new SelectList(new List<dynamic>() {
+        new {id=(int)UserPositionToDepartment.normal, name="Normal / 一般人员"},
+        new {id=(int)UserPositionToDepartment.manager, name="Head / 管理人员"},
+        new {id=(int)UserPositionToDepartment.temporary, name="Temporary / 临时人员"},
+      }, "id", "name");
     }
     #endregion
 
@@ -169,7 +182,8 @@ namespace OPAS2.Controllers
       ViewBag.departmentListJsonEncoded = encodeToBase64(
       JsonConvert.SerializeObject(
         OrgMgmtDBHelper.getAllDepartmentDTOs(orgDb).Select(
-          obj => new {
+          obj => new
+          {
             id = obj.departmentId,
             name = obj.name
           }
@@ -182,9 +196,10 @@ namespace OPAS2.Controllers
       ViewBag.currencyTypeListJsonEncoded = encodeToBase64(
       JsonConvert.SerializeObject(
         db.currencyTypes.Select(
-          obj => new {
+          obj => new
+          {
             id = obj.currencyTypeId,
-            name =  obj.name
+            name = obj.name
           }
           ).ToList()
         ));
@@ -195,7 +210,8 @@ namespace OPAS2.Controllers
       ViewBag.costCenterListJsonEncoded = encodeToBase64(
       JsonConvert.SerializeObject(
         db.costCenters.Select(
-          obj => new {
+          obj => new
+          {
             id = obj.costCenterId,
             name = obj.chineseName + " / " + obj.englishName,
           }
@@ -207,8 +223,9 @@ namespace OPAS2.Controllers
     {
       ViewBag.vendorListJsonEncoded = encodeToBase64(
       JsonConvert.SerializeObject(
-        db.vendors.OrderBy(obj=>obj.vendorNo).Select(
-          obj => new {
+        db.vendors.OrderBy(obj => obj.vendorNo).Select(
+          obj => new
+          {
             id = obj.vendorId,
             name = obj.vendorNo + " - " + obj.chineseName,
             contactPerson = obj.contactPerson,
@@ -222,11 +239,12 @@ namespace OPAS2.Controllers
     {
       ViewBag.currencyRateListJsonEncoded = encodeToBase64(
         JsonConvert.SerializeObject(
-          db.currencyTypes.Select(obj => new {
+          db.currencyTypes.Select(obj => new
+          {
             id = obj.currencyTypeId,
             currencyRate = db.currencyHistoryRecords.Where(
-              history => history.currencyTypeId==obj.currencyTypeId).
-                OrderByDescending(record=>record.effectiveDateFrom).
+              history => history.currencyTypeId == obj.currencyTypeId).
+                OrderByDescending(record => record.effectiveDateFrom).
                   FirstOrDefault().effectiveRate
           })
         )
@@ -267,15 +285,15 @@ namespace OPAS2.Controllers
 
     #region 流程任务相关
     protected List<FlowTask> getValidInviteOtherFeedbackTasks(
-      int originFlowTaskForUserId, 
+      int originFlowTaskForUserId,
       EnouFlowInstanceContext flowInstDb,
       OPAS2DbContext oPAS2Db)
     {
       var _tasksInDb = flowInstDb.flowTaskForUsers.Where(
         t => t.relativeFlowTaskForUserId == originFlowTaskForUserId)
         .ToList();
-      if(_tasksInDb != null && _tasksInDb.Count()>0)
-      { 
+      if (_tasksInDb != null && _tasksInDb.Count() > 0)
+      {
         return _tasksInDb.Select(t => new FlowTask(t, oPAS2Db)).ToList();
       }
       else
@@ -294,7 +312,7 @@ namespace OPAS2.Controllers
       {
         if (flowTaskForUser != null) // 更新任务的状态
         {
-          if(flowTaskForUser.taskState == EnumFlowTaskState.initial ||
+          if (flowTaskForUser.taskState == EnumFlowTaskState.initial ||
             flowTaskForUser.taskState == EnumFlowTaskState.peeked ||
             flowTaskForUser.taskState == EnumFlowTaskState.taken)
           {
@@ -355,7 +373,7 @@ namespace OPAS2.Controllers
           && task.taskState == EnumFlowTaskState.done
           && task.FlowInstance.bizDocumentTypeCode == flowTemplateCode).
           OrderByDescending(task => task.flowTaskForUserId);
-      if(flowTaskForUsers!=null && flowTaskForUsers.Count() > 0)
+      if (flowTaskForUsers != null && flowTaskForUsers.Count() > 0)
       {
         result = flowTaskForUsers.ToList();
       }

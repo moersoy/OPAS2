@@ -38,6 +38,7 @@ namespace OPAS2.Controllers
     {
       SetSelectListOfDepartment(db);
       SetSelectListOfCostCenter(OPASDb);
+      SetSelectListOfUserPositionToDepartment();
       return View();
     }
 
@@ -75,7 +76,8 @@ namespace OPAS2.Controllers
         var department = db.departments.Find(int.Parse(collection["departmentId"]));
         if (department != null)
         {
-          OrgMgmtDBHelper.saveDepartmentUserRelation(department, obj, db);
+          OrgMgmtDBHelper.saveDepartmentUserRelation(department, obj, db,
+            (UserPositionToDepartment)int.Parse(collection["userPosition"]));
         }
         // 设置成本中心隶属关系
         var costCenter = OPASDb.costCenters.Find(int.Parse(collection["costCenterId"]));
@@ -100,6 +102,7 @@ namespace OPAS2.Controllers
     {
       SetSelectListOfDepartment(db);
       SetSelectListOfCostCenter(OPASDb);
+      SetSelectListOfUserPositionToDepartment();
 
       var user = OrgMgmtDBHelper.convertUser2DTO(
         db.users.Where(_user =>
@@ -111,6 +114,15 @@ namespace OPAS2.Controllers
       if (costCenter != null)
       {
         ViewBag.costCenterId = costCenter.costCenterId;
+      }
+
+      var departmentUserRelation = db.departmentUserRelations.Where(
+        obj => obj.assistUserId == user.userId).FirstOrDefault();
+      if (departmentUserRelation != null)
+      {
+        ViewBag.userPosition = departmentUserRelation.userPosition;
+        ViewBag.department = db.departments.Find(
+          departmentUserRelation.assistDepartmentId);
       }
 
       return View(user);

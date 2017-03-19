@@ -756,4 +756,7 @@
   <data name="G_TogglePublishState" xml:space="preserve">
     <value>切换发布状态</value>
   </data>
+  <data name="G_UserPosition" xml:space="preserve">
+    <value>在部门职位</value>
+  </data>
 </root>

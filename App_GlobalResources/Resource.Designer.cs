@@ -1465,6 +1465,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Position.
+        /// </summary>
+        internal static string G_UserPosition {
+            get {
+                return ResourceManager.GetString("G_UserPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field is required.
         /// </summary>
         internal static string G_Validation_Required {
