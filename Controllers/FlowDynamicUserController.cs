@@ -97,7 +97,7 @@ namespace OPAS2.Controllers
           FlowTemplateDBHelper.updateFlowDynamicUser(
             flowDynamicUser.guid, collection["name"],
             collection["displayName"], collection["script"],
-            collection["memo"], bool.Parse(collection["isPublished"]));
+            collection["memo"], parseCheckboxValue(collection["isPublished"]));
 
         if (result.Item1)
         {
