@@ -455,6 +455,7 @@
     <Content Include="Views\VendorBank\Edit.cshtml" />
     <Content Include="Views\FlowDynamicUser\Index.cshtml" />
     <Content Include="Views\FlowDynamicUser\Create.cshtml" />
+    <Content Include="Views\FlowDynamicUser\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
