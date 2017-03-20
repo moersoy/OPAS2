@@ -12,7 +12,7 @@ namespace OPAS2.Controllers
   {
     private EnouFlowOrgMgmtContext db = new EnouFlowOrgMgmtContext();
 
-    public DepartmentController(): base()
+    public DepartmentController() : base()
     {
       ViewBag.currentMenuIndex = "SYS-DEPARTMENT";
     }
@@ -110,6 +110,20 @@ namespace OPAS2.Controllers
       return Content(result, "text/html");
     }
 
+    public ActionResult DisplayManagers(int id)
+    {
+      var result = "";
+
+      List<UserDTO> users = OrgMgmtDBHelper.getUserDTOsOfPositionInDepartment(
+        id, db, UserPositionToDepartment.manager);
+      if (users != null && users.Count() > 0)
+      {
+        result = users.Aggregate("", (total, current) => 
+          { return total + current.name + ";"; });
+      }
+
+      return Content(result, "text/html");
+    }
 
     // GET: Department/Delete/5
     public ActionResult Delete(int id)

@@ -756,6 +756,9 @@
   <data name="G_TogglePublishState" xml:space="preserve">
     <value>Toggle publish</value>
   </data>
+  <data name="G_DepartmentHeads" xml:space="preserve">
+    <value>Department heads</value>
+  </data>
   <data name="G_UserPosition" xml:space="preserve">
     <value>User Position</value>
   </data>

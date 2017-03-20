@@ -24,6 +24,9 @@
       @Resources.Resource.G_IndexNumber
     </th>
     <th>
+      @Resources.Resource.G_DepartmentHeads
+    </th>
+    <th>
       @Resources.Resource.G_CreateTime
     </th>
     <th></th>
@@ -43,6 +46,9 @@
       </td>
       <td>
         @Html.DisplayFor(modelItem => item.indexNumber)
+      </td>
+      <td>
+        @Html.Action("DisplayManagers", new { id= item.departmentId })
       </td>
       <td>
         @Html.DisplayFor(modelItem => item.createTime)

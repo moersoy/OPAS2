@@ -163,13 +163,23 @@ namespace OPAS2.Controllers
 
         db.SaveChanges();
 
-        // 设置成本中心隶属关系
+        #region 更新设置在部门里的职位
+        var department = obj.getDepartmentsBelongTo(db,true).FirstOrDefault();
+        if (department != null)
+        {
+          OrgMgmtDBHelper.updateUserPositionToDepartment(department, obj, db,
+            (UserPositionToDepartment)int.Parse(collection["userPosition"]));
+        }
+        #endregion
+
+        #region 设置成本中心隶属关系
         var costCenter = OPASDb.costCenters.Find(int.Parse(collection["costCenterId"]));
         if (costCenter != null)
         {
           OPAS2ModelDBHelper.setUserCostCenter(
             costCenter.costCenterId, obj.userId, obj.guid, OPASDb);
         }
+        #endregion
 
         return RedirectToAction("Index");
       }

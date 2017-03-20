@@ -448,6 +448,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department heads.
+        /// </summary>
+        internal static string G_DepartmentHeads {
+            get {
+                return ResourceManager.GetString("G_DepartmentHeads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         internal static string G_Details {
