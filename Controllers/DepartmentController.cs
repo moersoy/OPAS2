@@ -115,7 +115,7 @@ namespace OPAS2.Controllers
       var result = "";
 
       List<UserDTO> users = OrgMgmtDBHelper.getUserDTOsOfPositionInDepartment(
-        id, db, UserPositionToDepartment.manager);
+        id, UserPositionToDepartment.manager, db);
       if (users != null && users.Count() > 0)
       {
         result = users.Aggregate("", (total, current) => 
