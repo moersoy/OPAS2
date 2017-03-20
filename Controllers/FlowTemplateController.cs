@@ -27,7 +27,8 @@ namespace OPAS2.Controllers
     [HttpGet]
     public ActionResult Index()
     {
-      return View(FlowTemplateDBHelper.getAllFlowTemplates());
+      return View(FlowTemplateDBHelper.
+        getAllFlowTemplates().OrderBy(obj=>obj.code));
     }
 
     // GET: FlowTemplate/Details/5b354131-f2ea-489d-8fc6-119676fdcebe
