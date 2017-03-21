@@ -59,6 +59,11 @@
       var _parseError = this.parseErrorOfServerResponse;
 
       // 提交到后端
+      var loadingInstance = this.$loading({
+        fullscreen: true,
+        body: true,
+        text: "正在提交 / Processsing"
+      });
       axios.post(this.newItem.sessionData.CreateWithFlowActionPath,
         {
           docJson: JSON.stringify(newItemClone),
@@ -70,6 +75,7 @@
           message: '提交表单成功:' + response.data.toString(),
           showClose: true
         });
+        loadingInstance.close();
       })
       .catch(function (error) {
         that.$message.error({
@@ -78,6 +84,7 @@
           showClose: true
         });
         console.error(error);
+        loadingInstance.close();
         return false;
       });
     },
@@ -94,6 +101,11 @@
       var that = this;
       var _parseError = this.parseErrorOfServerResponse;
       // 提交
+      var loadingInstance = this.$loading({
+        fullscreen: true,
+        body: true,
+        text: "正在提交 / Processsing"
+      });
       axios.post(this.examineItem.sessionData.NextFlowActionPath,
         {
           docJson: JSON.stringify(examineItemClone),
@@ -105,6 +117,7 @@
           message: '完成审批:' + response.data.toString(),
           showClose: true
         });
+        loadingInstance.close();
       })
       .catch(function (error) {
         that.$message.error({
@@ -112,6 +125,7 @@
           message: '错误:' + _parseError(error),
           showClose: true
         });
+        loadingInstance.close();
         return false;
       });
     },
@@ -138,6 +152,11 @@
       var that = this;
       var _parseError = this.parseErrorOfServerResponse;
       // 提交
+      var loadingInstance = this.$loading({
+        fullscreen: true,
+        body: true,
+        text: "正在提交 / Processsing"
+      });
       axios.post(this.examineItem.sessionData.RejectToStartFlowActionPath,
         {
           docJson: JSON.stringify(examineItemClone),
@@ -149,6 +168,7 @@
           message: '成功提交退回申请人 / Reject to creator successfully.',
           showClose: true
         });
+        loadingInstance.close();
       })
       .catch(function (error) {
         that.$message.error({
@@ -156,6 +176,7 @@
           message: '错误:' + _parseError(error),
           showClose: true
         });
+        loadingInstance.close();
         return false;
       });
     },
@@ -178,6 +199,11 @@
       //console.log(newItemClone);
 
       // 提交到后端
+      var loadingInstance = this.$loading({
+        fullscreen: true,
+        body: true,
+        text: "正在提交 / Processsing"
+      });
       var _parseError = this.parseErrorOfServerResponse;
       axios.post(this.newItem.sessionData.NextFlowActionPath,
         {
@@ -190,6 +216,7 @@
           message: '成功重新提交:' + response.data.toString(),
           showClose: true
         });
+        loadingInstance.close();
       })
       .catch(function (error) {
         that.$message.error({
@@ -198,6 +225,7 @@
           showClose: true
         });
         console.error(error);
+        loadingInstance.close();
         return false;
       });
     },
@@ -212,6 +240,11 @@
       var that = this;
       var _parseError = this.parseErrorOfServerResponse;
       // 提交
+      var loadingInstance = this.$loading({
+        fullscreen: true,
+        body: true,
+        text: "正在提交 / Processsing"
+      });
       axios.post(this.examineItem.sessionData.InviteOtherFlowActionPath,
         {
           docJson: JSON.stringify(examineItemClone),
@@ -223,6 +256,7 @@
           message: '成功提交',
           showClose: true
         });
+        loadingInstance.close();
       })
       .catch(function (error) {
         that.$message.error({
@@ -231,6 +265,7 @@
           showClose: true
         });
         return false;
+        loadingInstance.close();
       });
 
       this.dialogChooseUserVisible = false;
@@ -267,6 +302,11 @@
       var that = this;
       var _parseError = this.parseErrorOfServerResponse;
       // 提交
+      var loadingInstance = this.$loading({
+        fullscreen: true,
+        body: true,
+        text: "正在提交 / Processsing"
+      });
       axios.post(this.examineItem.sessionData.InviteOtherFeedbackFlowActionPath,
         {
           docJson: JSON.stringify(examineItemClone),
@@ -278,7 +318,8 @@
           message: '成功提交',
           showClose: true
         });
-        console.info(response);
+        
+        loadingInstance.close();
       })
       .catch(function (error) {
         that.$message.error({
@@ -286,6 +327,8 @@
           message: '错误:' + _parseError(error),
           showClose: true
         });
+        console.error(error);
+        loadingInstance.close();
         return false;
       });
     },
