@@ -41,7 +41,6 @@
       }
     },
     onSubmitCreate() {
-      var that = this;
       // TODO: 检查业务对象合法性
 
       // 检查流程操作合法性
@@ -56,37 +55,10 @@
       if (this.eraseInvalidDetail) {
         this.eraseInvalidDetail(newItemClone[this.detailsName]);
       }
-      var _parseError = this.parseErrorOfServerResponse;
 
       // 提交到后端
-      var loadingInstance = this.$loading({
-        fullscreen: true,
-        body: true,
-        text: "正在提交 / Processsing"
-      });
-      axios.post(this.newItem.sessionData.CreateWithFlowActionPath,
-        {
-          docJson: JSON.stringify(newItemClone),
-        }
-      )
-      .then(function (response) {
-        that.$message.success({
-          duration: that.messageBoxDurationConfig.success,
-          message: '提交表单成功:' + response.data.toString(),
-          showClose: true
-        });
-        loadingInstance.close();
-      })
-      .catch(function (error) {
-        that.$message.error({
-          duration: that.messageBoxDurationConfig.error,
-          message: '提交表单失败,发生错误:' + _parseError(error),
-          showClose: true
-        });
-        console.error(error);
-        loadingInstance.close();
-        return false;
-      });
+      this.submitToBackend(
+        this.newItem.sessionData.CreateWithFlowActionPath, newItemClone);
     },
     onSubmitExamineFlowAction() {
       // TODO: 检查业务对象合法性
@@ -98,36 +70,10 @@
       var examineItemClone = Object.assign({}, this.examineItem);
       examineItemClone.sessionData = undefined;
 
-      var that = this;
-      var _parseError = this.parseErrorOfServerResponse;
       // 提交
-      var loadingInstance = this.$loading({
-        fullscreen: true,
-        body: true,
-        text: "正在提交 / Processsing"
-      });
-      axios.post(this.examineItem.sessionData.NextFlowActionPath,
-        {
-          docJson: JSON.stringify(examineItemClone),
-        }
-      )
-      .then(function (response) {
-        that.$message.success({
-          duration: that.messageBoxDurationConfig.success,
-          message: '完成审批:' + response.data.toString(),
-          showClose: true
-        });
-        loadingInstance.close();
-      })
-      .catch(function (error) {
-        that.$message.error({
-          duration: that.messageBoxDurationConfig.error,
-          message: '错误:' + _parseError(error),
-          showClose: true
-        });
-        loadingInstance.close();
-        return false;
-      });
+      this.submitToBackend(
+        this.examineItem.sessionData.NextFlowActionPath,
+        examineItemClone, "完成审批");
     },
     onAskSubmitRejectToStartFlowAction() {
       this.$confirm('此操作将退回申请人, 是否继续? / Reject to the creator?',
@@ -149,39 +95,12 @@
       var examineItemClone = Object.assign({}, this.examineItem);
       examineItemClone.sessionData = undefined;
 
-      var that = this;
-      var _parseError = this.parseErrorOfServerResponse;
       // 提交
-      var loadingInstance = this.$loading({
-        fullscreen: true,
-        body: true,
-        text: "正在提交 / Processsing"
-      });
-      axios.post(this.examineItem.sessionData.RejectToStartFlowActionPath,
-        {
-          docJson: JSON.stringify(examineItemClone),
-        }
-      )
-      .then(function (response) {
-        that.$message.success({
-          duration: that.messageBoxDurationConfig.success,
-          message: '成功提交退回申请人 / Reject to creator successfully.',
-          showClose: true
-        });
-        loadingInstance.close();
-      })
-      .catch(function (error) {
-        that.$message.error({
-          duration: that.messageBoxDurationConfig.error,
-          message: '错误:' + _parseError(error),
-          showClose: true
-        });
-        loadingInstance.close();
-        return false;
-      });
+      this.submitToBackend(
+        this.examineItem.sessionData.RejectToStartFlowActionPath,
+        examineItemClone, "成功提交退回申请人 / Reject to creator successfully");
     },
     onSubmitUpdateAtStartFlowAction() {
-      var that = this;
       // TODO: 检查业务对象合法性
 
       // 检查流程操作合法性
@@ -196,38 +115,11 @@
       if (this.eraseInvalidDetail) {
         this.eraseInvalidDetail(newItemClone[this.detailsName]);
       }
-      //console.log(newItemClone);
 
       // 提交到后端
-      var loadingInstance = this.$loading({
-        fullscreen: true,
-        body: true,
-        text: "正在提交 / Processsing"
-      });
-      var _parseError = this.parseErrorOfServerResponse;
-      axios.post(this.newItem.sessionData.NextFlowActionPath,
-        {
-          docJson: JSON.stringify(newItemClone),
-        }
-      )
-      .then(function (response) {
-        that.$message.success({
-          duration: that.messageBoxDurationConfig.success,
-          message: '成功重新提交:' + response.data.toString(),
-          showClose: true
-        });
-        loadingInstance.close();
-      })
-      .catch(function (error) {
-        that.$message.error({
-          duration: that.messageBoxDurationConfig.error,
-          message: '错误:' + _parseError(error),
-          showClose: true
-        });
-        console.error(error);
-        loadingInstance.close();
-        return false;
-      });
+      this.submitToBackend(
+        this.newItem.sessionData.NextFlowActionPath,
+        newItemClone, "成功重新提交 / Resubmit successfully");
     },
     onSubmitInviteOtherToExamine() {
       // 克隆业务对象并删除无需上传的部分
@@ -237,36 +129,10 @@
       examineItemClone.selectedPaticipantGuid =
         this.selectedUserDTO.guid;
 
-      var that = this;
-      var _parseError = this.parseErrorOfServerResponse;
       // 提交
-      var loadingInstance = this.$loading({
-        fullscreen: true,
-        body: true,
-        text: "正在提交 / Processsing"
-      });
-      axios.post(this.examineItem.sessionData.InviteOtherFlowActionPath,
-        {
-          docJson: JSON.stringify(examineItemClone),
-        }
-      )
-      .then(function (response) {
-        that.$message.success({
-          duration: that.messageBoxDurationConfig.success,
-          message: '成功提交',
-          showClose: true
-        });
-        loadingInstance.close();
-      })
-      .catch(function (error) {
-        that.$message.error({
-          duration: that.messageBoxDurationConfig.error,
-          message: '错误:' + _parseError(error),
-          showClose: true
-        });
-        return false;
-        loadingInstance.close();
-      });
+      this.submitToBackend(
+        this.examineItem.sessionData.InviteOtherFlowActionPath,
+        examineItemClone);
 
       this.dialogChooseUserVisible = false;
     },
@@ -299,35 +165,40 @@
       var examineItemClone = Object.assign({}, this.examineItem);
       examineItemClone.sessionData = undefined;
 
-      var that = this;
-      var _parseError = this.parseErrorOfServerResponse;
       // 提交
+      this.submitToBackend(
+        this.examineItem.sessionData.InviteOtherFeedbackFlowActionPath,
+        examineItemClone);
+    },
+    submitToBackend(path, dataObj, successPrompt) {
+      var _parseError = this.parseErrorOfServerResponse;
+      var that = this;
+
       var loadingInstance = this.$loading({
         fullscreen: true,
         body: true,
         text: "正在提交 / Processsing"
       });
-      axios.post(this.examineItem.sessionData.InviteOtherFeedbackFlowActionPath,
+      axios.post(path,
         {
-          docJson: JSON.stringify(examineItemClone),
+          docJson: JSON.stringify(dataObj),
         }
       )
       .then(function (response) {
         that.$message.success({
           duration: that.messageBoxDurationConfig.success,
-          message: '成功提交',
+          message: (successPrompt || '提交表单成功') + ':' + response.data.toString(),
           showClose: true
         });
-        
         loadingInstance.close();
       })
       .catch(function (error) {
         that.$message.error({
           duration: that.messageBoxDurationConfig.error,
-          message: '错误:' + _parseError(error),
+          message: '提交表单失败,发生错误:' + _parseError(error),
           showClose: true
         });
-        console.error(error);
+        console.error(dataObj, error);
         loadingInstance.close();
         return false;
       });
