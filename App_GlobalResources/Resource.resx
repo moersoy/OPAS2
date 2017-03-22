@@ -762,4 +762,19 @@
   <data name="G_UserPosition" xml:space="preserve">
     <value>User Position</value>
   </data>
+  <data name="G_Delegatee" xml:space="preserve">
+    <value>Delegatee</value>
+  </data>
+  <data name="G_Delegation" xml:space="preserve">
+    <value>Delegation</value>
+  </data>
+  <data name="G_EndTime" xml:space="preserve">
+    <value>End time</value>
+  </data>
+  <data name="G_PeriodLength" xml:space="preserve">
+    <value>Period length(days)</value>
+  </data>
+  <data name="G_StartTime" xml:space="preserve">
+    <value>Start time</value>
+  </data>
 </root>

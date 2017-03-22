@@ -26,6 +26,7 @@ namespace OPAS2
       bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/vue-element-ui.css",
+                "~/Content/jquery.simple-dtpicker.css",
                 "~/Content/site.css"));
 
       #region Customized bundles
@@ -55,7 +56,8 @@ namespace OPAS2
         "~/Scripts/raphael.min.js"));
       bundles.Add(new ScriptBundle("~/bundles/draw-flow-chart").Include(
         "~/Scripts/draw-flow-chart.js"));
-      
+      bundles.Add(new ScriptBundle("~/bundles/jquery.simple-dtpicker").Include(
+        "~/Scripts/jquery.simple-dtpicker.js"));
       #endregion
     }
   }

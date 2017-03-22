@@ -403,6 +403,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delegatee.
+        /// </summary>
+        internal static string G_Delegatee {
+            get {
+                return ResourceManager.GetString("G_Delegatee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delegation.
+        /// </summary>
+        internal static string G_Delegation {
+            get {
+                return ResourceManager.GetString("G_Delegation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string G_Delete {
@@ -552,6 +570,15 @@ namespace Resources {
         internal static string G_Email {
             get {
                 return ResourceManager.GetString("G_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End time.
+        /// </summary>
+        internal static string G_EndTime {
+            get {
+                return ResourceManager.GetString("G_EndTime", resourceCulture);
             }
         }
         
@@ -1078,6 +1105,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Period length(days).
+        /// </summary>
+        internal static string G_PeriodLength {
+            get {
+                return ResourceManager.GetString("G_PeriodLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Private mobile.
         /// </summary>
         internal static string G_PersonalMobile {
@@ -1326,6 +1362,15 @@ namespace Resources {
         internal static string G_ShortName {
             get {
                 return ResourceManager.GetString("G_ShortName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start time.
+        /// </summary>
+        internal static string G_StartTime {
+            get {
+                return ResourceManager.GetString("G_StartTime", resourceCulture);
             }
         }
         
