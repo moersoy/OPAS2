@@ -1,0 +1,57 @@
+﻿@model IEnumerable<OPAS2Model.DelegationHistoryRecord>
+
+<h2>@Resources.Resource.G_Delegation</h2>
+
+<p>
+  @Html.ActionLink(@Resources.Resource.G_Create, "Create")
+</p>
+<table class="table">
+  <tr>
+    <th>
+      @Resources.Resource.G_Delegatee
+    </th>
+    <th>
+      @Resources.Resource.G_DocType
+    </th>
+    <th>
+      @Resources.Resource.G_StartTime
+    </th>
+    <th>
+      @Resources.Resource.G_EndTime
+    </th>
+    <th>
+      @Resources.Resource.G_PeriodLength
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
+        @Html.Action("DisplayNameById", "User", 
+          new { id = item.delegateeUserId }  )
+      </td>
+      <td>
+        @OPAS2Model.BizSettings.getBizDocumentTypeCode(
+            item.bizDocumentType)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.effectiveTimeFrom)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.effectiveTimeTo)
+      </td>
+      <td>
+        @String.Format("{0:0.00}", (item.effectiveTimeTo - item.effectiveTimeFrom).TotalDays)
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Edit, "Edit",
+          new { id = item.delegationHistoryRecordId }) |
+        @Html.ActionLink(Resources.Resource.G_Delete, "Delete",
+          new { id = item.delegationHistoryRecordId })
+      </td>
+    </tr>
+  }
+
+</table>

@@ -19,8 +19,8 @@
       @Html.Label(Resources.Resource.MD_CurrencyType, 
         htmlAttributes: new { @class = "control-label col-md-2" })
       <div class="col-md-10">
-        @Html.DropDownList("currencyTypeId", (SelectList)ViewBag.selectList, 
-          "请选择/Choose one", new { @class = "form-control", required = "true" })
+        @Html.DropDownList("currencyTypeId", (SelectList)ViewBag.selectList,
+          @Resources.Resource.G_PleaseChoose, new { @class = "form-control", required = "true" })
       </div>
     </div>
 

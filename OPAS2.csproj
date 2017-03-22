@@ -165,6 +165,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AttachFileController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DelegationController.cs" />
     <Compile Include="Controllers\FlowDynamicUserController.cs" />
     <Compile Include="Controllers\FlowInstanceController.cs" />
     <Compile Include="Controllers\FlowTaskForUserController.cs" />
@@ -200,6 +201,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\element-icons.svg" />
+    <Content Include="Content\jquery.simple-dtpicker.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
     </Content>
@@ -236,6 +238,7 @@
     <Content Include="Scripts\app\CostElement\bundle.js" />
     <Content Include="Scripts\app\CurrencyRate\bundle.js" />
     <Content Include="Scripts\app\CurrencyType\bundle.js" />
+    <Content Include="Scripts\app\Delegation\bundle.js" />
     <Content Include="Scripts\app\Department\bundle.js" />
     <Content Include="Scripts\app\FlowDynamicUser\bundle.js" />
     <Content Include="Scripts\app\FlowInstance\bundle.js" />
@@ -273,6 +276,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.simple-dtpicker.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -295,6 +299,7 @@
     <Content Include="ViewModels\CostElement\main.js" />
     <Content Include="ViewModels\CurrencyRate\main.js" />
     <Content Include="ViewModels\CurrencyType\main.js" />
+    <Content Include="ViewModels\Delegation\main.js" />
     <Content Include="ViewModels\Department\main.js" />
     <Content Include="ViewModels\FlowDynamicUser\main.js" />
     <Content Include="ViewModels\FlowInstance\main.js" />
@@ -456,6 +461,9 @@
     <Content Include="Views\FlowDynamicUser\Index.cshtml" />
     <Content Include="Views\FlowDynamicUser\Create.cshtml" />
     <Content Include="Views\FlowDynamicUser\Edit.cshtml" />
+    <Content Include="Views\Delegation\Index.cshtml" />
+    <Content Include="Views\Delegation\Create.cshtml" />
+    <Content Include="Views\Delegation\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

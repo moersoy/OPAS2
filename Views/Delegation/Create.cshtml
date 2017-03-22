@@ -1,0 +1,65 @@
+﻿@model OPAS2Model.DelegationHistoryRecord
+<h2>@Resources.Resource.G_Create</h2>
+
+@section init_scripts {
+<script type="text/javascript">
+  $(function () { // 初始化日期时间段选择组件
+    $('*[name=effectiveTimeFrom]').appendDtpicker(
+      { "locale": "cn", });
+    $('*[name=effectiveTimeTo]').appendDtpicker(
+      { "locale": "cn", });
+  });
+
+  var initBag = {};
+  initBag.backendError = "@ViewBag.backendError";
+</script>
+}
+
+@using (Html.BeginForm())
+{
+  @Html.AntiForgeryToken()
+
+  <div class="form-horizontal">
+    <h4>@Resources.Resource.MENU_Delegation</h4>
+    <hr />
+    <div class="form-group">
+      @Html.Label("* " + @Resources.Resource.G_Delegatee,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.DropDownList("delegateeUserId", 
+          (SelectList)ViewBag.userSelectList,
+          @Resources.Resource.G_PleaseChoose,
+          new { @class = "form-control", required = "true" })
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.Label("* " + @Resources.Resource.G_StartTime,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.TextBox("effectiveTimeFrom", "",
+          new { @class = "form-control", required = "true" } )
+      </div>
+    </div>
+
+    <div class="form-group">
+      @Html.Label("* " + @Resources.Resource.G_EndTime,
+        htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.TextBox("effectiveTimeTo", "",
+          new { @class = "form-control", required = "true" } )
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="@Resources.Resource.G_Create" 
+               class="btn btn-default" />
+      </div>
+    </div>
+  </div>
+}
+
+<div>
+  @Html.ActionLink(@Resources.Resource.G_BackToList, "Index")
+</div>

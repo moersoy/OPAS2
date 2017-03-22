@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 
 using OPAS2.Helpers;
-using System.Web.Routing;
 using EnouFlowInstanceLib;
 using EnouFlowTemplateLib;
 using EnouFlowOrgMgmtLib;
@@ -15,7 +14,6 @@ using OPAS2Model;
 using Newtonsoft.Json;
 
 using OPAS2.Models;
-using OPAS2.Filters;
 
 namespace OPAS2.Controllers
 {
@@ -151,6 +149,12 @@ namespace OPAS2.Controllers
     {
       var departments = OrgMgmtDBHelper.getAllDepartmentDTOs(orgDb);
       ViewBag.departmentSelectList = new SelectList(departments, "departmentId", "name");
+    }
+
+    protected void SetSelectListOfUser(EnouFlowOrgMgmtContext orgDb)
+    {
+      var users = OrgMgmtDBHelper.getAllUserDTOs(orgDb, false);
+      ViewBag.userSelectList = new SelectList(users, "userId", "name");
     }
 
     protected void SetSelectListOfCostCenter(OPAS2DbContext OPASDb)

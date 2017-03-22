@@ -105,7 +105,9 @@
     </template>
     <el-menu-item index="MY-ACCOUNT">账户信息</el-menu-item>
     <el-menu-item index="MY-ALERT">提醒设置</el-menu-item>
-    <el-menu-item index="MY-DELEGATE">外出代理设置</el-menu-item>
+    <el-menu-item index="MY-DELEGATION">
+      @Html.ActionLink(@Resources.Resource.G_Delegation, "Index", "Delegation")
+    </el-menu-item>
   </el-submenu>
 
   <el-submenu index="MDM">

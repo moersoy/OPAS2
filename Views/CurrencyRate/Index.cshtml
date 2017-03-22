@@ -6,41 +6,41 @@
 
 <h2>@Resources.Resource.MD_CurrencyRate</h2>
 
-  <p>
-    @Html.ActionLink(@Resources.Resource.G_Create, "Create")
-  </p>
-  <table class="table">
+<p>
+  @Html.ActionLink(@Resources.Resource.G_Create, "Create")
+</p>
+<table class="table">
+  <tr>
+    <th>
+      @Resources.Resource.MD_CurrencyType
+    </th>
+    <th>
+      @Resources.Resource.G_LatestRate
+    </th>
+    <th>
+      @Resources.Resource.G_EffectiveDate
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
     <tr>
-      <th>
-        @Resources.Resource.MD_CurrencyType
-      </th>
-      <th>
-        @Resources.Resource.G_LatestRate
-      </th>
-      <th>
-       @Resources.Resource.G_EffectiveDate
-      </th>
-      <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-      <tr>
-        <td>
-          @Html.Action("ShowNameOfId","CurrencyType",
+      <td>
+        @Html.Action("ShowNameOfId", "CurrencyType",
             new { id = (int)item.currencyTypeId })
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.effectiveRate, "CurrencyRateTemplate")
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.effectiveDateFrom)
-        </td>
-        <td>
-          @Html.ActionLink(Resources.Resource.G_Edit, "Edit",
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.effectiveRate, "CurrencyRateTemplate")
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.effectiveDateFrom)
+      </td>
+      <td>
+        @Html.ActionLink(Resources.Resource.G_Edit, "Edit",
               new { id = item.currencyHistoryRecordId })
-        </td>
-      </tr>
-    }
+      </td>
+    </tr>
+  }
 
-  </table>
+</table>
