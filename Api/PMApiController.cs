@@ -225,18 +225,7 @@ namespace OPAS2.Api
       UserDTO userDTO = tupleBasic.Item1;
       FlowInstance flowInstance = tupleBasic.Item2;
       FlowTaskForUser flowTaskForUser = tupleBasic.Item3;
-      #endregion
-
-      Tuple<bool, IHttpActionResult> taskValidity =
-        checkTaskValidity(flowTaskForUser, flowInstance);
-      if (!taskValidity.Item1)
-      {
-        return taskValidity.Item2;
-      }
-
-      #region 业务数据: 更新增加PM的remark字段内容
       Payment pm = db.payments.Find(bizObj.paymentId);
-      appendRemarkOfAprroversOfDocument(bizObj, userDTO, pm);
       #endregion
 
       #region 流程数据操作: 创建FlowActionRejectToStart, 更改任务状态

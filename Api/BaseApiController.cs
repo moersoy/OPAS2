@@ -106,6 +106,11 @@ namespace OPAS2.Api
       }
       #endregion
 
+      #region 如果通过任务指定用户与当前用户比较判断是由代理用户完成的,则获取代理用户
+      Tuple<int?, string, UserDTO> delegateeToken = 
+        getDelegateeToken(flowTaskForUser.userGuid, bizObj.currentUserGuid);
+      #endregion
+
       #region 流程数据操作: 创建FlowActionInviteOther
       var flowTemplateDefHelper = new FlowTemplateDefHelper(
         flowInstance.flowTemplateJson);
@@ -118,8 +123,8 @@ namespace OPAS2.Api
         bizObj.remarkOfAprrover, // userMemo
         flowInstance.bizDataPayloadJson, // bizDataPayloadJson
         null, // optionalFlowActionDataJson
-        userDTO.userId,  // userId
-        userDTO.guid, // userGuid
+        flowTaskForUser.userId, // userId
+        flowTaskForUser.userGuid, // userGuid
         flowInstance.flowInstanceId, //flowInstanceId
         flowInstance.guid, //flowInstanceGuid
         code, //code
@@ -127,7 +132,9 @@ namespace OPAS2.Api
         new List<Paticipant>() { //roles
           FlowTemplateDefHelper.getPaticipantFromGuid(
             bizObj.selectedPaticipantGuid) },
-        flowTaskForUser.flowTaskForUserId //relativeFlowTaskForUserId
+        flowTaskForUser.flowTaskForUserId, //relativeFlowTaskForUserId
+        delegateeToken.Item1,
+        delegateeToken.Item2
       );
 
       var flowResult = flowActionRequestDispatcher.processSpecifiedAction(
@@ -161,6 +168,11 @@ namespace OPAS2.Api
       }
       #endregion
 
+      #region 如果通过任务指定用户与当前用户比较判断是由代理用户完成的,则获取代理用户
+      Tuple<int?, string, UserDTO> delegateeToken = 
+        getDelegateeToken(flowTaskForUser.userGuid, bizObj.currentUserGuid);
+      #endregion
+
       #region 流程数据操作: 创建FlowActionInviteOtherFeedback并处理
       var flowTemplateDefHelper = new FlowTemplateDefHelper(
         flowInstance.flowTemplateJson);
@@ -174,8 +186,8 @@ namespace OPAS2.Api
         bizObj.remarkOfAprrover, // userMemo
         flowInstance.bizDataPayloadJson, // bizDataPayloadJson
         null, // optionalFlowActionDataJson
-        userDTO.userId,  // userId
-        userDTO.guid, // userGuid
+        flowTaskForUser.userId, // userId
+        flowTaskForUser.userGuid, // userGuid
         flowInstance.flowInstanceId, //flowInstanceId
         flowInstance.guid, //flowInstanceGuid
         code, //code
@@ -185,7 +197,9 @@ namespace OPAS2.Api
           FlowTemplateDefHelper.getPaticipantFromGuid(
             bizObj.selectedPaticipantGuid)
         },
-        flowTaskForUser.flowTaskForUserId //relativeFlowTaskForUserId
+        flowTaskForUser.flowTaskForUserId, //relativeFlowTaskForUserId
+        delegateeToken.Item1,
+        delegateeToken.Item2
       );
 
       var flowResult = flowActionRequestDispatcher.processSpecifiedAction(
@@ -247,7 +261,7 @@ namespace OPAS2.Api
       string bizDataPayloadJson, string optionalFlowActionDataJson, 
       UserDTO userDTO, string userMemo)
     {
-      #region 流程数据: 分别创建FlowActionStart和FlowActionMoveTo
+      #region 流程数据: 分别创建FlowActionStart和FlowActionMoveTo并调用引擎马上处理
       var flowTemplate = FlowTemplateDBHelper.getFlowTemplate(
         (string)bizObj.flowTemplateGuid);
 
@@ -256,7 +270,7 @@ namespace OPAS2.Api
 
       FlowInstance flowInstance = null;
 
-      // 创建FlowActionStart
+      #region 创建FlowActionStart
       FlowActionRequest actionStart = FlowInstanceHelper.PostFlowActionStart(
         Guid.NewGuid().ToString(), // clientRequestGuid
         bizObj.guid, //bizDocumentGuid
@@ -272,8 +286,9 @@ namespace OPAS2.Api
         bizDocument.documentNo, // code
         bizObj.currentActivityGuid // currentActivityGuid
       );
+      #endregion
 
-      // 处理该FlowActionStart
+      #region 处理该FlowActionStart,并获取创建的流程实例信息
       var flowResult = flowActionRequestDispatcher.processSpecifiedAction(
         actionStart.flowActionRequestId);
       if (!flowResult.succeed)
@@ -291,8 +306,9 @@ namespace OPAS2.Api
       }
       var flowInstanceId = flowInstance.flowInstanceId;
       var flowInstanceGuid = flowInstance.guid;
+      #endregion
 
-      // 创建FlowActionMoveTo
+      #region 继续创建FlowActionMoveTo
       var actionMove = FlowInstanceHelper.PostFlowActionMoveTo(
         Guid.NewGuid().ToString(), // clientRequestGuid
         bizObj.guid, //bizDocumentGuid
@@ -314,9 +330,13 @@ namespace OPAS2.Api
         new List<Paticipant>() { //roles
           FlowTemplateDefHelper.getPaticipantFromGuid(
             bizObj.selectedPaticipantGuid)
-        }
+        },
+        null, //delegateeUserId, 目前不支持创建流程实例时使用代理完成
+        null //delegateeUserGuid
       );
+      #endregion
 
+      #region 处理该FlowActionMoveTo
       flowResult = flowActionRequestDispatcher.processSpecifiedAction(
         actionMove.flowActionRequestId);
       if (!flowResult.succeed)
@@ -324,6 +344,7 @@ namespace OPAS2.Api
         return new Tuple<bool, IHttpActionResult>(
           false, BadRequest("流程引擎处理错误:" + flowResult.failReason));
       }
+      #endregion
 
       #endregion
 
@@ -356,7 +377,7 @@ namespace OPAS2.Api
       var flowInstanceId = flowInstance.flowInstanceId;
       var flowInstanceGuid = flowInstance.guid;
 
-      // 创建FlowActionMoveTo
+      #region 创建FlowActionMoveTo
       var actionMove = FlowInstanceHelper.PostFlowActionMoveTo(
         Guid.NewGuid().ToString(), // clientRequestGuid
         bizObj.guid, //bizDocumentGuid
@@ -378,9 +399,13 @@ namespace OPAS2.Api
         new List<Paticipant>() { //roles
           FlowTemplateDefHelper.getPaticipantFromGuid(
             bizObj.selectedPaticipantGuid)
-        }
+        },
+        null, //delegateeUserId, 目前不支持重新提交时使用代理完成
+        null //delegateeUserGuid
       );
+      #endregion
 
+      #region 处理该FlowActionMoveTo
       var flowResult = flowActionRequestDispatcher.processSpecifiedAction(
         actionMove.flowActionRequestId);
       if (!flowResult.succeed)
@@ -388,6 +413,7 @@ namespace OPAS2.Api
         return new Tuple<bool, IHttpActionResult>(
           false, BadRequest("流程引擎处理错误:" + flowResult.failReason));
       }
+      #endregion
 
       #endregion
 
@@ -429,8 +455,15 @@ namespace OPAS2.Api
       }
       #endregion
 
+      #region 如果通过任务指定用户与当前用户比较判断是由代理用户完成的,则获取代理用户
+      Tuple<int?, string, UserDTO> delegateeToken = 
+        getDelegateeToken(flowTaskForUser.userGuid, bizObj.currentUserGuid);
+      #endregion
+
       #region 业务数据: 更新增加bizObj的remark字段内容
-      appendRemarkOfAprroversOfDocument(bizObj, userDTO, bizDocument);
+      appendRemarkOfAprroversOfDocument(
+        bizObj, OrgMgmtDBHelper.getUserDTO(flowTaskForUser.userId,orgDb), 
+        bizDocument, delegateeToken.Item3);
       #endregion
 
       #region 流程数据操作: 创建FlowActionMoveTo并进行后续处理, 更改任务状态
@@ -445,8 +478,8 @@ namespace OPAS2.Api
         bizObj.remarkOfAprrover, // userMemo
         bizDataPayloadJson, // bizDataPayloadJson
         optionalFlowActionDataJson, // optionalFlowActionDataJson
-        userDTO.userId,  // userId
-        userDTO.guid, // userGuid
+        flowTaskForUser.userId, // userId
+        flowTaskForUser.userGuid, // userGuid
         flowInstance.flowInstanceId, //flowInstanceId
         flowInstance.guid, //flowInstanceGuid
         bizDocument.documentNo, //code
@@ -458,7 +491,9 @@ namespace OPAS2.Api
         new List<Paticipant>() { //roles
           FlowTemplateDefHelper.getPaticipantFromGuid(
             bizObj.selectedPaticipantGuid)
-        }
+        },
+        delegateeToken.Item1,
+        delegateeToken.Item2
       );
 
       var flowResult = flowActionRequestDispatcher.processSpecifiedAction(
@@ -492,6 +527,32 @@ namespace OPAS2.Api
       dynamic bizObj, string flowTemplateCode, FlowInstance flowInstance,
       dynamic bizDocument, UserDTO userDTO)
     {
+      #region 从提交的JSON参数中初始化基本变量
+      Tuple<UserDTO, FlowInstance, FlowTaskForUser> tupleBasic =
+        getBasicTaskInfoFromBizObj(bizObj);
+      FlowTaskForUser flowTaskForUser = tupleBasic.Item3;
+      #endregion
+
+      #region 任务失效则退出
+      Tuple<bool, IHttpActionResult> taskValidity =
+        checkTaskValidity(flowTaskForUser, flowInstance);
+      if (!taskValidity.Item1)
+      {
+        return taskValidity;
+      }
+      #endregion
+
+      #region 如果通过任务指定用户与当前用户比较判断是由代理用户完成的,则获取代理用户
+      Tuple<int?, string, UserDTO> delegateeToken =
+        getDelegateeToken(flowTaskForUser.userGuid, bizObj.currentUserGuid);
+      #endregion
+
+      #region 业务数据: 更新增加bizObj的remark字段内容
+      appendRemarkOfAprroversOfDocument(
+        bizObj, OrgMgmtDBHelper.getUserDTO(flowTaskForUser.userId, orgDb), 
+        bizDocument, delegateeToken.Item3);
+      #endregion
+
       var actionRejectToStart = FlowInstanceHelper.PostFlowActionRejectToStart(
         Guid.NewGuid().ToString(), // clientRequestGuid
         bizObj.guid, //bizDocumentGuid
@@ -500,8 +561,8 @@ namespace OPAS2.Api
         bizObj.remarkOfAprrover, // userMemo
         flowInstance.bizDataPayloadJson, // bizDataPayloadJson
         null, // optionalFlowActionDataJson
-        userDTO.userId,  // userId
-        userDTO.guid, // userGuid
+        flowTaskForUser.userId, // userId
+        flowTaskForUser.userGuid, // userGuid
         flowInstance.flowInstanceId, //flowInstanceId
         flowInstance.guid, //flowInstanceGuid
         bizDocument.documentNo, //code
@@ -509,7 +570,9 @@ namespace OPAS2.Api
         null, //startActivityGuid
         new List<Paticipant>()
         { //roles
-        }
+        },
+        delegateeToken.Item1,
+        delegateeToken.Item2
       );
 
       var flowResult = flowActionRequestDispatcher.processSpecifiedAction(
@@ -537,15 +600,45 @@ namespace OPAS2.Api
       return  new Tuple<bool, IHttpActionResult>(true, null); // 完成处理,将返回空值
     }
 
-    protected void appendRemarkOfAprroversOfDocument(
-      dynamic bizObj, UserDTO userDTO, dynamic bizDocument)
+    private Tuple<int?,string, UserDTO> getDelegateeToken(
+      string userGuid,  string delegateeUserGuid)
+    {
+      if(userGuid == delegateeUserGuid) // 用户自己完成的,将直接返回空的代理用户信息
+        return new Tuple<int?, string, UserDTO>(null, null, null);
+
+      UserDTO delegateeUserDTO = null;
+      if (!string.IsNullOrWhiteSpace(delegateeUserGuid))
+      {
+        delegateeUserDTO = OrgMgmtDBHelper.getUserDTO(delegateeUserGuid);
+      }
+
+      if (delegateeUserDTO != null)
+      {
+        return new Tuple<int?, string, UserDTO>(
+          delegateeUserDTO.userId, delegateeUserGuid, delegateeUserDTO);
+      }
+      else
+      {
+        return new Tuple<int?, string, UserDTO>(null,null,null);
+      }
+    }
+
+    protected void appendRemarkOfAprroversOfDocument( dynamic bizObj, 
+      UserDTO userDTO, dynamic bizDocument, UserDTO delegateeUserDTO=null)
     {
       if (!string.IsNullOrWhiteSpace(bizObj.remarkOfAprrover))
       {
+        var delegateeStr = "";
+        if (delegateeUserDTO != null)
+        {
+          delegateeStr = "(" + delegateeUserDTO.name + "/" +
+            delegateeUserDTO.englishName + ")";
+        }
         bizDocument.remarkOfAprrovers =
           bizDocument.remarkOfAprrovers + Environment.NewLine +
             bizObj.remarkOfAprrover + " - [" + userDTO.name + "/" +
-            userDTO.englishName + "] " + DateTime.Now.ToString();
+            userDTO.englishName + " " + delegateeStr + " ] " + 
+            DateTime.Now.ToString();
         db.SaveChanges();
       }
     }
