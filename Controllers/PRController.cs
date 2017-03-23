@@ -63,7 +63,7 @@ namespace OPAS2.Controllers
     [UserLogon]
     [HttpGet]
     public ActionResult FreeQuery(int? departmentId,
-      int pageIndex = 1, int rowsPerPage = 4, 
+      int pageIndex = 1, int rowsPerPage = 10, 
       string keyword = "")
     {
       ViewBag.currentMenuIndex = "PR-FREE-QUERY";
