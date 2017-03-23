@@ -27,20 +27,29 @@ namespace OPAS2.Controllers
     public ActionResult Index()
     {
       var userDTO = (UserDTO)Session["currentUserDTO"];
-      List<FlowTaskForUser> flowTaskForUsers = new List<FlowTaskForUser>();
-      flowTaskForUsers = FlowInstanceHelper.GetFlowTaskForUserListOfUser(
-        userDTO.guid, flowDb);
-
+      List<FlowTaskForUser> flowTaskForUsers = ViewBag.flowTaskForUsers;
       List<Models.FlowTask> tasks = flowTaskForUsers.Select(
         task => new Models.FlowTask(task, db)).ToList();
 
       return View(tasks);
     }
 
-    // GET: FlowTaskForUser/Details/5b354131-f2ea-489d-8fc6-119676fdcebe
-    public ActionResult Details(string id)
+    // GET: FlowTaskForUser/DelegatedIndex
+    [UserLogon]
+    public ActionResult DelegatedIndex()
     {
-      return View();
+      List<Models.FlowTask> results = new List<Models.FlowTask>();
+
+      var list = (List<Tuple<UserDTO, List<FlowTaskForUser>>>)
+        ViewBag.delegatedFlowTaskForUsers;
+
+      list.ForEach(turple => {
+        results.AddRange(
+          turple.Item2.Select(
+            task => new Models.FlowTask(task, db)).ToList());
+      });
+
+      return View(results);
     }
 
     // GET: FlowTaskForUser/Edit/5b354131-f2ea-489d-8fc6-119676fdcebe
@@ -103,44 +112,6 @@ namespace OPAS2.Controllers
         default:
           throw new Exception("Unexpected documentTypeCode: " + 
             documentTypeCode);
-      }
-    }
-
-    // POST: FlowTaskForUser/Edit/5b354131-f2ea-489d-8fc6-119676fdcebe
-    [HttpPost]
-    public ActionResult Edit(string id, FormCollection collection)
-    {
-      try
-      {
-        
-
-        return RedirectToAction("Index");
-      }
-      catch
-      {
-        return View();
-      }
-    }
-
-    // GET: FlowTaskForUser/Delete/5b354131-f2ea-489d-8fc6-119676fdcebe
-    public ActionResult Delete(string id)
-    {
-      return View();
-    }
-
-    // POST: FlowTaskForUser/Delete/5b354131-f2ea-489d-8fc6-119676fdcebe
-    [HttpPost]
-    public ActionResult Delete(string id, FormCollection collection)
-    {
-      try
-      {
-        // TODO: Add delete logic here
-
-        return RedirectToAction("Index");
-      }
-      catch
-      {
-        return View();
       }
     }
 

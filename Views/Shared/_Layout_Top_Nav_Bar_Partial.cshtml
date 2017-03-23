@@ -20,14 +20,27 @@
                 "Logout", "User", null, null)
     </li>
     <li>
-      <a href="#">
-        <el-dropdown @@command="alertErrorNotImplemented">
+      <a href="@Url.Action("DelegatedIndex", "FlowTaskForUser")">
+        <el-dropdown @@command="jumpToUrl('@Url.Action("DelegatedIndex", "FlowTaskForUser")')">
           <span class="el-dropdown-link">
             @Resources.Resource.MENU_Delegation<i class="caret"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>张三 <span class="badge-danger"> 1</span></el-dropdown-item>
-            <el-dropdown-item>李四 <span class="badge-danger"> 2</span></el-dropdown-item>
+            @if(ViewBag.delegatedFlowTaskForUsers != null) {
+              foreach (var item in (List<Tuple<EnouFlowOrgMgmtLib.UserDTO, 
+                List<EnouFlowInstanceLib.FlowTaskForUser>>>)ViewBag.delegatedFlowTaskForUsers)
+              {
+                <el-dropdown-item> @item.Item1.name
+                    <span class="badge-danger"> @item.Item2.Count()</span>
+                </el-dropdown-item>
+              }
+            }
+            else
+            {
+              <el-dropdown-item>
+              <span>@Resources.Resource.G_NoRecords</span>
+              </el-dropdown-item>
+            }
           </el-dropdown-menu>
         </el-dropdown>
       </a>

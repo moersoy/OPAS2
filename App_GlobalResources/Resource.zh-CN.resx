@@ -768,8 +768,17 @@
   <data name="G_Delegation" xml:space="preserve">
     <value>外出代理设置</value>
   </data>
+  <data name="G_DelegationTaskList" xml:space="preserve">
+    <value>代理任务列表</value>
+  </data>
+  <data name="G_Delegator" xml:space="preserve">
+    <value>委托人</value>
+  </data>
   <data name="G_EndTime" xml:space="preserve">
     <value>结束时间</value>
+  </data>
+  <data name="G_NoRecords" xml:space="preserve">
+    <value>无记录</value>
   </data>
   <data name="G_PeriodLength" xml:space="preserve">
     <value>时长(天数)</value>

@@ -421,6 +421,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delegation task list.
+        /// </summary>
+        internal static string G_DelegationTaskList {
+            get {
+                return ResourceManager.GetString("G_DelegationTaskList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delegator.
+        /// </summary>
+        internal static string G_Delegator {
+            get {
+                return ResourceManager.GetString("G_Delegator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string G_Delete {
@@ -939,6 +957,15 @@ namespace Resources {
         internal static string G_NoBiddingReason {
             get {
                 return ResourceManager.GetString("G_NoBiddingReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No records.
+        /// </summary>
+        internal static string G_NoRecords {
+            get {
+                return ResourceManager.GetString("G_NoRecords", resourceCulture);
             }
         }
         

@@ -768,8 +768,17 @@
   <data name="G_Delegation" xml:space="preserve">
     <value>Delegation</value>
   </data>
+  <data name="G_DelegationTaskList" xml:space="preserve">
+    <value>Delegation task list</value>
+  </data>
+  <data name="G_Delegator" xml:space="preserve">
+    <value>Delegator</value>
+  </data>
   <data name="G_EndTime" xml:space="preserve">
     <value>End time</value>
+  </data>
+  <data name="G_NoRecords" xml:space="preserve">
+    <value>No records</value>
   </data>
   <data name="G_PeriodLength" xml:space="preserve">
     <value>Period length(days)</value>

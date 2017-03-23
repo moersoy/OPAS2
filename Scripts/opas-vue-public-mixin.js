@@ -38,6 +38,9 @@
           duration: 0,
         });
       }
+    },
+    jumpToUrl(url) {
+      window.location = url;
     }
   },
   mounted () {

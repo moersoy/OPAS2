@@ -43,14 +43,34 @@ namespace OPAS2.Controllers
       #endregion
 
       #region 初始化公用ViewBag对象, 将用于_Layout.cshtml
-      if (Session["currentUserDTO"] != null)
+      if (Session["currentUserDTO"] != null && ViewBag.currentUserDTO==null)
       {
         ViewBag.currentUserDTO = Session["currentUserDTO"];
         ViewBag.functionPermissionCodes = Session["functionPermissionCodes"];
         var userGuid = (string)ViewBag.currentUserDTO.guid;
         using (var db = new EnouFlowInstanceContext())
         {
-          ViewBag.flowTaskForUsers = FlowInstanceHelper.GetFlowTaskForUserListOfUser(userGuid, db);
+          #region 获取本人需要完成的任务列表 ViewBag.flowTaskForUsers
+          ViewBag.flowTaskForUsers = 
+            FlowInstanceHelper.GetFlowTaskForUserListOfUser(userGuid, db);
+          #endregion 
+          #region 获取作为代理完成的任务  ViewBag.delegatedFlowTaskForUsers
+          ViewBag.delegatedFlowTaskForUsers = null;
+          List<string> delegatorUserGuids;
+          using (var opasDb = new OPAS2DbContext()) {
+            delegatorUserGuids = DelegationHistoryRecord.
+              getCurrentDelegatorUserGuids(
+                (int)ViewBag.currentUserDTO.userId, opasDb);
+          }
+          if(delegatorUserGuids!=null && delegatorUserGuids.Count > 0)
+          {
+            ViewBag.delegatedFlowTaskForUsers = delegatorUserGuids.Select(
+              delegatorUserGuid => new Tuple<UserDTO, List<FlowTaskForUser>>
+               (OrgMgmtDBHelper.getUserDTO(delegatorUserGuid) ,
+                  FlowInstanceHelper.GetDelegatableFlowTaskForUserListOfUser(
+                   delegatorUserGuid, db))).ToList();
+          }
+          #endregion
         }
       }
       #endregion
