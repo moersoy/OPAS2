@@ -1,5 +1,36 @@
 ﻿<el-dialog title="@Resources.Resource.G_FlowChart" size="small"
            v-model="dialogShowFlowChart">
-  <div id="FlowChart" style="overflow-x:auto; overflow-y:auto;">
-  </div>
+  <el-tabs type="border-card" @@tab-click="loadFlowInstanceFriendlyLog">
+    <el-tab-pane label="@Resources.Resource.G_FlowChart">
+      <div id="FlowChart" style="overflow-x:auto; overflow-y:auto;">
+      </div>
+    </el-tab-pane>
+    <el-tab-pane label="@Resources.Resource.G_FlowLog">
+      <div id="FlowLogTable" style="overflow-x:auto; overflow-y:auto;">
+        <el-table v-bind:data="flowInstanceFriendlyLogs"
+                  height="250"
+                  border stripe
+                  style="width: 100%">
+          <el-table-column prop="paticipantName"
+                           label="@Resources.Resource.G_Paticipant">
+          </el-table-column>
+          <el-table-column prop="paticipantMemo"
+                           label="@Resources.Resource.G_Memo">
+          </el-table-column>
+          <el-table-column prop="actionName"
+                           label="@Resources.Resource.G_ActionName">
+          </el-table-column>
+          <el-table-column prop="currentActivityName"
+                           label="@Resources.Resource.G_ActivityName">
+          </el-table-column>
+          <el-table-column prop="createTime" sortable
+                           label="@Resources.Resource.G_CreateTime">
+          </el-table-column>
+          <el-table-column prop="delegateeName"
+                           label="@Resources.Resource.G_Delegatee">
+          </el-table-column>
+        </el-table>
+      </div>
+    </el-tab-pane>
+  </el-tabs>
 </el-dialog>

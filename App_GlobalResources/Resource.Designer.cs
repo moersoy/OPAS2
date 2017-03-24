@@ -61,6 +61,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action name.
+        /// </summary>
+        internal static string G_ActionName {
+            get {
+                return ResourceManager.GetString("G_ActionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activity name.
+        /// </summary>
+        internal static string G_ActivityName {
+            get {
+                return ResourceManager.GetString("G_ActivityName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add belonged role.
         /// </summary>
         internal static string G_AddBelongedRole {
@@ -691,6 +709,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flow log.
+        /// </summary>
+        internal static string G_FlowLog {
+            get {
+                return ResourceManager.GetString("G_FlowLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Goods Receiving.
         /// </summary>
         internal static string G_GR {
@@ -1092,6 +1119,15 @@ namespace Resources {
         internal static string G_Password {
             get {
                 return ResourceManager.GetString("G_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paticipant.
+        /// </summary>
+        internal static string G_Paticipant {
+            get {
+                return ResourceManager.GetString("G_Paticipant", resourceCulture);
             }
         }
         

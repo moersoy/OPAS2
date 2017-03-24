@@ -5,7 +5,8 @@
     allUserDTOs: null,
     selectedUserDTO: null,
     dialogChooseUserConfirmHandle: null,
-    messageBoxDurationConfig: { success: 30000, error :60000},
+    messageBoxDurationConfig: { success: 30000, error: 60000 },
+    flowInstanceFriendlyLogs: null
   },
   computed: {
     filteredUserDTOs: function () {
@@ -253,6 +254,28 @@
           that.flowChartCached = true;
         }, 0);
       }
+    },
+    loadFlowInstanceFriendlyLog() {
+      if (this.flowInstanceFriendlyLogs ||
+        !this.getCorrenspondingDataItem(this.workingMode).flowInstanceId) {
+        return true;
+      }
+      var that = this;
+      axios.get(window.location.protocol + '//' +
+        window.location.host + '/api/FlowInstanceApi/' +
+        this.getCorrenspondingDataItem(this.workingMode).flowInstanceId)
+      .then(function (response) {
+        that.flowInstanceFriendlyLogs = response.data;
+      })
+      .catch(function (error) {
+        that.$message.error({
+          duration: that.messageBoxDurationConfig.error,
+          message: '获取数据失败,发生错误:' + _parseError(error),
+          showClose: true
+        });
+        console.error(dataObj, error);
+        return false;
+      });
     },
     isDestNodePaticipantRequired(destNodeType) {
       return destNodeType != "st-autoActivity" &&

@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\BaseApiController.cs" />
+    <Compile Include="Api\FlowInstanceApiController.cs" />
     <Compile Include="Api\GRApiController.cs" />
     <Compile Include="Api\PMApiController.cs" />
     <Compile Include="Api\POApiController.cs" />
@@ -283,6 +284,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\my-vue-components.js" />
     <Content Include="Scripts\opas-vue-biz-document-mixin.js" />
     <Content Include="Scripts\opas-vue-public-mixin.js" />

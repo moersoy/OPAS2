@@ -762,6 +762,12 @@
   <data name="G_UserPosition" xml:space="preserve">
     <value>在部门职位</value>
   </data>
+  <data name="G_ActionName" xml:space="preserve">
+    <value>流程动作</value>
+  </data>
+  <data name="G_ActivityName" xml:space="preserve">
+    <value>流程状态</value>
+  </data>
   <data name="G_Delegatee" xml:space="preserve">
     <value>受托人</value>
   </data>
@@ -777,11 +783,17 @@
   <data name="G_EndTime" xml:space="preserve">
     <value>结束时间</value>
   </data>
+  <data name="G_FlowLog" xml:space="preserve">
+    <value>流程日志</value>
+  </data>
   <data name="G_MyAccount" xml:space="preserve">
     <value>我的账户</value>
   </data>
   <data name="G_NoRecords" xml:space="preserve">
     <value>无记录</value>
+  </data>
+  <data name="G_Paticipant" xml:space="preserve">
+    <value>流程执行人</value>
   </data>
   <data name="G_PeriodLength" xml:space="preserve">
     <value>时长(天数)</value>
