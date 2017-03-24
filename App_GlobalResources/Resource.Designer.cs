@@ -925,6 +925,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My account.
+        /// </summary>
+        internal static string G_MyAccount {
+            get {
+                return ResourceManager.GetString("G_MyAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My passed applications.
         /// </summary>
         internal static string G_MyPassedApplications {

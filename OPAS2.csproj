@@ -465,6 +465,7 @@
     <Content Include="Views\Delegation\Create.cshtml" />
     <Content Include="Views\Delegation\Edit.cshtml" />
     <Content Include="Views\FlowTaskForUser\DelegatedIndex.cshtml" />
+    <Content Include="Views\User\SelfEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

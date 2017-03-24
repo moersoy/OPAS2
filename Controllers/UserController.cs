@@ -190,6 +190,100 @@ namespace OPAS2.Controllers
       }
     }
 
+    // GET: User/SelfEdit/ 用户自助有限度的维护基本信息
+    [UserLogon]
+    public ActionResult SelfEdit() 
+    {
+      ViewBag.currentMenuIndex = "MY-ACCOUNT";
+
+      SetSelectListOfUserPositionToDepartment();
+
+      var user = (UserDTO)ViewBag.currentUserDTO;
+
+      #region 其他关联属性
+      ViewBag.costCenterId = 0;
+      var costCenter = OPAS2ModelDBHelper.getUserCostCenter(
+        user.userId, OPASDb);
+      if (costCenter != null)
+      {
+        ViewBag.costCenterName = costCenter.costCenterNo + 
+          "-" + costCenter.chineseName;
+      }
+
+      var departmentUserRelation = db.departmentUserRelations.Where(
+        obj => obj.assistUserId == user.userId).FirstOrDefault();
+      if (departmentUserRelation != null)
+      {
+        ViewBag.userPosition = departmentUserRelation.userPosition;
+        ViewBag.department = db.departments.Find(
+          departmentUserRelation.assistDepartmentId);
+      }
+      #endregion
+
+      return View(user);
+    }
+
+    // POST: User/Edit/5
+    [UserLogon]
+    [HttpPost]
+    public ActionResult SelfEdit(string guid, FormCollection collection)
+    {
+      var obj = db.users.Where(_user =>
+        _user.guid == guid).FirstOrDefault();
+
+      try
+      {
+        if (!string.IsNullOrWhiteSpace(collection["email"]))
+        {
+          obj.email = collection["email"];
+        }
+        #region password processing
+        string logonPasswordOrigin = collection["logonPassword"];
+        if (!string.IsNullOrWhiteSpace(logonPasswordOrigin))
+        {
+          var PasswordHashAndSalt = OrgMgmtDBHelper.generatePasswordHashAndSalt(logonPasswordOrigin);
+          obj.logonPasswordHash = PasswordHashAndSalt.Item1;
+          obj.logonSalt = PasswordHashAndSalt.Item2;
+        }
+        #endregion
+        obj.officeTel = collection["officeTel"];
+        obj.personalTel = collection["personalTel"];
+        obj.personalMobile = collection["personalMobile"];
+
+        db.SaveChanges();
+
+        // 更新完个人信息后需要同步更新到Session变量中
+        Session["currentUserDTO"] = OrgMgmtDBHelper.convertUser2DTO(
+          obj, db, true);
+
+        return RedirectToAction("Index","Home",null);
+      }
+      catch (Exception ex)
+      {
+        ViewBag.backendError = ex.Message;
+        #region 其他关联属性
+        ViewBag.costCenterId = 0;
+        var costCenter = OPAS2ModelDBHelper.getUserCostCenter(
+          obj.userId, OPASDb);
+        if (costCenter != null)
+        {
+          ViewBag.costCenterName = costCenter.costCenterNo +
+            "-" + costCenter.chineseName;
+        }
+
+        var departmentUserRelation = db.departmentUserRelations.Where(
+          r => r.assistUserId == obj.userId).FirstOrDefault();
+        if (departmentUserRelation != null)
+        {
+          ViewBag.userPosition = departmentUserRelation.userPosition;
+          ViewBag.department = db.departments.Find(
+            departmentUserRelation.assistDepartmentId);
+        }
+        #endregion
+        return View(obj);
+      }
+    }
+
     [HttpGet]
     public ActionResult Logon()
     {

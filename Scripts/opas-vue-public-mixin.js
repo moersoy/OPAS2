@@ -9,9 +9,7 @@
       });
     },
     handleLeftNavMenuItemSelected(key, keyPath) {
-      if (key == "MY-ACCOUNT" ||
-        key == "MY-ALERT" ||
-        key == "MY-DELEGATE" ||
+      if (key == "MY-ALERT" ||
         key == "REPORT-TODO") {
         this.alertErrorNotImplemented();
       }

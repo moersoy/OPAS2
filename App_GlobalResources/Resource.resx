@@ -777,6 +777,9 @@
   <data name="G_EndTime" xml:space="preserve">
     <value>End time</value>
   </data>
+  <data name="G_MyAccount" xml:space="preserve">
+    <value>My account</value>
+  </data>
   <data name="G_NoRecords" xml:space="preserve">
     <value>No records</value>
   </data>

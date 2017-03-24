@@ -103,8 +103,10 @@
     <template slot="title">
       <i class="el-icon-menu"></i>@Resources.Resource.MENU_MY
     </template>
-    <el-menu-item index="MY-ACCOUNT">账户信息</el-menu-item>
-    <el-menu-item index="MY-ALERT">提醒设置</el-menu-item>
+    <el-menu-item index="MY-ACCOUNT">
+      @Html.ActionLink(@Resources.Resource.G_MyAccount, "SelfEdit", "User")
+    </el-menu-item>
+    <el-menu-item index="MY-ALERT" v-if="false">提醒设置</el-menu-item>
     <el-menu-item index="MY-DELEGATION">
       @Html.ActionLink(@Resources.Resource.G_Delegation, "Index", "Delegation")
     </el-menu-item>
