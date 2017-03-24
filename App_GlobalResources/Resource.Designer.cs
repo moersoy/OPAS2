@@ -709,6 +709,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flow information.
+        /// </summary>
+        internal static string G_FlowInformation {
+            get {
+                return ResourceManager.GetString("G_FlowInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flow log.
         /// </summary>
         internal static string G_FlowLog {

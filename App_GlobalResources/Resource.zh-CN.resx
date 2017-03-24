@@ -783,6 +783,9 @@
   <data name="G_EndTime" xml:space="preserve">
     <value>结束时间</value>
   </data>
+  <data name="G_FlowInformation" xml:space="preserve">
+    <value>流程信息</value>
+  </data>
   <data name="G_FlowLog" xml:space="preserve">
     <value>流程日志</value>
   </data>

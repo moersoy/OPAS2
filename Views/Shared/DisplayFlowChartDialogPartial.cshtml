@@ -1,10 +1,13 @@
-﻿<el-dialog title="@Resources.Resource.G_FlowChart" size="small"
+﻿<el-dialog title="@Resources.Resource.G_FlowInformation" size="small"
            v-model="dialogShowFlowChart">
   <el-tabs type="border-card" @@tab-click="loadFlowInstanceFriendlyLog">
+    @*流程图*@
     <el-tab-pane label="@Resources.Resource.G_FlowChart">
       <div id="FlowChart" style="overflow-x:auto; overflow-y:auto;">
       </div>
     </el-tab-pane>
+
+    @*流程日志*@
     <el-tab-pane label="@Resources.Resource.G_FlowLog">
       <div id="FlowLogTable" style="overflow-x:auto; overflow-y:auto;">
         <el-table v-bind:data="flowInstanceFriendlyLogs"

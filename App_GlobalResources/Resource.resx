@@ -783,6 +783,9 @@
   <data name="G_EndTime" xml:space="preserve">
     <value>End time</value>
   </data>
+  <data name="G_FlowInformation" xml:space="preserve">
+    <value>Flow information</value>
+  </data>
   <data name="G_FlowLog" xml:space="preserve">
     <value>Flow log</value>
   </data>
