@@ -167,7 +167,8 @@
   @Html.LabelFor(model => model.description, @Resources.Resource.MD_Description,
         htmlAttributes: new { @class = "control-label col-md-2" })
   <div class="col-md-10">
-    <textarea name="description" class="form-control" style="max-width: 750px;"
+    <textarea name="description" class="form-control" 
+              style="width: 100%;"
            v-model="newItem.description" ></textarea>
   </div>
 </div>
