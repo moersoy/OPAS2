@@ -1,5 +1,6 @@
 ﻿var opas_vue_public_mixin = {
   data: {
+    messageBoxDurationConfig: { success: 30000, error: 60000 },
   },
   methods: {
     alertErrorNotImplemented() {
@@ -37,9 +38,50 @@
         });
       }
     },
+    parseErrorOfServerResponse(error) {
+      var errContent = error.toString();
+      if (error.response && error.response.data &&
+        error.response.data.Message) {
+        errContent = error.response.data.Message;
+      }
+      return errContent;
+    },
     jumpToUrl(url) {
       window.location = url;
-    }
+    },
+    submitToBackend(path, dataObj, successPrompt) {
+      var _parseError = this.parseErrorOfServerResponse;
+      var that = this;
+
+      var loadingInstance = this.$loading({
+        fullscreen: true,
+        body: true,
+        text: "正在提交 / Processsing"
+      });
+      axios.post(path,
+        {
+          docJson: JSON.stringify(dataObj),
+        }
+      )
+      .then(function (response) {
+        that.$message.success({
+          duration: that.messageBoxDurationConfig.success,
+          message: (successPrompt || '提交表单成功') + ':' + response.data.toString(),
+          showClose: true
+        });
+        loadingInstance.close();
+      })
+      .catch(function (error) {
+        that.$message.error({
+          duration: that.messageBoxDurationConfig.error,
+          message: '提交表单失败,发生错误:' + _parseError(error),
+          showClose: true
+        });
+        console.error(dataObj, error);
+        loadingInstance.close();
+        return false;
+      });
+    },
   },
   mounted () {
     this.alertBackendError();

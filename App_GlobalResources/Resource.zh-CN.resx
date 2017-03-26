@@ -804,4 +804,10 @@
   <data name="G_StartTime" xml:space="preserve">
     <value>开始时间</value>
   </data>
+  <data name="G_ChooseActivityNode" xml:space="preserve">
+    <value>选择活动节点</value>
+  </data>
+  <data name="G_JumpTo" xml:space="preserve">
+    <value>漫游跳转至...</value>
+  </data>
 </root>

@@ -1,5 +1,13 @@
 ﻿@model IEnumerable<EnouFlowInstanceLib.FlowInstance>
 
+@section init_scripts {
+  <script type="text/javascript">
+    var initBag = {};
+    initBag.currentUserId = @ViewBag.currentUserDTO.userId;
+    initBag.currentUserGuid = "@ViewBag.currentUserDTO.guid";
+  </script>
+}
+
 <h3>@Resources.Resource.MENU_FlowInstancesMgmt</h3>
 
 <table class="table table-condensed table-striped">
@@ -45,19 +53,50 @@
         @Html.DisplayFor(modelItem => item.currentActivityName)
       </td>
       <td>
-        @Html.Action("DisplayNameById","User", new { id = item.creatorId })
+        @Html.Action("DisplayNameById", "User", new { id = item.creatorId })
       </td>
       <td>
         @item.createTime.ToString("yyyy/MM/dd")
       </td>
       <td>
-        @((item.bizTimeStamp-item.createTime).Days+1)
+        @((item.bizTimeStamp - item.createTime).Days + 1)
       </td>
       <td>
         @Html.ActionLink(@Resources.Resource.G_Details,
-          "DisplayBizDocument", new { guid = item.guid }) 
+          "DisplayBizDocument", new { guid = item.guid }) |
+        <el-button type="warning" size="mini"
+                   @@click="onShowJumpTo(@item.flowInstanceId)">
+          @Resources.Resource.G_JumpTo
+        </el-button>
       </td>
     </tr>
   }
 
 </table>
+
+<el-dialog title="@Resources.Resource.G_JumpTo" size="small"
+           v-model="dialogJumpToActivity" modal-append-to-body=true>
+  目的状态:
+  <select v-model="dataPackage.nextActivityGuid" class="form-control">
+    <option v-for="item in jumpTo.availableFlowActivityNodes" v-bind:value="item.guid">
+      {{ item.name }}
+    </option>
+  </select>
+  <hr/>
+  活动执行人:
+  <select v-model="dataPackage.selectedPaticipantGuid" class="form-control">
+    <option v-for="item in allUserDTOs" v-bind:value="item.guid">
+      {{ item.name + "/" + item.englishName }}
+    </option>
+  </select>
+  <hr />
+  @Resources.Resource.G_Memo
+  <textarea v-model="dataPackage.remarkOfAprrover" style="width: 100%;" rows="3"
+            class="form-control" placeholder="@Resources.Resource.G_Memo">
+  </textarea>
+  <hr />
+  <input type="button" value="@Resources.Resource.G_Submit"
+         v-bind:disabled="!(dataPackage.nextActivityGuid && dataPackage.selectedPaticipantGuid)"
+         v-on:click="onSubmitJumpToFlowAction"
+         class="btn btn-primary" />
+</el-dialog>

@@ -5,7 +5,6 @@
     allUserDTOs: null,
     selectedUserDTO: null,
     dialogChooseUserConfirmHandle: null,
-    messageBoxDurationConfig: { success: 30000, error: 60000 },
     flowInstanceFriendlyLogs: null
   },
   computed: {
@@ -171,39 +170,6 @@
         this.examineItem.sessionData.InviteOtherFeedbackFlowActionPath,
         examineItemClone);
     },
-    submitToBackend(path, dataObj, successPrompt) {
-      var _parseError = this.parseErrorOfServerResponse;
-      var that = this;
-
-      var loadingInstance = this.$loading({
-        fullscreen: true,
-        body: true,
-        text: "正在提交 / Processsing"
-      });
-      axios.post(path,
-        {
-          docJson: JSON.stringify(dataObj),
-        }
-      )
-      .then(function (response) {
-        that.$message.success({
-          duration: that.messageBoxDurationConfig.success,
-          message: (successPrompt || '提交表单成功') + ':' + response.data.toString(),
-          showClose: true
-        });
-        loadingInstance.close();
-      })
-      .catch(function (error) {
-        that.$message.error({
-          duration: that.messageBoxDurationConfig.error,
-          message: '提交表单失败,发生错误:' + _parseError(error),
-          showClose: true
-        });
-        console.error(dataObj, error);
-        loadingInstance.close();
-        return false;
-      });
-    },
     onDialogChooseUserConfirmed(){
       this.dialogChooseUserConfirmHandle();
     },
@@ -262,7 +228,7 @@
       }
       var that = this;
       axios.get(window.location.protocol + '//' +
-        window.location.host + '/api/FlowInstanceApi/' +
+        window.location.host + '/api/FlowInstance/GetFriendlyLogs/' +
         this.getCorrenspondingDataItem(this.workingMode).flowInstanceId)
       .then(function (response) {
         that.flowInstanceFriendlyLogs = response.data;
@@ -303,14 +269,6 @@
       }
 
       return true;
-    },
-    parseErrorOfServerResponse(error) {
-      var errContent = error.toString();
-      if (error.response && error.response.data &&
-        error.response.data.Message) {
-        errContent = error.response.data.Message;
-      }
-      return errContent;
     },
     customJSONstringify(obj) {
       return JSON.stringify(obj).replace(/\/Date/g, "\\\/Date").replace(/\)\//g, "\)\\\/")

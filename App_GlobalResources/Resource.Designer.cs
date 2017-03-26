@@ -232,6 +232,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose activity node.
+        /// </summary>
+        internal static string G_ChooseActivityNode {
+            get {
+                return ResourceManager.GetString("G_ChooseActivityNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose date.
         /// </summary>
         internal static string G_ChooseDate {
@@ -894,6 +903,15 @@ namespace Resources {
         internal static string G_ItemType {
             get {
                 return ResourceManager.GetString("G_ItemType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roaming to ....
+        /// </summary>
+        internal static string G_JumpTo {
+            get {
+                return ResourceManager.GetString("G_JumpTo", resourceCulture);
             }
         }
         
