@@ -1555,6 +1555,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Terminate to....
+        /// </summary>
+        internal static string G_TerminateTo {
+            get {
+                return ResourceManager.GetString("G_TerminateTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Toggle publish.
         /// </summary>
         internal static string G_TogglePublishState {

@@ -810,4 +810,7 @@
   <data name="G_JumpTo" xml:space="preserve">
     <value>Roaming to ...</value>
   </data>
+  <data name="G_TerminateTo" xml:space="preserve">
+    <value>Terminate to...</value>
+  </data>
 </root>

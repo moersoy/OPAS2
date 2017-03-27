@@ -41,12 +41,38 @@ namespace OPAS2.Api
       dynamic bizDocument = getBizDocumentFromFlowInstance(
         flowInstance.bizDocumentTypeCode, flowInstance.bizDocumentGuid);
 
-      #region 执行公用的ExamineFlowAction处理
+      #region 执行公用的JumpToFlowAction处理
       Tuple<bool, IHttpActionResult> generalResult =
         JumpToFlowActionGeneral(
           bizObj, bizDocument, flowInstance.bizDocumentTypeCode,
           null, null, 
           (int)bizObj.currentUserId, bizObj.currentUserGuid, true);
+      if (!generalResult.Item1)
+      {
+        return generalResult.Item2;
+      }
+      #endregion
+
+      return Ok();
+    }
+
+    [HttpPost]
+    [Route("api/FlowInstance/Terminate/")]
+    public IHttpActionResult Terminate()
+    {
+      dynamic bizObj = getPostedJsonObject();
+
+      var flowInstance = FlowInstanceHelper.GetFlowInstance(
+        (int)bizObj.flowInstanceId, flowInstDb);
+      dynamic bizDocument = getBizDocumentFromFlowInstance(
+        flowInstance.bizDocumentTypeCode, flowInstance.bizDocumentGuid);
+
+      #region 执行公用的TerminateFlowAction处理
+      Tuple<bool, IHttpActionResult> generalResult =
+        TerminateFlowActionGeneral(
+          bizObj, bizDocument, flowInstance.bizDocumentTypeCode,
+          null, null,
+          (int)bizObj.currentUserId, bizObj.currentUserGuid);
       if (!generalResult.Item1)
       {
         return generalResult.Item2;

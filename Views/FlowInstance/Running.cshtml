@@ -67,6 +67,10 @@
         <el-button type="warning" size="mini"
                    @@click="onShowJumpTo(@item.flowInstanceId)">
           @Resources.Resource.G_JumpTo
+        </el-button> |
+        <el-button type="danger" size="mini"
+                   @@click="onShowTerminate(@item.flowInstanceId)">
+          @Resources.Resource.G_TerminateTo
         </el-button>
       </td>
     </tr>
@@ -77,26 +81,45 @@
 <el-dialog title="@Resources.Resource.G_JumpTo" size="small"
            v-model="dialogJumpToActivity" modal-append-to-body=true>
   目的状态:
-  <select v-model="dataPackage.nextActivityGuid" class="form-control">
+  <select v-model="jumpToDataPackage.nextActivityGuid" class="form-control">
     <option v-for="item in jumpTo.availableFlowActivityNodes" v-bind:value="item.guid">
       {{ item.name }}
     </option>
   </select>
   <hr/>
   活动执行人:
-  <select v-model="dataPackage.selectedPaticipantGuid" class="form-control">
+  <select v-model="jumpToDataPackage.selectedPaticipantGuid" class="form-control">
     <option v-for="item in allUserDTOs" v-bind:value="item.guid">
       {{ item.name + "/" + item.englishName }}
     </option>
   </select>
   <hr />
   @Resources.Resource.G_Memo
-  <textarea v-model="dataPackage.remarkOfAprrover" style="width: 100%;" rows="3"
+  <textarea v-model="jumpToDataPackage.remarkOfAprrover" style="width: 100%;" rows="3"
             class="form-control" placeholder="@Resources.Resource.G_Memo">
   </textarea>
   <hr />
   <input type="button" value="@Resources.Resource.G_Submit"
-         v-bind:disabled="!(dataPackage.nextActivityGuid && dataPackage.selectedPaticipantGuid)"
+         v-bind:disabled="!(jumpToDataPackage.nextActivityGuid && jumpToDataPackage.selectedPaticipantGuid)"
          v-on:click="onSubmitJumpToFlowAction"
+         class="btn btn-primary" />
+</el-dialog>
+
+<el-dialog title="@Resources.Resource.G_TerminateTo" size="small"
+           v-model="dialogTerminate" modal-append-to-body=true>
+  目的状态:
+  <select v-model="terminateDataPackage.nextActivityGuid" class="form-control">
+    <option v-for="item in terminate.availableFlowActivityNodes" v-bind:value="item.guid">
+      {{ item.name }}
+    </option>
+  </select>
+  <hr />
+  @Resources.Resource.G_Memo
+  <textarea v-model="terminateDataPackage.remarkOfAprrover" style="width: 100%;" rows="3"
+            class="form-control" placeholder="@Resources.Resource.G_Memo"></textarea>
+  <hr />
+  <input type="button" value="@Resources.Resource.G_Submit"
+         v-bind:disabled="!(terminateDataPackage.nextActivityGuid && terminateDataPackage.remarkOfAprrover)"
+         v-on:click="onSubmitTerminateFlowAction"
          class="btn btn-primary" />
 </el-dialog>
