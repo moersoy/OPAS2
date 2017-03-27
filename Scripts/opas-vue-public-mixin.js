@@ -61,7 +61,8 @@
       axios.post(path,
         {
           docJson: JSON.stringify(dataObj),
-        }
+        },
+        {headers: {'X-OPAS2-UserToken': '1234567890chao'}}
       )
       .then(function (response) {
         that.$message.success({
