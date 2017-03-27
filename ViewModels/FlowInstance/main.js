@@ -33,7 +33,8 @@
         if (!that.jumpTo.flowDef) return null;
         that.jumpTo.availableFlowActivityNodes =
           _.map(_.reject(that.jumpTo.flowDef.activityNodes.nodes,
-              node => node.type == "st-autoActivity"),
+              node => (node.type == "st-autoActivity" ||
+                node.type == "st-end")),
             (node) => { return { name: node.name, guid: node.guid }; });
         that.dialogJumpToActivity = true;
       })

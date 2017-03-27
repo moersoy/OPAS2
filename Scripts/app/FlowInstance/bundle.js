@@ -42,7 +42,7 @@
             that.jumpTo.flowDef = JSON.parse(response.data);
             if (!that.jumpTo.flowDef) return null;
             that.jumpTo.availableFlowActivityNodes = _.map(_.reject(that.jumpTo.flowDef.activityNodes.nodes, function (node) {
-              return node.type == "st-autoActivity";
+              return node.type == "st-autoActivity" || node.type == "st-end";
             }), function (node) {
               return { name: node.name, guid: node.guid };
             });
