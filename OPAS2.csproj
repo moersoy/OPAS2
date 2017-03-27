@@ -468,6 +468,7 @@
     <Content Include="Views\Delegation\Edit.cshtml" />
     <Content Include="Views\FlowTaskForUser\DelegatedIndex.cshtml" />
     <Content Include="Views\User\SelfEdit.cshtml" />
+    <Content Include="Views\Shared\_Layout-No-Navs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

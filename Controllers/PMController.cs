@@ -234,7 +234,7 @@ namespace OPAS2.Controllers
     // GET: PM/Display/5b354131-f2ea-489d-8fc6-119676fdcebe
     [UserLogon]
     [HttpGet]
-    public ActionResult Display(string guid)
+    public ActionResult Display(string guid, int? mode)
     {
       ViewBag.currentMenuIndex = "";
 
@@ -249,6 +249,15 @@ namespace OPAS2.Controllers
       #region 流程相关数据
       fillFlowContinuationDataInViewBag(flowInstance);
       #endregion
+
+      if (mode.HasValue && mode.Value == 0)
+      {
+        ViewBag.layout = 0; // 页面上无导航组件的查看模式
+      }
+      else
+      {
+        ViewBag.layout = 1;
+      }
 
       return View(pm);
     }

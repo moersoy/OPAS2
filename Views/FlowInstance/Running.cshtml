@@ -63,7 +63,8 @@
       </td>
       <td>
         @Html.ActionLink(@Resources.Resource.G_Details,
-          "DisplayBizDocument", new { guid = item.guid }) |
+          "DisplayBizDocument", new { guid = item.guid },
+          new { target = "_blank" }) |
         <el-button type="warning" size="mini"
                    @@click="onShowJumpTo(@item.flowInstanceId)">
           @Resources.Resource.G_JumpTo

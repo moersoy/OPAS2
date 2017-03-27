@@ -71,7 +71,7 @@ namespace OPAS2.Controllers
       #endregion
 
       return RedirectToAction("Display", flowInstance.bizDocumentTypeCode, 
-        new { guid = flowInstance.bizDocumentGuid });
+        new { guid = flowInstance.bizDocumentGuid, mode = 0 });
     }
 
     public ActionResult DisplayCurrentActivityNameById(int id)

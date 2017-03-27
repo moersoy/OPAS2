@@ -1,0 +1,78 @@
+﻿@{
+  var controllerName = HttpContext.Current.Request.RequestContext.
+    RouteData.Values["Controller"].ToString();
+  var actionName = HttpContext.Current.Request.RequestContext.
+    RouteData.Values["Action"].ToString();
+}
+
+@helper hasPermission(string code) // 判定当前用户是否有指定code的功能权限
+{
+  @ViewBag.functionPermissionCodes.Contains(code).ToString().ToLower()
+}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OPAS2 - @Resources.Resource.G_OPAS V2.0</title>
+  @Styles.Render("~/Content/css")
+
+  <script type="text/javascript">
+    var workingMode = "@actionName";
+  </script>
+</head>
+<body style="overflow-y:scroll;">
+  <div id="app">@*这里Vue.JS的挂接点,id="app"不能改!!!*@
+    <div id="loading" v-show="false">@*避免Vue.JS尚未Mount时显示不规则的文本信息给用户*@
+      加载中Loading...
+    </div>
+    <div style="display:none" v-show="true">
+      <div class="container">
+        <div class="row">
+          @* 内容区 *@
+          <div class="col-md-12">
+            <div class="container body-content">
+              @RenderBody()
+              <hr />
+              <footer>
+                <p class="text-center">
+                  &copy; @DateTime.Now.Year - @Resources.Resource.G_OPAS V2.0
+                </p>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  @Scripts.Render("~/bundles/modernizr")
+  @Scripts.Render("~/bundles/jquery")
+  @Scripts.Render("~/bundles/bootstrap")
+  @Scripts.Render("~/bundles/vue")
+  @Scripts.Render("~/bundles/vue-element-ui")
+  @Scripts.Render("~/bundles/lodash")
+  @Scripts.Render("~/bundles/guid")
+  @Scripts.Render("~/bundles/moment")
+  @Scripts.Render("~/bundles/simple-float-math")
+  @Scripts.Render("~/bundles/webtoolkitbase64")
+  @Scripts.Render("~/bundles/axios")
+  @Scripts.Render("~/bundles/raphael")
+  @Scripts.Render("~/bundles/currency-validator")
+  @Scripts.Render("~/bundles/my-vue-components")
+  @Scripts.Render("~/bundles/draw-flow-chart")
+  @Scripts.Render("~/bundles/jquery.simple-dtpicker")
+  @Scripts.Render("~/bundles/opas-vue-public-mixin")
+  @Scripts.Render("~/bundles/opas-vue-biz-document-mixin")
+
+  @RenderSection("scripts", required: false)
+  @RenderSection("init_scripts", required: false)
+
+  @Scripts.Render("~/Scripts/app/" + controllerName + "/bundle.js")
+
+  <script type="text/javascript">
+    $('body').css('padding-top', '0px'); // 页面上无导航组件的查看模式需把body置顶
+  </script>
+
+</body>
+</html>

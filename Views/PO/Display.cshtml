@@ -1,5 +1,12 @@
 ﻿@model OPAS2Model.PurchaseOrder
 
+@{
+  if (ViewBag.layout == 0)
+  {
+    Layout = "~/Views/Shared/_Layout-No-Navs.cshtml"; // 页面上无导航组件的查看模式
+  }
+}
+
 @section init_scripts {
 <script type="text/javascript">
   var initBag = {};
