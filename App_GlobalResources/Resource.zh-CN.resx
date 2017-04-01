@@ -808,9 +808,15 @@
     <value>选择活动节点</value>
   </data>
   <data name="G_JumpTo" xml:space="preserve">
-    <value>漫游跳转至...</value>
+    <value>跳转</value>
   </data>
   <data name="G_TerminateTo" xml:space="preserve">
-    <value>流程终止到...</value>
+    <value>流程终止</value>
+  </data>
+  <data name="G_Count" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="MENU_ReportBizDocOverView" xml:space="preserve">
+    <value>表单概要报表</value>
   </data>
 </root>

@@ -808,9 +808,15 @@
     <value>Choose activity node</value>
   </data>
   <data name="G_JumpTo" xml:space="preserve">
-    <value>Roaming to ...</value>
+    <value>Jump to</value>
   </data>
   <data name="G_TerminateTo" xml:space="preserve">
-    <value>Terminate to...</value>
+    <value>Terminate</value>
+  </data>
+  <data name="G_Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="MENU_ReportBizDocOverView" xml:space="preserve">
+    <value>Biz docs overview</value>
   </data>
 </root>

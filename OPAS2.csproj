@@ -184,6 +184,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EnumTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VendorBankController.cs" />
@@ -202,6 +203,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\element-icons.svg" />
+    <Content Include="Content\highcharts.css" />
     <Content Include="Content\jquery.simple-dtpicker.css" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.scss</DependentUpon>
@@ -251,6 +253,7 @@
     <Content Include="Scripts\app\PM\bundle.js" />
     <Content Include="Scripts\app\PO\bundle.js" />
     <Content Include="Scripts\app\PR\bundle.js" />
+    <Content Include="Scripts\app\Report\bundle.js" />
     <Content Include="Scripts\app\Role\bundle.js" />
     <Content Include="Scripts\app\User\bundle.js" />
     <Content Include="Scripts\app\VendorBank\bundle.js" />
@@ -274,6 +277,7 @@
     <Content Include="Scripts\currency-validator.js" />
     <Content Include="Scripts\draw-flow-chart.js" />
     <Content Include="Scripts\guid.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -313,6 +317,7 @@
     <Content Include="ViewModels\PM\main.js" />
     <Content Include="ViewModels\PO\main.js" />
     <Content Include="ViewModels\PR\main.js" />
+    <Content Include="ViewModels\Report\main.js" />
     <Content Include="ViewModels\Role\main.js" />
     <Content Include="ViewModels\User\main.js" />
     <Content Include="ViewModels\VendorBank\main.js" />
@@ -469,6 +474,7 @@
     <Content Include="Views\FlowTaskForUser\DelegatedIndex.cshtml" />
     <Content Include="Views\User\SelfEdit.cshtml" />
     <Content Include="Views\Shared\_Layout-No-Navs.cshtml" />
+    <Content Include="Views\Report\BizDocOverview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

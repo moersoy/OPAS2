@@ -349,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Count.
+        /// </summary>
+        internal static string G_Count {
+            get {
+                return ResourceManager.GetString("G_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create record.
         /// </summary>
         internal static string G_Create {
@@ -907,7 +916,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Roaming to ....
+        ///   Looks up a localized string similar to Jump to.
         /// </summary>
         internal static string G_JumpTo {
             get {
@@ -1555,7 +1564,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Terminate to....
+        ///   Looks up a localized string similar to Terminate.
         /// </summary>
         internal static string G_TerminateTo {
             get {
@@ -2109,6 +2118,15 @@ namespace Resources {
         internal static string MENU_Report {
             get {
                 return ResourceManager.GetString("MENU_Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Biz docs overview.
+        /// </summary>
+        internal static string MENU_ReportBizDocOverView {
+            get {
+                return ResourceManager.GetString("MENU_ReportBizDocOverView", resourceCulture);
             }
         }
         

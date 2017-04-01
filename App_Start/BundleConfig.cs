@@ -27,6 +27,7 @@ namespace OPAS2
                 "~/Content/bootstrap.css",
                 "~/Content/vue-element-ui.css",
                 "~/Content/jquery.simple-dtpicker.css",
+                "~/Content/highcharts.css",
                 "~/Content/site.css"));
 
       #region Customized bundles
@@ -60,6 +61,8 @@ namespace OPAS2
         "~/Scripts/draw-flow-chart.js"));
       bundles.Add(new ScriptBundle("~/bundles/jquery.simple-dtpicker").Include(
         "~/Scripts/jquery.simple-dtpicker.js"));
+      bundles.Add(new ScriptBundle("~/bundles/highcharts").Include(
+        "~/Scripts/highcharts.js"));
       #endregion
     }
   }

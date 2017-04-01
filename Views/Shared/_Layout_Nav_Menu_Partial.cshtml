@@ -141,7 +141,9 @@
     <template slot="title">
       <i class="el-icon-menu"></i>@Resources.Resource.MENU_Report
     </template>
-    <el-menu-item index="REPORT-TODO">需定制</el-menu-item>
+    <el-menu-item index="REPORT-BIZDOC-OVERVIEW">
+      @Html.ActionLink(@Resources.Resource.MENU_ReportBizDocOverView, "BizDocOverview", "Report")
+    </el-menu-item>
   </el-submenu>
 
   <el-submenu index="SYS">

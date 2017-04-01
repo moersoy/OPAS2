@@ -168,7 +168,8 @@ namespace OPAS2.Controllers
     protected void SetSelectListOfDepartment(EnouFlowOrgMgmtContext orgDb)
     {
       var departments = OrgMgmtDBHelper.getAllDepartmentDTOs(orgDb);
-      ViewBag.departmentSelectList = new SelectList(departments, "departmentId", "name");
+      ViewBag.departmentSelectList = new SelectList(
+        departments, "departmentId", "name");
     }
 
     protected void SetSelectListOfUser(EnouFlowOrgMgmtContext orgDb)
