@@ -139,8 +139,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiFilters\UserAuthentication.cs" />
     <Compile Include="Api\BaseApiController.cs" />
     <Compile Include="Api\FlowInstanceApiController.cs" />
+    <Compile Include="Api\FlowTaskForUserApiController.cs" />
     <Compile Include="Api\GRApiController.cs" />
     <Compile Include="Api\PMApiController.cs" />
     <Compile Include="Api\POApiController.cs" />

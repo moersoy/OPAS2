@@ -24,7 +24,7 @@ namespace OPAS2.Api
     [Route("api/PM/CreateWithFlowAction/")]
     public IHttpActionResult CreateWithFlowAction()
     {
-      dynamic bizObj = getPostedJsonObject();
+      dynamic bizObj = getPostedJsonDocObject();
 
       #region 从提交的JSON参数中初始化基本变量
       UserDTO userDTO = OrgMgmtDBHelper.getUserDTO(bizObj.currentUserGuid, orgDb);
@@ -119,7 +119,7 @@ namespace OPAS2.Api
     [Route("api/PM/UpdateAtStartFlowAction/")]
     public IHttpActionResult UpdateAtStartFlowAction()
     {
-      dynamic bizObj = getPostedJsonObject();
+      dynamic bizObj = getPostedJsonDocObject();
 
       #region 从提交的JSON参数中初始化基本变量
       Tuple<UserDTO, FlowInstance, FlowTaskForUser> tupleBasic =
@@ -187,7 +187,7 @@ namespace OPAS2.Api
     [Route("api/PM/ExamineFlowAction/")]
     public IHttpActionResult ExamineFlowAction()
     {
-      dynamic bizObj = getPostedJsonObject();
+      dynamic bizObj = getPostedJsonDocObject();
       Payment pm = db.payments.Find(bizObj.paymentId);
 
       #region 执行公用的ExamineFlowAction处理
@@ -217,7 +217,7 @@ namespace OPAS2.Api
     [Route("api/PM/RejectToStartFlowAction/")]
     public IHttpActionResult RejectToStartFlowAction()
     {
-      dynamic bizObj = getPostedJsonObject();
+      dynamic bizObj = getPostedJsonDocObject();
 
       #region 从提交的JSON参数中初始化基本变量
       Tuple<UserDTO, FlowInstance, FlowTaskForUser> tupleBasic =
@@ -245,7 +245,7 @@ namespace OPAS2.Api
     [Route("api/PM/InviteOtherFlowAction/")]
     public IHttpActionResult InviteOtherFlowAction()
     {
-      dynamic bizObj = getPostedJsonObject();
+      dynamic bizObj = getPostedJsonDocObject();
       Payment pm = db.payments.Find(bizObj.paymentId);
 
       return InviteOtherFlowActionGeneral(
@@ -256,7 +256,7 @@ namespace OPAS2.Api
     [Route("api/PM/InviteOtherFeedbackFlowAction/")]
     public IHttpActionResult InviteOtherFeedbackFlowAction()
     {
-      dynamic bizObj = getPostedJsonObject();
+      dynamic bizObj = getPostedJsonDocObject();
       Payment pm = db.payments.Find(bizObj.paymentId);
 
       return InviteOtherFeedbackFlowActionGeneral(

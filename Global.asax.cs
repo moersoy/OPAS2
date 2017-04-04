@@ -20,6 +20,14 @@ namespace OPAS2
       BundleConfig.RegisterBundles(BundleTable.Bundles);
     }
 
+    protected void Application_BeginRequest()
+    {
+      if (Request.Headers.AllKeys.Contains("Origin") && Request.HttpMethod == "OPTIONS")
+      {
+        Response.End();
+      }
+    }
+
     protected void Session_Start(object sender, EventArgs e)
     {
 

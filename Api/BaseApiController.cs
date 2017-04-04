@@ -217,7 +217,7 @@ namespace OPAS2.Api
       return Ok();
     }
 
-    protected dynamic getPostedJsonObject()
+    protected dynamic getPostedJsonDocObject()
     {
       var result = Request.Content.ReadAsStringAsync().Result;
       dynamic docObj = JsonConvert.DeserializeObject(result);
@@ -225,6 +225,12 @@ namespace OPAS2.Api
 
       dynamic bizObj = parseJsonToDynamicObject(docJson);
       return bizObj;
+    }
+
+    protected dynamic getPostedJsonObject()
+    {
+      var result = Request.Content.ReadAsStringAsync().Result;
+      return parseJsonToDynamicObject(result);
     }
 
     protected Tuple<UserDTO, FlowInstance, FlowTaskForUser> getBasicTaskInfoFromBizObj(

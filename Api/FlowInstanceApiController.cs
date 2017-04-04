@@ -34,7 +34,7 @@ namespace OPAS2.Api
     [Route("api/FlowInstance/JumpToActivity/")]
     public IHttpActionResult JumpToActivity()
     {
-      dynamic bizObj = getPostedJsonObject();
+      dynamic bizObj = getPostedJsonDocObject();
 
       var flowInstance = FlowInstanceHelper.GetFlowInstance(
         (int)bizObj.flowInstanceId, flowInstDb);
@@ -60,7 +60,7 @@ namespace OPAS2.Api
     [Route("api/FlowInstance/Terminate/")]
     public IHttpActionResult Terminate()
     {
-      dynamic bizObj = getPostedJsonObject();
+      dynamic bizObj = getPostedJsonDocObject();
 
       var flowInstance = FlowInstanceHelper.GetFlowInstance(
         (int)bizObj.flowInstanceId, flowInstDb);
