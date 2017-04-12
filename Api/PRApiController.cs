@@ -202,7 +202,8 @@ namespace OPAS2.Api
     [UserAuthentication]
     [HttpGet]
     [Route("api/PR/Examine/{id}/{flowTaskForUserId}")]
-    public IHttpActionResult ExamineMobile(string id, int flowTaskForUserId)
+    public IHttpActionResult ExamineMobile(
+      string id, int flowTaskForUserId)
     {
       PurchaseReq purchaseReq = db.purchaseReqs.Where(
         pr => pr.guid == id).FirstOrDefault();
