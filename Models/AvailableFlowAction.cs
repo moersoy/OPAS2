@@ -32,6 +32,27 @@ namespace OPAS2.Models
         conn, flowTemplateDefHelper.getNodeFromGuid(conn.toGuid))).ToList();
     }
 
+    public static List<AvailableFlowAction> 
+      getCurrentActivityOutBoundAvailableFlowActions(
+      string flowTemplateJson, 
+      string currentActivityGuid)
+    {
+      FlowTemplateDefHelper flowTemplateDefHelper = new FlowTemplateDefHelper(
+        flowTemplateJson);
+
+      ActivityNode fromNode = flowTemplateDefHelper.getNodeFromGuid(
+        currentActivityGuid);
+      if (fromNode != null)
+      { // 获取可用的从当前状态节点出发的所有连接和目的状态节点
+        return getNodeOutBoundAvailableFlowActions(
+           fromNode, flowTemplateDefHelper);
+      }
+      else
+      {
+        throw new Exception("未找到指定的当前流程实例节点");
+      }
+    }
+
     private AvailableFlowAction() { }
   }
 }

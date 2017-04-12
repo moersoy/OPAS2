@@ -12,6 +12,8 @@ using EnouFlowInstanceLib;
 using EnouFlowOrgMgmtLib;
 using EnouFlowEngine;
 using OPAS2Model;
+using OPAS2.Models;
+using OPAS2.ApiFilters;
 using System.Dynamic;
 
 namespace OPAS2.Api
@@ -195,6 +197,42 @@ namespace OPAS2.Api
       #endregion
 
       return Ok("成功提交 / Sucessfully submitted.");
+    }
+
+    [UserAuthentication]
+    [HttpGet]
+    [Route("api/PR/Examine/{id}/{flowTaskForUserId}")]
+    public IHttpActionResult ExamineMobile(string id, int flowTaskForUserId)
+    {
+      PurchaseReq purchaseReq = db.purchaseReqs.Where(
+        pr => pr.guid == id).FirstOrDefault();
+      FlowTaskForUser flowTaskForUser = flowInstDb.flowTaskForUsers.Find(
+        flowTaskForUserId);
+      FlowInstance flowInstance = flowTaskForUser.FlowInstance;
+
+      #region 检查timestamp是否已过期
+      Tuple<bool, IHttpActionResult> taskValidity =
+        checkTaskValidity(flowTaskForUser, flowInstance);
+      if (!taskValidity.Item1)
+      {
+        return taskValidity.Item2;
+      }
+      #endregion
+
+      #region 获取可能的征询处理意见(InviteOther)的任务反馈意见内容
+      //ViewBag.inviteOtherFeedbackTasks =
+      //  getValidInviteOtherFeedbackTasks(
+      //    flowTaskForUser.flowTaskForUserId, flowInstDb, db);
+#warning 暂不实现
+      #endregion
+
+      #region 填充流程与业务相关数据
+      PurchaseReqFlowDataDTO purchaseReqFlowDataDTO =
+        PurchaseReqDataDTOBuilder.create(
+          flowInstance, flowTaskForUser, purchaseReq);
+      #endregion
+
+      return Ok(purchaseReqFlowDataDTO);
     }
 
     [HttpPost]

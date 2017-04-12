@@ -22,6 +22,7 @@ namespace OPAS2
 
     protected void Application_BeginRequest()
     {
+      // http://stackoverflow.com/questions/13624386/handling-cors-preflight-requests-to-asp-net-mvc-actions
       if (Request.Headers.AllKeys.Contains("Origin") && Request.HttpMethod == "OPTIONS")
       {
         Response.End();

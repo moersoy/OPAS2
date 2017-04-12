@@ -14,6 +14,7 @@ using OPAS2Model;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using OPAS2.Models;
 
 namespace OPAS2.Api
 {
@@ -836,6 +837,34 @@ namespace OPAS2.Api
             delegateeStr + " " + DateTime.Now.ToString();
         db.SaveChanges();
       }
+    }
+
+    protected object fillFlowContinuationDataInObject(
+      FlowInstance flowInstance, string taskGuid, object bizObj)
+    {
+      dynamic flowContinuationData = new ExpandoObject();
+      flowContinuationData.taskGuid = taskGuid;
+      flowContinuationData.bizObj = bizObj;
+      flowContinuationData.currentActivityGuid = flowInstance.currentActivityGuid;
+      flowContinuationData.flowInstanceId = flowInstance.flowInstanceId;
+      flowContinuationData.flowTemplateDef = flowInstance.flowTemplateJson;
+
+      FlowTemplateDefHelper flowTemplateDefHelper = new FlowTemplateDefHelper(
+        flowInstance.flowTemplateJson);
+
+      ActivityNode fromNode = flowTemplateDefHelper.getNodeFromGuid(
+        flowInstance.currentActivityGuid);
+      if (fromNode != null)
+      { // 获取可用的从当前状态节点出发的所有连接和目的状态节点
+        flowContinuationData.availableFlowConnections = 
+          AvailableFlowAction.getNodeOutBoundAvailableFlowActions(
+           fromNode, flowTemplateDefHelper);
+      }
+      else
+      {
+        throw new Exception("未找到指定的当前流程实例节点");
+      }
+      return flowContinuationData;
     }
 
     protected static dynamic parseJsonToDynamicObject(string json)

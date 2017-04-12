@@ -7,19 +7,27 @@ using System.Web.Http;
 using System.Web.Http.Description;
 
 using EnouFlowInstanceLib;
+using EnouFlowOrgMgmtLib;
 using OPAS2.ApiFilters;
+using OPAS2.Models;
 
 namespace OPAS2.Api
 {
-  public class FlowTaskForUserApiController : BaseApiController
+  public class FlowTaskApiController : BaseApiController
   {
     // GET api/<controller>
     [UserAuthentication]
     [HttpGet]
-    [Route("api/FlowTaskForUser/")]
-    public IEnumerable<FlowTaskForUser> Get()
+    [Route("api/FlowTask/")]
+    public IEnumerable<FlowTask> Get()
     {
-      return null;
+      string userGuid = (string)(Request.Properties["userGuid"]);
+      var tasks = FlowInstanceHelper.GetFlowTaskForUserListOfUser(
+        userGuid, flowInstDb).Where(task => 
+          task.taskType == EnumFlowTaskType.normal ||
+          task.taskType == EnumFlowTaskType.delegation || 
+          task.taskType == EnumFlowTaskType.invitation).ToList();
+      return tasks.Select(t => new FlowTask(t, db));
     }
 
     // GET api/<controller>/5

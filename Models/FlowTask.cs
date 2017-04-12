@@ -5,6 +5,7 @@ using System.Web;
 
 using OPAS2Model;
 using EnouFlowInstanceLib;
+using EnouFlowOrgMgmtLib;
 
 namespace OPAS2.Models
 {
@@ -59,7 +60,9 @@ namespace OPAS2.Models
     public DateTime? dateTimeField_4 { get; set; }
     public DateTime? dateTimeField_5 { get; set; }
 
-    public FlowTask(FlowTaskForUser flowTaskForUser, 
+    public string departmentName { get; set; }
+    public string creatorUserName { get; set; }
+    public FlowTask(FlowTaskForUser flowTaskForUser,
       OPAS2DbContext oPAS2Db)
     {
       #region 填充任务基本字段
@@ -121,6 +124,9 @@ namespace OPAS2.Models
           documentSubject = bizDocumentPR.reason;
           departmentId = bizDocumentPR.departmentId;
           creatorUserId = bizDocumentPR.creatorUserId;
+          creatorUserName = bizDocumentPR.creator;
+          departmentName = OrgMgmtDBHelper.getDepartment(
+            bizDocumentPR.departmentId).name;
           createTime = bizDocumentPR.createTime;
           break;
         case "PO":
@@ -130,6 +136,9 @@ namespace OPAS2.Models
           documentSubject = bizDocumentPO.reason;
           departmentId = bizDocumentPO.departmentId;
           creatorUserId = bizDocumentPO.creatorUserId;
+          creatorUserName = bizDocumentPO.creator;
+          departmentName = OrgMgmtDBHelper.getDepartment(
+            bizDocumentPO.departmentId).name;
           createTime = bizDocumentPO.createTime;
           break;
         case "GR":
@@ -139,15 +148,21 @@ namespace OPAS2.Models
           documentSubject = bizDocumentGR.PurchaseOrder.reason; //使用对应PO的主题
           departmentId = bizDocumentGR.departmentId;
           creatorUserId = bizDocumentGR.creatorUserId;
+          creatorUserName = bizDocumentGR.creator;
+          departmentName = OrgMgmtDBHelper.getDepartment(
+            bizDocumentGR.departmentId).name;
           createTime = bizDocumentGR.createTime;
           break;
         case "PM":
           var bizDocumentPM = oPAS2Db.payments.Where(
             obj => obj.guid == bizDocumentGuid).FirstOrDefault();
           documentNo = bizDocumentPM.documentNo;
-          documentSubject = bizDocumentPM.reason; 
+          documentSubject = bizDocumentPM.reason;
           departmentId = bizDocumentPM.departmentId;
           creatorUserId = bizDocumentPM.creatorUserId;
+          creatorUserName = bizDocumentPM.creator;
+          departmentName = OrgMgmtDBHelper.getDepartment(
+            bizDocumentPM.departmentId).name;
           createTime = bizDocumentPM.createTime;
           break;
         default:

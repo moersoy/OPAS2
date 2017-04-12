@@ -46,7 +46,7 @@ namespace OPAS2.ApiFilters
             obj => obj.guid == token && obj.expireTime>DateTime.Now
             ).FirstOrDefault();
         if (userAuthenticationToken != null)
-        {
+        { // 用户使用Token登录后在Request中写入用户的识别Id
           actionContext.Request.Properties["userId"] = userAuthenticationToken.userId;
           actionContext.Request.Properties["userGuid"] = userAuthenticationToken.userGuid;
           return true;

@@ -49,7 +49,6 @@ namespace OPAS2.Api
               userGuid = token.userGuid,
               userLogonName = user.logonName,
               userDisplayName = user.name,
-              
               authenticationTokenExpireTime = token.expireTime
             }
           }));

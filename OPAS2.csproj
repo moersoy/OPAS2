@@ -142,7 +142,7 @@
     <Compile Include="ApiFilters\UserAuthentication.cs" />
     <Compile Include="Api\BaseApiController.cs" />
     <Compile Include="Api\FlowInstanceApiController.cs" />
-    <Compile Include="Api\FlowTaskForUserApiController.cs" />
+    <Compile Include="Api\FlowTaskApiController.cs" />
     <Compile Include="Api\GRApiController.cs" />
     <Compile Include="Api\PMApiController.cs" />
     <Compile Include="Api\POApiController.cs" />
@@ -197,7 +197,9 @@
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Models\AvailableFlowAction.cs" />
+    <Compile Include="Models\FlowDocumentDataDTO.cs" />
     <Compile Include="Models\FlowTask.cs" />
+    <Compile Include="Models\PurchaseReqFlowDataDTO.cs" />
     <Compile Include="Models\TypeSelectListsInFlow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
