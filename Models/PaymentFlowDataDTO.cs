@@ -11,53 +11,41 @@ using OPAS2Model;
 
 namespace OPAS2.Models
 {
-  // 将包含采购订单的业务数据与流程操作相关的数据，目前用于移动端查看审批
-  public class PurchaseOrderFlowDataDTO
+  // 将包含付款申请的业务数据与流程操作相关的数据，目前用于移动端查看审批
+  public class PaymentFlowDataDTO
   {
     public FlowDocumentDataDTO flowDocumentData { get; set; }
     #region Biz Data
-    public int purchaseOrderId { get; set; }
+    public int paymentId { get; set; }
     public string documentNo { get; set; }
     public string departmentName { get; set; }
-    public string departmentNameBelongTo { get; set; }
-    public string contactOfficePhone { get; set; }
-    public string contactMobile { get; set; }
-    public string costCenterName { get; set; }
-    public DateTime? orderDate { get; set; }
-    public DateTime? effectiveDate { get; set; }
     public string reason { get; set; }
     public string description { get; set; }
     public decimal? totalAmount { get; set; }
-    public string currencyTypeName { get; set; }
     public decimal? totalAmountInRMB { get; set; }
-    public string POTypeName { get; set; }
     public string vendorName { get; set; }
-    public string transportTerm { get; set; }
-    public string paymentTerm { get; set; }
     public string submitor { get; set; }
     #endregion
-    public List<PurchaseOrderDetailDataDTO> details { get; set; }
+    public List<PaymentDetailDataDTO> details { get; set; }
   }
 
-  public class PurchaseOrderDetailDataDTO
+  public class PaymentDetailDataDTO
   {
     public int id { get; set; }
     public string guid { get; set; }
     public int lineNo { get; set; }
     public string itemName { get; set; }
-    public string description { get; set; }
     public string unitMeasure { get; set; }
     public decimal price { get; set; }
     public decimal quantity { get; set; }
     public decimal amount { get; set; } // should be quantity*price
     public decimal amountInRMB { get; set; }
-    public PurchaseOrderDetailDataDTO(PurchaseOrderDetail detail)
+    public PaymentDetailDataDTO(PaymentDetail detail)
     {
-      id = detail.purchaseOrderDetailId;
+      id = detail.paymentDetailDetailId;
       guid = detail.guid;
       lineNo = detail.lineNo;
       itemName = detail.itemName;
-      description = detail.description;
       price = detail.price;
       quantity = detail.quantity;
       amount = detail.amount;
@@ -65,55 +53,41 @@ namespace OPAS2.Models
     }
   }
 
-  public static class PurchaseOrderDataDTOBuilder
+  public static class PaymentDataDTOBuilder
   {
-    public static PurchaseOrderFlowDataDTO create(
+    public static PaymentFlowDataDTO create(
       FlowInstance flowInstance, 
       FlowTaskForUser flowTaskForUser,
-      PurchaseOrder bizDocumentObj)
+      Payment bizDocumentObj)
     {
       FlowDocumentDataDTO flowDocumentData = 
         new FlowDocumentDataDTO(flowTaskForUser, flowInstance);
 
-      List<PurchaseOrderDetailDataDTO> details =
+      List<PaymentDetailDataDTO> details =
         bizDocumentObj.details.Select(detail => 
-          new PurchaseOrderDetailDataDTO(detail)).ToList();
+          new PaymentDetailDataDTO(detail)).ToList();
 
-      PurchaseOrderFlowDataDTO purchaseOrderFlowDataDTO = 
-        new PurchaseOrderFlowDataDTO() {
+      PaymentFlowDataDTO PaymentFlowDataDTO =
+        new PaymentFlowDataDTO() {
           flowDocumentData = flowDocumentData,
           #region Biz Data
-          purchaseOrderId = bizDocumentObj.purchaseOrderId,
+          paymentId = bizDocumentObj.paymentId,
           documentNo = bizDocumentObj.documentNo,
           departmentName = OrgMgmtDBHelper.getDepartment(
             bizDocumentObj.departmentId)?.name,
-          departmentNameBelongTo = OrgMgmtDBHelper.getDepartment(
-            bizDocumentObj.departmentIdBelongTo)?.name,
-          contactOfficePhone = bizDocumentObj.contactOfficePhone,
-          contactMobile = bizDocumentObj.contactMobile,
-          costCenterName = OPAS2ModelDBHelper.getCostCenter(
-            bizDocumentObj.costCenterId)?.chineseName,
-          orderDate = bizDocumentObj.orderDate,
-          effectiveDate = bizDocumentObj.effectiveDate,
           reason = bizDocumentObj.reason,
           description = bizDocumentObj.description,
           totalAmount = bizDocumentObj.totalAmount,
-          currencyTypeName = (bizDocumentObj.currencyTypeId.HasValue ? 
-            OPAS2ModelDBHelper.getCurrencyType(
-              bizDocumentObj.currencyTypeId.Value).name : ""),
           totalAmountInRMB = bizDocumentObj.totalAmountInRMB,
-          POTypeName = OPAS2EnumsHelper.getPOTypeName(bizDocumentObj.POType),
           vendorName = (bizDocumentObj.vendorId.HasValue ? 
             OPAS2ModelDBHelper.getVendor(
               bizDocumentObj.vendorId.Value).chineseName : ""),
-          transportTerm = bizDocumentObj.transportTerm,
-          paymentTerm = bizDocumentObj.paymentTerm,
           submitor = bizDocumentObj.submitor,
           #endregion
           details = details
         };
 
-      return purchaseOrderFlowDataDTO;
+      return PaymentFlowDataDTO;
     }
   }
 

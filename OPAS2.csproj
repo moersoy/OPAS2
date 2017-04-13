@@ -199,6 +199,8 @@
     <Compile Include="Models\AvailableFlowAction.cs" />
     <Compile Include="Models\FlowDocumentDataDTO.cs" />
     <Compile Include="Models\FlowTask.cs" />
+    <Compile Include="Models\GoodsReceivingFlowDataDTO.cs" />
+    <Compile Include="Models\PaymentFlowDataDTO.cs" />
     <Compile Include="Models\PurchaseOrderFlowDataDTO.cs" />
     <Compile Include="Models\PurchaseReqFlowDataDTO.cs" />
     <Compile Include="Models\TypeSelectListsInFlow.cs" />
