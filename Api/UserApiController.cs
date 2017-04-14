@@ -59,6 +59,13 @@ namespace OPAS2.Api
       //return Ok((UserDTO)null);
     }
 
+    [HttpGet]
+    [Route("api/User/TestConnection/")]
+    public IHttpActionResult TestConnection()
+    {
+      return Ok("From Server ("+ DateTime.Now.ToString() + ") ... OK.");
+    }
+
     // GET api/<controller>/5
     public string Get(int id)
     {
